@@ -1,4 +1,4 @@
-package de.db;
+package de.db.datamodel;
 
 public class Kunde {
 

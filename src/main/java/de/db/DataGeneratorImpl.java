@@ -2,6 +2,11 @@ package de.db;
 
 import com.google.inject.Inject;
 
+import de.db.datamodel.Kunde;
+import de.db.datamodel.Produkt;
+import de.db.datamodel.Warenkorb;
+import de.db.datamodel.WarenkorbProdukt;
+
 public class DataGeneratorImpl extends DataGenerator {
 
 	private DBWriter dbWriter;

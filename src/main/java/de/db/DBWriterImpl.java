@@ -1,5 +1,10 @@
 package de.db;
 
+import de.db.datamodel.Kunde;
+import de.db.datamodel.Produkt;
+import de.db.datamodel.Warenkorb;
+import de.db.datamodel.WarenkorbProdukt;
+
 public class DBWriterImpl implements DBWriter {
 
 	public void write(Kunde kunde) {

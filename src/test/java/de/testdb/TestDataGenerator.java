@@ -14,10 +14,10 @@ import org.junit.Test;
 import de.db.DBWriter;
 import de.db.DataGenerator;
 import de.db.DataGeneratorImpl;
-import de.db.Kunde;
-import de.db.Produkt;
-import de.db.Warenkorb;
-import de.db.WarenkorbProdukt;
+import de.db.datamodel.Kunde;
+import de.db.datamodel.Produkt;
+import de.db.datamodel.Warenkorb;
+import de.db.datamodel.WarenkorbProdukt;
 
 public class TestDataGenerator {
 
