@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>270</x>
+      <y>260</y>
+      <w>290</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>TestDataGeneratorImpl
+--
+-generateKunden(anzahl : int)
+-generateProdukte(anzahl : int)
+-generateWarenkorb(anzahl : int)
+-generateProdukteInWarenkorb(anzahl : int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>80</x>
+      <y>260</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>DBWriterImpl
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>610</x>
+      <y>190</y>
+      <w>160</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Warenkorb
+--
+-id : BigInteger
+-kundenId : BigInteger</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>610</x>
+      <y>380</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Produkt
+--
+-id : BigInteger
+-name : String
+-preis : Integer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>610</x>
+      <y>90</y>
+      <w>130</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Kunde
+--
+-id : BigInteger
+-name : String
+-preis : Integer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>610</x>
+      <y>290</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>WarenkorbProdukt
+--
+-warenkorbId : BigInteger
+-kundenId : BigInteger</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>530</x>
+      <y>240</y>
+      <w>100</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+hat&gt;</panel_attributes>
+    <additional_attributes>30;30;80;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>530</x>
+      <y>170</y>
+      <w>100</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+hat&gt;</panel_attributes>
+    <additional_attributes>30;100;80;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>530</x>
+      <y>240</y>
+      <w>100</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+hat&gt;</panel_attributes>
+    <additional_attributes>30;30;80;150</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>530</x>
+      <y>70</y>
+      <w>100</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=1
+hat&gt;</panel_attributes>
+    <additional_attributes>30;200;80;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>190</x>
+      <y>220</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;
+m1=1
+m2=1
+&lt;hat</panel_attributes>
+    <additional_attributes>30;50;80;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Interface</type>
+    <coordinates>
+      <x>0</x>
+      <y>100</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>DBWriter
+--
++write(kunde : Kunde)
++write(produkt : Produkt)
++write(warenkorb : Warenkorb)
++write(warenkorbProdukt : WarenkorbProdukt)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>90</y>
+      <w>50</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>30;30;30;170</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Interface</type>
+    <coordinates>
+      <x>100</x>
+      <y>10</y>
+      <w>620</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>TestDataGenerator
+--
++generate(anzKunden : int, anzProdukte : int, anzWarenkoerbe : int, anzProdukteInWarenkorb : int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>380</x>
+      <y>0</y>
+      <w>50</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>30;30;30;260</additional_attributes>
+  </element>
+</diagram>
