@@ -1,18 +1,36 @@
 package de.db;
 
-import java.math.BigInteger;
-
 public class Produkt {
 
-	private BigInteger id;
+	private long id;
 	private String name;
 	private Integer preis;
 
-	public BigInteger getId() {
+	public Produkt(long id, String name, Integer preis) {
+		this.id = id;
+		this.name = name;
+		this.preis = preis;
+	}
+
+	public boolean equals(Object object) {
+		boolean isEqual = false;
+		if (object != null) {
+			if (object.getClass() == Produkt.class) {
+				Produkt produkt = (Produkt) object;
+				if (produkt.getId() == id) {
+					isEqual = true;
+				}
+			}
+		}
+
+		return isEqual;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

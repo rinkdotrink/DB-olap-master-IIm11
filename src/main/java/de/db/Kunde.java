@@ -1,18 +1,36 @@
 package de.db;
 
-import java.math.BigInteger;
-
 public class Kunde {
 
-	private BigInteger id;
+	private long id;
 	private String name;
-	private Integer preis;
+	private long kundenNummer;
 
-	public BigInteger getId() {
+	public Kunde(long id, String name, long kundenNummer) {
+		this.id = id;
+		this.name = name;
+		this.kundenNummer = kundenNummer;
+	}
+
+	public boolean equals(Object object) {
+		boolean isEqual = false;
+		if (object != null) {
+			if (object.getClass() == Kunde.class) {
+				Kunde kunde = (Kunde) object;
+				if (kunde.getId() == id) {
+					isEqual = true;
+				}
+			}
+		}
+
+		return isEqual;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -24,12 +42,12 @@ public class Kunde {
 		this.name = name;
 	}
 
-	public Integer getPreis() {
-		return preis;
+	public long getKundenNummer() {
+		return kundenNummer;
 	}
 
-	public void setPreis(Integer preis) {
-		this.preis = preis;
+	public void setKundenNummer(long kundenNummer) {
+		this.kundenNummer = kundenNummer;
 	}
 
 }

@@ -1,25 +1,42 @@
 package de.db;
 
-import java.math.BigInteger;
-
 public class Warenkorb {
 
-	private BigInteger id;
-	private BigInteger kundenId;
+	private long id;
+	private long kundenId;
 
-	public BigInteger getId() {
+	public Warenkorb(long id, long kundenId) {
+		this.id = id;
+		this.kundenId = kundenId;
+	}
+
+	public boolean equals(Object object) {
+		boolean isEqual = false;
+		if (object != null) {
+			if (object.getClass() == Warenkorb.class) {
+				Warenkorb warenkorb = (Warenkorb) object;
+				if (warenkorb.getId() == id) {
+					isEqual = true;
+				}
+			}
+		}
+
+		return isEqual;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public BigInteger getKundenId() {
+	public long getKundenId() {
 		return kundenId;
 	}
 
-	public void setKundenId(BigInteger kundenId) {
+	public void setKundenId(long kundenId) {
 		this.kundenId = kundenId;
 	}
 
