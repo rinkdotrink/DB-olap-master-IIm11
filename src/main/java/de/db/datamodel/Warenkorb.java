@@ -12,16 +12,17 @@ public class Warenkorb {
 
 	public boolean equals(Object object) {
 		boolean isEqual = false;
-		if (object != null) {
-			if (object.getClass() == Warenkorb.class) {
-				Warenkorb warenkorb = (Warenkorb) object;
-				if (warenkorb.getId() == id) {
-					isEqual = true;
-				}
+		if ((object != null) && (object.getClass() == this.getClass())) {
+			Warenkorb warenkorb = (Warenkorb) object;
+			if (warenkorb.getId() == id) {
+				isEqual = true;
 			}
 		}
-
 		return isEqual;
+	}
+
+	public int hashCode() {
+		return (int) this.id;
 	}
 
 	public long getId() {

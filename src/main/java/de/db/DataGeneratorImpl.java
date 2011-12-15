@@ -24,7 +24,7 @@ public class DataGeneratorImpl extends DataGenerator {
 		Kunde kunde;
 		for (long i = 0; i < anzahl; i++) {
 			id = i;
-			name = new String("Customer" + id);
+			name = "Customer" + id;
 			kundenNummer = i;
 			kunde = new Kunde(id, name, kundenNummer);
 			dbWriter.write(kunde);
@@ -39,8 +39,8 @@ public class DataGeneratorImpl extends DataGenerator {
 		Produkt produkt;
 		for (long i = 0; i < anzahl; i++) {
 			id = i;
-			name = new String("Product" + id);
-			preis = new Integer(1);
+			name = "Product" + id;			
+			preis = Integer.valueOf(1);
 			produkt = new Produkt(id, name, preis);
 			dbWriter.write(produkt);
 		}

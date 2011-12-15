@@ -15,16 +15,18 @@ public class WarenkorbProdukt {
 
 	public boolean equals(Object object) {
 		boolean isEqual = false;
-		if (object != null) {
-			if (object.getClass() == WarenkorbProdukt.class) {
-				WarenkorbProdukt warenkorbProdukt = (WarenkorbProdukt) object;
-				if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
-					isEqual = true;
-				}
+		if ((object != null) && (object.getClass() == this.getClass())) {
+			WarenkorbProdukt warenkorbProdukt = (WarenkorbProdukt) object;
+			if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
+				isEqual = true;
 			}
 		}
 
 		return isEqual;
+	}
+
+	public int hashCode() {
+		return (int) this.bestellzeileId;
 	}
 
 	public long getBestellzeileId() {

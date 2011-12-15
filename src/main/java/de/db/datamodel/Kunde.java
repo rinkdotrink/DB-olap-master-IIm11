@@ -14,16 +14,17 @@ public class Kunde {
 
 	public boolean equals(Object object) {
 		boolean isEqual = false;
-		if (object != null) {
-			if (object.getClass() == Kunde.class) {
-				Kunde kunde = (Kunde) object;
-				if (kunde.getId() == id) {
-					isEqual = true;
-				}
+		if ((object != null) && (object.getClass() == this.getClass())) {
+			Kunde kunde = (Kunde) object;
+			if (kunde.getId() == id) {
+				isEqual = true;
 			}
 		}
-
 		return isEqual;
+	}
+
+	public int hashCode() {
+		return (int) this.id;
 	}
 
 	public long getId() {

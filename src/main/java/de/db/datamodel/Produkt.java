@@ -14,16 +14,17 @@ public class Produkt {
 
 	public boolean equals(Object object) {
 		boolean isEqual = false;
-		if (object != null) {
-			if (object.getClass() == Produkt.class) {
-				Produkt produkt = (Produkt) object;
-				if (produkt.getId() == id) {
-					isEqual = true;
-				}
+		if ((object != null) && (object.getClass() == this.getClass())) {
+			Produkt produkt = (Produkt) object;
+			if (produkt.getId() == id) {
+				isEqual = true;
 			}
 		}
-
 		return isEqual;
+	}
+
+	public int hashCode() {
+		return (int) this.id;
 	}
 
 	public long getId() {
