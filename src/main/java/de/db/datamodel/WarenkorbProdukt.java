@@ -1,6 +1,6 @@
 package de.db.datamodel;
 
-public class WarenkorbProdukt {
+public class WarenkorbProdukt implements FactoryMethodProduct {
 
 	private long bestellzeileId;
 	private long warenkorbId;

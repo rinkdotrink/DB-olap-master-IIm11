@@ -1,6 +1,6 @@
 package de.db.datamodel;
 
-public class Produkt {
+public class Produkt implements FactoryMethodProduct {
 
 	private long id;
 	private String name;

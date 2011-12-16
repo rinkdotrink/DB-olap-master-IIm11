@@ -12,8 +12,8 @@ public class Main {
 		long anzProdukteInWarenkorb = 2;
 
 		Injector injector = Guice.createInjector(new DBModule());
-		DataGenerator dataGenerator = injector.getInstance(DataGenerator.class);
-		dataGenerator.generate(anzKunde, anzProdukte, anzWarenkoerbe,
+		Context context = injector.getInstance(Context.class);
+		context.generateTemplateMethod(anzKunde, anzProdukte, anzWarenkoerbe,
 				anzProdukteInWarenkorb);
 	}
 }

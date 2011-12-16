@@ -6,7 +6,7 @@ public class DBModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(DataGenerator.class).to(DataGeneratorImpl.class);
+		bind(Context.class);
 		bind(DBWriter.class).to(DBWriterImpl.class);
 	}
 }
