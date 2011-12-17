@@ -1,6 +1,6 @@
-package de.db;
+package de.datagenerator.dbwriter;
 
-import de.db.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.FactoryMethodProduct;
 
 public interface DBWriter {
 

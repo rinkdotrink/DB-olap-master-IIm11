@@ -1,6 +1,8 @@
-package de.db;
+package de.datagenerator.generator;
 
-import de.db.datamodel.FactoryMethodProduct;
+import de.datagenerator.creator.Creator;
+import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.dbwriter.DBWriter;
 
 public abstract class DataGeneratorStrategy {
 

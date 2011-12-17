@@ -11,18 +11,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.db.DBWriter;
-import de.db.DataGeneratorStrategy;
-import de.db.Context;
-import de.db.datamodel.FactoryMethodProduct;
-import de.db.datamodel.Kunde;
-import de.db.datamodel.Produkt;
-import de.db.datamodel.Warenkorb;
-import de.db.datamodel.WarenkorbProdukt;
+import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Kunde;
+import de.datagenerator.datamodel.Produkt;
+import de.datagenerator.datamodel.Warenkorb;
+import de.datagenerator.datamodel.WarenkorbProdukt;
+import de.datagenerator.dbwriter.DBWriter;
+import de.datagenerator.generator.Context;
 
 public class TestDataGenerator {
 
-	private DataGeneratorStrategy classUnderTest;
+	private Context classUnderTest;
 	private DBWriter mock;
 
 	@BeforeClass
@@ -42,6 +41,109 @@ public class TestDataGenerator {
 
 	@After
 	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public final void testGenerate_0_0_0_0() {
+		long anzKunde = 0;
+		long anzProdukte = 0;
+		long anzWarenkoerbe = 0;
+		long anzProdukteInWarenkorb = 0;
+		replay(mock);
+		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
+				anzWarenkoerbe, anzProdukteInWarenkorb);
+		verify(mock);
+	}
+
+	@Test
+	public final void testGenerate_1_1_1_1() {
+		long anzKunde = 1;
+		long anzProdukte = 1;
+		long anzWarenkoerbe = 1;
+		long anzProdukteInWarenkorb = 1;
+		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+		mock.write(kunde0);
+		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+		mock.write(produkt0);
+		FactoryMethodProduct warenkorb0 = new Warenkorb(0, 0);
+		mock.write(warenkorb0);
+		FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
+		mock.write(warenkorbProdukt0);
+		replay(mock);
+		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
+				anzWarenkoerbe, anzProdukteInWarenkorb);
+		verify(mock);
+	}
+
+	@Test
+	public final void testGenerate_4_4_2_1() {
+		long anzKunde = 4;
+		long anzProdukte = 4;
+		long anzWarenkoerbe = 2;
+		long anzProdukteInWarenkorb = 1;
+
+		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+		FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
+		FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
+		FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
+
+		mock.write(kunde0);
+		mock.write(kunde1);
+		mock.write(kunde2);
+		mock.write(kunde3);
+
+		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+		FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
+		FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
+		FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
+
+		mock.write(produkt0);
+		mock.write(produkt1);
+		mock.write(produkt2);
+		mock.write(produkt3);
+
+		FactoryMethodProduct warenkorb0 = new Warenkorb(0, 0);
+		FactoryMethodProduct warenkorb1 = new Warenkorb(1, 0);
+		FactoryMethodProduct warenkorb2 = new Warenkorb(2, 1);
+		FactoryMethodProduct warenkorb3 = new Warenkorb(3, 1);
+		FactoryMethodProduct warenkorb4 = new Warenkorb(4, 2);
+		FactoryMethodProduct warenkorb5 = new Warenkorb(5, 2);
+		FactoryMethodProduct warenkorb6 = new Warenkorb(6, 3);
+		FactoryMethodProduct warenkorb7 = new Warenkorb(7, 3);
+
+		mock.write(warenkorb0);
+		mock.write(warenkorb1);
+		mock.write(warenkorb2);
+		mock.write(warenkorb3);
+		mock.write(warenkorb4);
+		mock.write(warenkorb5);
+		mock.write(warenkorb6);
+		mock.write(warenkorb7);
+
+		FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
+		FactoryMethodProduct warenkorbProdukt1 = new WarenkorbProdukt(1, 1, 1);
+		FactoryMethodProduct warenkorbProdukt2 = new WarenkorbProdukt(2, 2, 2);
+		FactoryMethodProduct warenkorbProdukt3 = new WarenkorbProdukt(3, 3, 3);
+		FactoryMethodProduct warenkorbProdukt4 = new WarenkorbProdukt(4, 4, 0);
+		FactoryMethodProduct warenkorbProdukt5 = new WarenkorbProdukt(5, 5, 1);
+		FactoryMethodProduct warenkorbProdukt6 = new WarenkorbProdukt(6, 6, 2);
+		FactoryMethodProduct warenkorbProdukt7 = new WarenkorbProdukt(7, 7, 3);
+
+		mock.write(warenkorbProdukt0);
+		mock.write(warenkorbProdukt1);
+		mock.write(warenkorbProdukt2);
+		mock.write(warenkorbProdukt3);
+		mock.write(warenkorbProdukt4);
+		mock.write(warenkorbProdukt5);
+		mock.write(warenkorbProdukt6);
+		mock.write(warenkorbProdukt7);
+
+		replay(mock);
+
+		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
+				anzWarenkoerbe, anzProdukteInWarenkorb);
+
+		verify(mock);
 	}
 
 	@Test
@@ -76,24 +178,20 @@ public class TestDataGenerator {
 		mock.write(produkt4);
 
 		FactoryMethodProduct warenkorb0 = new Warenkorb(0, 0);
-		FactoryMethodProduct warenkorb1 = new Warenkorb(1, 1);
-		FactoryMethodProduct warenkorb2 = new Warenkorb(2, 2);
-
-		FactoryMethodProduct warenkorb3 = new Warenkorb(3, 0);
+		FactoryMethodProduct warenkorb1 = new Warenkorb(1, 0);
+		FactoryMethodProduct warenkorb2 = new Warenkorb(2, 0);
+		FactoryMethodProduct warenkorb3 = new Warenkorb(3, 1);
 		FactoryMethodProduct warenkorb4 = new Warenkorb(4, 1);
-		FactoryMethodProduct warenkorb5 = new Warenkorb(5, 2);
-
-		FactoryMethodProduct warenkorb6 = new Warenkorb(6, 0);
-		FactoryMethodProduct warenkorb7 = new Warenkorb(7, 1);
+		FactoryMethodProduct warenkorb5 = new Warenkorb(5, 1);
+		FactoryMethodProduct warenkorb6 = new Warenkorb(6, 2);
+		FactoryMethodProduct warenkorb7 = new Warenkorb(7, 2);
 		FactoryMethodProduct warenkorb8 = new Warenkorb(8, 2);
-
-		FactoryMethodProduct warenkorb9 = new Warenkorb(9, 0);
-		FactoryMethodProduct warenkorb10 = new Warenkorb(10, 1);
-		FactoryMethodProduct warenkorb11 = new Warenkorb(11, 2);
-
-		FactoryMethodProduct warenkorb12 = new Warenkorb(12, 0);
-		FactoryMethodProduct warenkorb13 = new Warenkorb(13, 1);
-		FactoryMethodProduct warenkorb14 = new Warenkorb(14, 2);
+		FactoryMethodProduct warenkorb9 = new Warenkorb(9, 3);
+		FactoryMethodProduct warenkorb10 = new Warenkorb(10, 3);
+		FactoryMethodProduct warenkorb11 = new Warenkorb(11, 3);
+		FactoryMethodProduct warenkorb12 = new Warenkorb(12, 4);
+		FactoryMethodProduct warenkorb13 = new Warenkorb(13, 4);
+		FactoryMethodProduct warenkorb14 = new Warenkorb(14, 4);
 
 		mock.write(warenkorb0);
 		mock.write(warenkorb1);
@@ -131,16 +229,26 @@ public class TestDataGenerator {
 		FactoryMethodProduct warenkorbProdukt17 = new WarenkorbProdukt(17, 8, 2);
 		FactoryMethodProduct warenkorbProdukt18 = new WarenkorbProdukt(18, 9, 3);
 		FactoryMethodProduct warenkorbProdukt19 = new WarenkorbProdukt(19, 9, 4);
-		FactoryMethodProduct warenkorbProdukt20 = new WarenkorbProdukt(20, 10, 0);
-		FactoryMethodProduct warenkorbProdukt21 = new WarenkorbProdukt(21, 10, 1);
-		FactoryMethodProduct warenkorbProdukt22 = new WarenkorbProdukt(22, 11, 2);
-		FactoryMethodProduct warenkorbProdukt23 = new WarenkorbProdukt(23, 11, 3);
-		FactoryMethodProduct warenkorbProdukt24 = new WarenkorbProdukt(24, 12, 4);
-		FactoryMethodProduct warenkorbProdukt25 = new WarenkorbProdukt(25, 12, 0);
-		FactoryMethodProduct warenkorbProdukt26 = new WarenkorbProdukt(26, 13, 1);
-		FactoryMethodProduct warenkorbProdukt27 = new WarenkorbProdukt(27, 13, 2);
-		FactoryMethodProduct warenkorbProdukt28 = new WarenkorbProdukt(28, 14, 3);
-		FactoryMethodProduct warenkorbProdukt29 = new WarenkorbProdukt(29, 14, 4);
+		FactoryMethodProduct warenkorbProdukt20 = new WarenkorbProdukt(20, 10,
+				0);
+		FactoryMethodProduct warenkorbProdukt21 = new WarenkorbProdukt(21, 10,
+				1);
+		FactoryMethodProduct warenkorbProdukt22 = new WarenkorbProdukt(22, 11,
+				2);
+		FactoryMethodProduct warenkorbProdukt23 = new WarenkorbProdukt(23, 11,
+				3);
+		FactoryMethodProduct warenkorbProdukt24 = new WarenkorbProdukt(24, 12,
+				4);
+		FactoryMethodProduct warenkorbProdukt25 = new WarenkorbProdukt(25, 12,
+				0);
+		FactoryMethodProduct warenkorbProdukt26 = new WarenkorbProdukt(26, 13,
+				1);
+		FactoryMethodProduct warenkorbProdukt27 = new WarenkorbProdukt(27, 13,
+				2);
+		FactoryMethodProduct warenkorbProdukt28 = new WarenkorbProdukt(28, 14,
+				3);
+		FactoryMethodProduct warenkorbProdukt29 = new WarenkorbProdukt(29, 14,
+				4);
 
 		mock.write(warenkorbProdukt0);
 		mock.write(warenkorbProdukt1);
@@ -178,27 +286,6 @@ public class TestDataGenerator {
 		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
 				anzWarenkoerbe, anzProdukteInWarenkorb);
 
-		verify(mock);
-
-	}
-
-	@Test
-	public final void testGenerate_1_1_1_1() {
-		long anzKunde = 1;
-		long anzProdukte = 1;
-		long anzWarenkoerbe = 1;
-		long anzProdukteInWarenkorb = 1;
-		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-		mock.write(kunde0);
-		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-		mock.write(produkt0);
-		FactoryMethodProduct warenkorb0 = new Warenkorb(0, 0);
-		mock.write(warenkorb0);
-		FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
-		mock.write(warenkorbProdukt0);
-		replay(mock);
-		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
-				anzWarenkoerbe, anzProdukteInWarenkorb);
 		verify(mock);
 	}
 

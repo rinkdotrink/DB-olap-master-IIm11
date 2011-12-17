@@ -1,11 +1,12 @@
-package de.db;
+package de.datagenerator.generator;
 
 import com.google.inject.Inject;
+
+import de.datagenerator.dbwriter.DBWriter;
 
 public class Context extends DataGeneratorStrategy {
 
 	DataGeneratorStrategy strategy;
-	DBWriter dbWriter;
 
 	@Inject
 	public Context(DBWriter dbWriter) {

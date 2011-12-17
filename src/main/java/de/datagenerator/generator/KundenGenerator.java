@@ -1,6 +1,9 @@
-package de.db;
+package de.datagenerator.generator;
 
 import com.google.inject.Inject;
+
+import de.datagenerator.creator.KundeCreator;
+import de.datagenerator.dbwriter.DBWriter;
 
 public class KundenGenerator extends DataGeneratorStrategy {	
 	

@@ -1,7 +1,7 @@
-package de.db;
+package de.datagenerator.creator;
 
-import de.db.datamodel.FactoryMethodProduct;
-import de.db.datamodel.Warenkorb;
+import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Warenkorb;
 
 public class WarenkorbCreator extends Creator {
 

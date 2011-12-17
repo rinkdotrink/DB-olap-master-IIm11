@@ -1,4 +1,4 @@
-package de.db.datamodel;
+package de.datagenerator.datamodel;
 
 public class Kunde implements FactoryMethodProduct {
 

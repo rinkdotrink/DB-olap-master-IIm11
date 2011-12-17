@@ -1,4 +1,4 @@
-package de.db.datamodel;
+package de.datagenerator.datamodel;
 
 public class Produkt implements FactoryMethodProduct {
 

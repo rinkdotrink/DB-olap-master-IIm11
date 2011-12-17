@@ -1,7 +1,7 @@
-package de.db;
+package de.datagenerator.creator;
 
-import de.db.datamodel.FactoryMethodProduct;
-import de.db.datamodel.Produkt;
+import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Produkt;
 
 public class ProduktCreator extends Creator {
 

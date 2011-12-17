@@ -1,6 +1,9 @@
-package de.db;
+package de.datagenerator.generator;
 
 import com.google.inject.Inject;
+
+import de.datagenerator.creator.WarenkorbCreator;
+import de.datagenerator.dbwriter.DBWriter;
 
 public class WarenkorbGenerator extends DataGeneratorStrategy {
 

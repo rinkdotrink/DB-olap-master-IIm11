@@ -1,7 +1,9 @@
-package de.db;
+package de.datagenerator;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+
+import de.datagenerator.generator.Context;
 
 public class Main {
 
