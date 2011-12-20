@@ -18,7 +18,7 @@ public abstract class DataGeneratorStrategy {
 		generateProdukteInWarenkorb(anzKunden * anzWarenkoerbeProKunde
 				* anzProdukteInWarenkorb, anzProdukteInWarenkorb);
 	}
-
+	
 	protected void generateKunden(long anzahl){};
 
 	protected void generateProdukte(long anzahl){};

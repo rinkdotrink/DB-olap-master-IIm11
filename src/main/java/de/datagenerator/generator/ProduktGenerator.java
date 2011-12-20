@@ -3,13 +3,14 @@ package de.datagenerator.generator;
 import com.google.inject.Inject;
 
 import de.datagenerator.creator.ProduktCreator;
+import de.datagenerator.dbwriter.DBProduktWriter;
 import de.datagenerator.dbwriter.DBWriter;
 
 public class ProduktGenerator extends DataGeneratorStrategy {
 	
 	@Inject
 	public ProduktGenerator(DBWriter dbWriter){
-		this.dbWriter = dbWriter;
+		this.dbWriter = new DBProduktWriter();
 	}
 	
 	@Override

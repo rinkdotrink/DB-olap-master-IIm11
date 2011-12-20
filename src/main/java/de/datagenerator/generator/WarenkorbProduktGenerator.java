@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 
 import de.datagenerator.creator.Creator;
 import de.datagenerator.creator.WarenkorbProduktCreator;
+import de.datagenerator.dbwriter.DBWarenkorbProduktWriter;
 import de.datagenerator.dbwriter.DBWriter;
 
 public class WarenkorbProduktGenerator extends DataGeneratorStrategy {
@@ -16,7 +17,7 @@ public class WarenkorbProduktGenerator extends DataGeneratorStrategy {
 	
 	@Inject
 	public WarenkorbProduktGenerator(DBWriter dbWriter) {
-		this.dbWriter = dbWriter;
+		this.dbWriter = new DBWarenkorbProduktWriter();
 		creator = new WarenkorbProduktCreator();
 	}
 

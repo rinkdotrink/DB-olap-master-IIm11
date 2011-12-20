@@ -3,13 +3,14 @@ package de.datagenerator.generator;
 import com.google.inject.Inject;
 
 import de.datagenerator.creator.WarenkorbCreator;
+import de.datagenerator.dbwriter.DBWarenkorbWriter;
 import de.datagenerator.dbwriter.DBWriter;
 
 public class WarenkorbGenerator extends DataGeneratorStrategy {
 
 	@Inject
 	public WarenkorbGenerator(DBWriter dbWriter){
-		this.dbWriter = dbWriter;
+		this.dbWriter = new DBWarenkorbWriter();
 	}
 	
 	@Override
