@@ -2,8 +2,9 @@ package de.datagenerator.dbwriter;
 
 import de.datagenerator.datamodel.FactoryMethodProduct;
 
-public interface DBWriter {
+public abstract class DBWriter {
 
-	public void write(FactoryMethodProduct factMethProd);
+	public abstract void write(FactoryMethodProduct factMethProd);
+	public abstract void close();
 	
 }

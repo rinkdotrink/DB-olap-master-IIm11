@@ -25,5 +25,6 @@ public class KundenGenerator extends DataGeneratorStrategy {
 			factMethProd = creator.factMethKunde(id, name, kundenNummer);
 			dbWriter.write(factMethProd);
 		}
+		dbWriter.close();
 	}
 }

@@ -1,17 +1,10 @@
 package de.datagenerator.generator;
 
-import com.google.inject.Inject;
-
 import de.datagenerator.dbwriter.DBWriter;
 
 public class Context extends DataGeneratorStrategy {
 
 	DataGeneratorStrategy strategy;
-
-	@Inject
-	public Context(DBWriter dbWriter) {
-		this.dbWriter = dbWriter;
-	}
 
 	public void generate(long anzKunden, long anzProdukte,
 			long anzWarenkoerbeProKunde, long anzProdukteInWarenkorb) {
@@ -21,23 +14,31 @@ public class Context extends DataGeneratorStrategy {
 	}
 
 	protected void generateKunden(long anzahl) {
+//		this.dbWriter = new DBKundeWriter();
 		strategy = new KundenGenerator(dbWriter);
 		strategy.generateKunden(anzahl);
 	};
 
 	protected void generateProdukte(long anzahl) {
+//		this.dbWriter = new DBProduktWriter();
 		strategy = new ProduktGenerator(dbWriter);
 		strategy.generateProdukte(anzahl);
 	};
+	
+	public void setDBWriter(DBWriter dbWriter){
+		this.dbWriter = dbWriter;
+	}
 
 	protected void generateWarenkorb(long anzahlKunde,
 			long anzahlWarenkoerbeProKunde) {
+//		this.dbWriter = new DBWarenkorbWriter();
 		strategy = new WarenkorbGenerator(dbWriter);
 		strategy.generateWarenkorb(anzahlKunde, anzahlWarenkoerbeProKunde);
 	};
 
 	protected void generateProdukteInWarenkorb(long anzahlBestellzeilen,
 			long anzahlProdukteInWarenkorb) {
+//		this.dbWriter = new DBWarenkorbProduktWriter();
 		strategy = new WarenkorbProduktGenerator(dbWriter);
 		strategy.generateProdukteInWarenkorb(anzahlBestellzeilen,
 				anzahlProdukteInWarenkorb);

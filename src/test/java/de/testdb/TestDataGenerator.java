@@ -36,7 +36,8 @@ public class TestDataGenerator {
 	public void setUp() throws Exception {
 		IMocksControl mockControl = createControl();
 		mock = mockControl.createMock(DBWriter.class);
-		classUnderTest = new Context(mock);
+		classUnderTest = new Context();
+		classUnderTest.setDBWriter(mock);
 	}
 
 	@After
@@ -49,7 +50,10 @@ public class TestDataGenerator {
 		long anzProdukte = 0;
 		long anzWarenkoerbe = 0;
 		long anzProdukteInWarenkorb = 0;
+		mock.close();
+		
 		replay(mock);
+		
 		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
 				anzWarenkoerbe, anzProdukteInWarenkorb);
 		verify(mock);
@@ -69,6 +73,7 @@ public class TestDataGenerator {
 		mock.write(warenkorb0);
 		FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
 		mock.write(warenkorbProdukt0);
+		mock.close();
 		replay(mock);
 		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
 				anzWarenkoerbe, anzProdukteInWarenkorb);
@@ -137,7 +142,8 @@ public class TestDataGenerator {
 		mock.write(warenkorbProdukt5);
 		mock.write(warenkorbProdukt6);
 		mock.write(warenkorbProdukt7);
-
+		mock.close();
+		
 		replay(mock);
 
 		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
@@ -280,7 +286,8 @@ public class TestDataGenerator {
 		mock.write(warenkorbProdukt27);
 		mock.write(warenkorbProdukt28);
 		mock.write(warenkorbProdukt29);
-
+		mock.close();
+		
 		replay(mock);
 
 		classUnderTest.generateTemplateMethod(anzKunde, anzProdukte,
