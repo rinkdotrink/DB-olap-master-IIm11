@@ -2,23 +2,22 @@ package de.datagenerator.generator;
 
 import com.google.inject.Inject;
 
-import de.datagenerator.creator.KundeCreator;
+import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBKundeWriter;
-import de.datagenerator.dbwriter.DBWriter;
 
 public class KundenGenerator extends DataGeneratorStrategy {	
 	
 	@Inject
-	public KundenGenerator(DBWriter dbWriter){
-		this.dbWriter = new DBKundeWriter();
+	public KundenGenerator(Creator creator, DBKundeWriter dbWriter){
+		this.creator = creator;
+		this.dbWriter = dbWriter;
 	}
-
+	
 	@Override
-	protected void generateKunden(long anzahl) {
+	public void generateKunden(long anzahl) {
 		long id;
 		String name;
 		long kundenNummer;
-		creator = new KundeCreator();
 		for (long i = 0; i < anzahl; i++) {
 			id = i;
 			name = "Customer" + id;
@@ -27,5 +26,6 @@ public class KundenGenerator extends DataGeneratorStrategy {
 			dbWriter.write(factMethProd);
 		}
 		dbWriter.close();
-	}
+	}	
+	
 }

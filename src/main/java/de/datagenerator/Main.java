@@ -3,7 +3,7 @@ package de.datagenerator;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.datagenerator.generator.Context;
+import de.datagenerator.generator.DataGeneratorStrategy;
 
 public class Main {
 
@@ -14,8 +14,9 @@ public class Main {
 		long anzProdukteInWarenkorb = Long.valueOf(args[3]);
 
 		Injector injector = Guice.createInjector(new DBModule());
-		Context context = injector.getInstance(Context.class);
-		context.generateTemplateMethod(anzKunde, anzProdukte, anzWarenkoerbe,
-				anzProdukteInWarenkorb);
+		DataGeneratorStrategy dataGeneratorStrategy = injector
+				.getInstance(DataGeneratorStrategy.class);
+		dataGeneratorStrategy.generateTemplateMethod(anzKunde, anzProdukte,
+				anzWarenkoerbe, anzProdukteInWarenkorb);
 	}
 }

@@ -2,23 +2,22 @@ package de.datagenerator.generator;
 
 import com.google.inject.Inject;
 
-import de.datagenerator.creator.ProduktCreator;
+import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBProduktWriter;
-import de.datagenerator.dbwriter.DBWriter;
 
 public class ProduktGenerator extends DataGeneratorStrategy {
-	
+
 	@Inject
-	public ProduktGenerator(DBWriter dbWriter){
-		this.dbWriter = new DBProduktWriter();
+	public ProduktGenerator(Creator creator, DBProduktWriter dbWriter){
+		this.creator = creator;
+		this.dbWriter = dbWriter;
 	}
 	
 	@Override
-	protected void generateProdukte(long anzahl) {
+	public void generateProdukte(long anzahl) {
 		long id;
 		String name;
 		Integer preis;
-		creator = new ProduktCreator();
 		for (long i = 0; i < anzahl; i++) {
 			id = i;
 			name = "Product" + id;
@@ -26,6 +25,7 @@ public class ProduktGenerator extends DataGeneratorStrategy {
 			factMethProd = creator.factMethProdukt(id, name, preis);
 			dbWriter.write(factMethProd);
 		}
+		dbWriter.close();
 	}
-
+	
 }

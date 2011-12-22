@@ -2,23 +2,22 @@ package de.datagenerator.generator;
 
 import com.google.inject.Inject;
 
-import de.datagenerator.creator.WarenkorbCreator;
+import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBWarenkorbWriter;
-import de.datagenerator.dbwriter.DBWriter;
 
 public class WarenkorbGenerator extends DataGeneratorStrategy {
 
 	@Inject
-	public WarenkorbGenerator(DBWriter dbWriter){
-		this.dbWriter = new DBWarenkorbWriter();
+	public WarenkorbGenerator(Creator creator, DBWarenkorbWriter dbWriter){
+		this.creator = creator;
+		this.dbWriter = dbWriter;
 	}
 	
 	@Override
-	protected void generateWarenkorb(long anzahlKunden,
+	public void generateWarenkorb(long anzahlKunden,
 			long anzahlWarenkoerbeProKunde) {
 		long kundenId;
 		long warenkorbId = 0;
-		creator = new WarenkorbCreator();
 		for (long iKunde = 0; iKunde < anzahlKunden; iKunde++) {
 			kundenId = iKunde;
 			for (long iWarenkorbProKunde = 0; iWarenkorbProKunde < anzahlWarenkoerbeProKunde; iWarenkorbProKunde++) {
@@ -27,6 +26,7 @@ public class WarenkorbGenerator extends DataGeneratorStrategy {
 				warenkorbId++;
 			}
 		}
+		dbWriter.close();
 	}
 
 }
