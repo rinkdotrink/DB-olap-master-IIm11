@@ -1,13 +1,9 @@
 package de.datagenerator.dbwriter;
 
-import java.sql.PreparedStatement;
-
 import de.datagenerator.datamodel.FactoryMethodProduct;
 import de.datagenerator.datamodel.WarenkorbProdukt;
 
 public class DBWarenkorbProduktWriter extends DBWriter {
-
-	protected PreparedStatement preparedStatement = null;
 
 	public DBWarenkorbProduktWriter() {
 		try {
