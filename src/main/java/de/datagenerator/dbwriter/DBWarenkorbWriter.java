@@ -2,6 +2,7 @@ package de.datagenerator.dbwriter;
 
 import java.sql.PreparedStatement;
 
+import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.FactoryMethodProduct;
 import de.datagenerator.datamodel.Warenkorb;
 
@@ -13,7 +14,7 @@ public class DBWarenkorbWriter extends DBWriter {
 		try {
 			initDBWriter();
 		} catch (Exception e) {
-			System.out.println(e);
+			new LogUtil().getLogger().error(e);
 		}
 	}
 	
@@ -34,7 +35,7 @@ public class DBWarenkorbWriter extends DBWriter {
 			setKunde(factMethProd);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e);
+			new LogUtil().getLogger().error(e);
 		}
 	}
 

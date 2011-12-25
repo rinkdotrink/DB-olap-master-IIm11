@@ -1,5 +1,6 @@
 package de.datagenerator.dbwriter;
 
+import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.FactoryMethodProduct;
 import de.datagenerator.datamodel.Kunde;
 
@@ -9,7 +10,7 @@ public class DBKundeWriter extends DBWriter {
 		try {
 			initDBWriter();
 		} catch (Exception e) {
-			System.out.println(e);
+			new LogUtil().getLogger().error(e);
 		}
 	}
 
@@ -31,7 +32,7 @@ public class DBKundeWriter extends DBWriter {
 			setKundenNummer(factMethProd);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e);
+			new LogUtil().getLogger().error(e);
 		}
 	}
 

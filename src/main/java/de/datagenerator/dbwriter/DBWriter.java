@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.FactoryMethodProduct;
 
 public abstract class DBWriter {
@@ -38,7 +39,7 @@ public abstract class DBWriter {
 			closeResultSet();
 			closeConnection();
 		} catch (Exception e) {
-			System.out.println(e);
+			new LogUtil().getLogger().error(e);
 		}
 	}
 
