@@ -6,49 +6,57 @@ import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.FactoryMethodProduct;
 import de.datagenerator.datamodel.Produkt;
 
-public class DBProduktWriter extends DBWriter {
+public class DBProduktWriter
+   extends DBWriter {
 
-	private PreparedStatement preparedStatement = null;
+   private PreparedStatement preparedStatement = null;
 
-	public DBProduktWriter() {
-		try {
-			initDBWriter();
-		} catch (Exception e) {
-			new LogUtil().getLogger().error(e);
-		}
-	}
+   public DBProduktWriter() {
+      try {
+         initDBWriter();
+      } catch (Exception e) {
+         new LogUtil().getLogger().error(e);
+      }
+   }
 
-	protected void createPreparedStatement() throws Exception {
-		preparedStatement = connection
-				.prepareStatement("insert into  mydb.produkt(idProdukt, name, preis) values (?, ?, ?)");
-	}
+   protected final void createPreparedStatement()
+      throws Exception {
+      preparedStatement =
+         getConnection().prepareStatement("insert into  mydb.produkt(idProdukt, name, preis) values (?, ?, ?)");
+   }
 
-	public void write(FactoryMethodProduct factoryMethodProduct) {
-		if (factoryMethodProduct instanceof Produkt) {
-			writeKunde((Produkt) factoryMethodProduct);
-		}
-	}
+   public final void write(final FactoryMethodProduct aFactoryMethodProduct) {
+      if (aFactoryMethodProduct instanceof Produkt) {
+         writeKunde((Produkt) aFactoryMethodProduct);
+      }
+   }
 
-	private void writeKunde(Produkt factMethProd) {
-		try {
-			setId(factMethProd);
-			setName(factMethProd);
-			setPreis(factMethProd);
-			preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			new LogUtil().getLogger().error(e);
-		}
-	}
+   private void writeKunde(final Produkt aFactMethProd) {
+      try {
+         setId(aFactMethProd);
+         setName(aFactMethProd);
+         setPreis(aFactMethProd);
+         preparedStatement.executeUpdate();
+      } catch (Exception e) {
+         new LogUtil().getLogger().error(e);
+      }
+   }
 
-	private void setId(Produkt factMethProd) throws Exception {
-		preparedStatement.setString(1, String.valueOf(factMethProd.getId()));
-	}
+   private void setId(final Produkt aFactMethProd)
+      throws Exception {
+      int idProduktIdx = 1;
+      preparedStatement.setString(idProduktIdx, String.valueOf(aFactMethProd.getId()));
+   }
 
-	private void setName(Produkt factMethProd) throws Exception {
-		preparedStatement.setString(2, factMethProd.getName());
-	}
+   private void setName(final Produkt aFactMethProd)
+      throws Exception {
+      int nameIdx = 2; 
+      preparedStatement.setString(nameIdx, aFactMethProd.getName());
+   }
 
-	private void setPreis(Produkt factMethProd) throws Exception {
-		preparedStatement.setString(3, String.valueOf(factMethProd.getPreis()));
-	}
+   private void setPreis(final Produkt aFactMethProd)
+      throws Exception {
+      int preisIdx = 3;
+      preparedStatement.setString(preisIdx, String.valueOf(aFactMethProd.getPreis()));
+   }
 }

@@ -8,23 +8,27 @@ import de.datagenerator.datamodel.WarenkorbProdukt;
 
 public class Creator {
 
-	public FactoryMethodProduct factMethKunde(long id, String name,
-			long kundenNummer) {
-		return new Kunde(id, name, kundenNummer);
-	}
+   public final FactoryMethodProduct factMethKunde(final long aId,
+                                                   final String aName,
+                                                   final long aKundenNummer) {
+      return new Kunde(aId, aName, aKundenNummer);
+   }
 
-	public FactoryMethodProduct factMethProdukt(long id, String name,
-			Integer preis) {
-		return new Produkt(id, name, preis);
-	}
+   public final FactoryMethodProduct factMethProdukt(final long aId,
+                                                     final String aName,
+                                                     final Integer aPreis) {
+      return new Produkt(aId, aName, aPreis);
+   }
 
-	public FactoryMethodProduct factMethWarenkorb(long id, long kundenId) {
-		return new Warenkorb(id, kundenId);
-	}
+   public final FactoryMethodProduct factMethWarenkorb(final long aId,
+                                                       final long aKundenId) {
+      return new Warenkorb(aId, aKundenId);
+   }
 
-	public FactoryMethodProduct factMethWarenkorbProdukt(long bestellzeileId,
-			long warenkorbId, long produktId) {
-		return new WarenkorbProdukt(bestellzeileId, warenkorbId, produktId);
-	}
+   public final FactoryMethodProduct factMethWarenkorbProdukt(final long aBestellzeileId,
+                                                              final long aWarenkorbId,
+                                                              final long aProduktId) {
+      return new WarenkorbProdukt(aBestellzeileId, aWarenkorbId, aProduktId);
+   }
 
 }

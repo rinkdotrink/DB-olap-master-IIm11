@@ -23,92 +23,98 @@ import de.datagenerator.generator.KundenGenerator;
 
 public class KundenGeneratorTest {
 
-	private KundenGenerator classUnderTest;
-	private DBKundeWriter mock;
-	private Injector injector = Guice.createInjector(new DBModule());
+   private KundenGenerator classUnderTest;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+   private DBKundeWriter mock;
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+   private Injector injector = Guice.createInjector(new DBModule());
 
-	@Before
-	public void setUp() throws Exception {
-		IMocksControl mockControl = createControl();
-		mock = mockControl.createMock(DBKundeWriter.class);
-		Creator creator = injector.getInstance(Creator.class);
-		classUnderTest = new KundenGenerator(creator,mock);
-	}
+   @BeforeClass
+   public static void setUpBeforeClass()
+      throws Exception {
+   }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+   @AfterClass
+   public static void tearDownAfterClass()
+      throws Exception {
+   }
 
-	@Test
-	public final void testGenerateKunden_0() {
-		long anzKunde = 0;
-				
-		mock.close();
-		replay(mock);
-		classUnderTest.generateKunden(anzKunde);
-		verify(mock);
-	}
+   @Before
+   public void setUp()
+      throws Exception {
+      IMocksControl mockControl = createControl();
+      mock = mockControl.createMock(DBKundeWriter.class);
+      Creator creator = injector.getInstance(Creator.class);
+      classUnderTest = new KundenGenerator(creator, mock);
+   }
 
-	@Test
-	public final void testGenerateKunden_1() {
-		long anzKunde = 1;
-				
-		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-		mock.write(kunde0);
-		mock.close();
-		replay(mock);
-		classUnderTest.generateKunden(anzKunde);
-		verify(mock);
-	}
+   @After
+   public void tearDown()
+      throws Exception {
+   }
 
-	@Test
-	public final void testGenerateKunden_4() {
-		long anzKunde = 4;
-		
-		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-		FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
-		FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
-		FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
+   @Test
+   public final void testGenerateKunden_0() {
+      long anzKunde = 0;
 
-		mock.write(kunde0);
-		mock.write(kunde1);
-		mock.write(kunde2);
-		mock.write(kunde3);
-		mock.close();
+      mock.close();
+      replay(mock);
+      classUnderTest.generateKunden(anzKunde);
+      verify(mock);
+   }
 
-		replay(mock);
-		classUnderTest.generateKunden(anzKunde);
-		verify(mock);
-	}
+   @Test
+   public final void testGenerateKunden_1() {
+      long anzKunde = 1;
 
-	@Test
-	public final void testGenerateKunden_5() {
-		long anzKunde = 5;
-		
-		FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-		FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
-		FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
-		FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
-		FactoryMethodProduct kunde4 = new Kunde(4, "Customer4", 4);
+      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+      mock.write(kunde0);
+      mock.close();
+      replay(mock);
+      classUnderTest.generateKunden(anzKunde);
+      verify(mock);
+   }
 
-		mock.write(kunde0);
-		mock.write(kunde1);
-		mock.write(kunde2);
-		mock.write(kunde3);
-		mock.write(kunde4);
-		mock.close();
+   @Test
+   public final void testGenerateKunden_4() {
+      long anzKunde = 4;
 
-		replay(mock);
-		classUnderTest.generateKunden(anzKunde);
-		verify(mock);
-	}
+      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+      FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
+      FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
+      FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
+
+      mock.write(kunde0);
+      mock.write(kunde1);
+      mock.write(kunde2);
+      mock.write(kunde3);
+      mock.close();
+
+      replay(mock);
+      classUnderTest.generateKunden(anzKunde);
+      verify(mock);
+   }
+
+   @Test
+   public final void testGenerateKunden_5() {
+      long anzKunde = 5;
+
+      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+      FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
+      FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
+      FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
+      FactoryMethodProduct kunde4 = new Kunde(4, "Customer4", 4);
+
+      mock.write(kunde0);
+      mock.write(kunde1);
+      mock.write(kunde2);
+      mock.write(kunde3);
+      mock.write(kunde4);
+      mock.close();
+
+      replay(mock);
+      classUnderTest.generateKunden(anzKunde);
+      verify(mock);
+   }
 
 }

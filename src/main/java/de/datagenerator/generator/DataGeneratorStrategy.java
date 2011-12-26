@@ -10,41 +10,71 @@ import de.datagenerator.dbwriter.DBWriter;
 
 public class DataGeneratorStrategy {
 
-	protected Creator creator;
-	protected FactoryMethodProduct factMethProd;
-	protected DBWriter dbWriter;
-	private DataGeneratorStrategy strategy;	
-	private Injector injector = Guice.createInjector(new DBModule());
-	
-	public void generateTemplateMethod(long anzKunden, long anzProdukte,
-			long anzWarenkoerbeProKunde, long anzProdukteInWarenkorb) {
-		generateKunden(anzKunden);
-		generateProdukte(anzProdukte);
-		generateWarenkorb(anzKunden, anzWarenkoerbeProKunde);
-		generateProdukteInWarenkorb(anzKunden * anzWarenkoerbeProKunde
-				* anzProdukteInWarenkorb, anzProdukteInWarenkorb);
-	}
-	
-	public void generateKunden(long anzahl){
-		strategy = injector.getInstance(KundenGenerator.class);
-		strategy.generateKunden(anzahl);
-	};
+   private Creator creator;
 
-	public void generateProdukte(long anzahl){
-		strategy = injector.getInstance(ProduktGenerator.class);
-		strategy.generateProdukte(anzahl);
-	};
+   private FactoryMethodProduct factMethProd;
 
-	public void generateWarenkorb(long anzahlKunde,
-			long anzahlWarenkoerbeProKunde){
-		strategy = injector.getInstance(WarenkorbGenerator.class);
-		strategy.generateWarenkorb(anzahlKunde, anzahlWarenkoerbeProKunde);
-	};
+   private DBWriter dbWriter;
 
-	public void generateProdukteInWarenkorb(
-			long anzahlBestellzeilen, long anzahlProdukteInWarenkorb){
-		strategy = injector.getInstance(WarenkorbProduktGenerator.class);
-		strategy.generateProdukteInWarenkorb(anzahlBestellzeilen,
-				anzahlProdukteInWarenkorb);
-	};
+   private DataGeneratorStrategy strategy;
+
+   private Injector injector = Guice.createInjector(new DBModule());
+
+   public void generateTemplateMethod(final long aAnzKunden,
+                                      final long aAnzProdukte,
+                                      final long aAnzWarenkoerbeProKunde,
+                                      final long aAnzProdukteInWarenkorb) {
+      generateKunden(aAnzKunden);
+      generateProdukte(aAnzProdukte);
+      generateWarenkorb(aAnzKunden, aAnzWarenkoerbeProKunde);
+      generateProdukteInWarenkorb(aAnzKunden * aAnzWarenkoerbeProKunde
+         * aAnzProdukteInWarenkorb, aAnzProdukteInWarenkorb);
+   }
+
+   public void generateKunden(final long aAnzahl) {
+      strategy = injector.getInstance(KundenGenerator.class);
+      strategy.generateKunden(aAnzahl);
+   };
+
+   public void generateProdukte(final long aAnzahl) {
+      strategy = injector.getInstance(ProduktGenerator.class);
+      strategy.generateProdukte(aAnzahl);
+   };
+
+   public void generateWarenkorb(final long aAnzahlKunde,
+                                 final long aAnzahlWarenkoerbeProKunde) {
+      strategy = injector.getInstance(WarenkorbGenerator.class);
+      strategy.generateWarenkorb(aAnzahlKunde, aAnzahlWarenkoerbeProKunde);
+   };
+
+   public void generateProdukteInWarenkorb(final long aAnzahlBestellzeilen,
+                                           final long aAnzahlProdukteInWarenkorb) {
+      strategy = injector.getInstance(WarenkorbProduktGenerator.class);
+      strategy.generateProdukteInWarenkorb(aAnzahlBestellzeilen,
+                                           aAnzahlProdukteInWarenkorb);
+   };
+
+   protected final Creator getCreator() {
+      return creator;
+   }
+
+   protected final void setCreator(final Creator aCreator) {
+      this.creator = aCreator;
+   }
+
+   protected final FactoryMethodProduct getFactoryMethodProduct() {
+      return factMethProd;
+   }
+
+   protected final void setFactoryMethodProduct(final FactoryMethodProduct aFactoryMethodProduct) {
+      this.factMethProd = aFactoryMethodProduct;
+   }
+
+   protected final void setDBWriter(final DBWriter aDBWriter) {
+      this.dbWriter = aDBWriter;
+   }
+
+   protected final DBWriter getDBWriter() {
+      return dbWriter;
+   }
 }

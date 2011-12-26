@@ -7,16 +7,22 @@ import de.datagenerator.generator.DataGeneratorStrategy;
 
 public class Main {
 
-	public static void main(String[] args) {
-		long anzKunde = Long.valueOf(args[0]);
-		long anzProdukte = Long.valueOf(args[1]);
-		long anzWarenkoerbe = Long.valueOf(args[2]);
-		long anzProdukteInWarenkorb = Long.valueOf(args[3]);
+   public static void main(final String[] args) {
+      int kundeIdx = 0; 
+      int produktIdx = 1;
+      int warenkoerbeIdx = 2;
+      int produkteInWarenkoerbeIdx = 3;
+      
+      long anzKunde = Long.valueOf(args[kundeIdx]);
+      long anzProdukte = Long.valueOf(args[produktIdx]);
+      long anzWarenkoerbe = Long.valueOf(args[warenkoerbeIdx]);
+      long anzProdukteInWarenkorb = Long.valueOf(args[produkteInWarenkoerbeIdx]);
 
-		Injector injector = Guice.createInjector(new DBModule());
-		DataGeneratorStrategy dataGeneratorStrategy = injector
-				.getInstance(DataGeneratorStrategy.class);
-		dataGeneratorStrategy.generateTemplateMethod(anzKunde, anzProdukte,
-				anzWarenkoerbe, anzProdukteInWarenkorb);
-	}
+      Injector injector = Guice.createInjector(new DBModule());
+      DataGeneratorStrategy dataGeneratorStrategy =
+         injector.getInstance(DataGeneratorStrategy.class);
+      dataGeneratorStrategy.generateTemplateMethod(anzKunde, anzProdukte,
+                                                   anzWarenkoerbe,
+                                                   anzProdukteInWarenkorb);
+   }
 }

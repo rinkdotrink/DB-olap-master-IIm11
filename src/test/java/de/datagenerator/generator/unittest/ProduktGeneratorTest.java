@@ -23,95 +23,101 @@ import de.datagenerator.generator.ProduktGenerator;
 
 public class ProduktGeneratorTest {
 
-	private ProduktGenerator classUnderTest;
-	private DBProduktWriter mock;
-	private Injector injector = Guice.createInjector(new DBModule());
+   private ProduktGenerator classUnderTest;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+   private DBProduktWriter mock;
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+   private Injector injector = Guice.createInjector(new DBModule());
 
-	@Before
-	public void setUp() throws Exception {
-		IMocksControl mockControl = createControl();
-		mock = mockControl.createMock(DBProduktWriter.class);
-		Creator creator = injector.getInstance(Creator.class);
-		classUnderTest = new ProduktGenerator(creator,mock);
-	}
+   @BeforeClass
+   public static void setUpBeforeClass()
+      throws Exception {
+   }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+   @AfterClass
+   public static void tearDownAfterClass()
+      throws Exception {
+   }
 
-	@Test
-	public final void testGenerateProdukte_0() {
-		long anzProdukte = 0;
+   @Before
+   public void setUp()
+      throws Exception {
+      IMocksControl mockControl = createControl();
+      mock = mockControl.createMock(DBProduktWriter.class);
+      Creator creator = injector.getInstance(Creator.class);
+      classUnderTest = new ProduktGenerator(creator, mock);
+   }
 
-		mock.close();
-		replay(mock);
-		classUnderTest.generateProdukte(anzProdukte);
-		verify(mock);
-	}
+   @After
+   public void tearDown()
+      throws Exception {
+   }
 
-	@Test
-	public final void testGenerateProdukte_1() {
+   @Test
+   public final void testGenerateProdukte_0() {
+      long anzProdukte = 0;
 
-		long anzProdukte = 1;
+      mock.close();
+      replay(mock);
+      classUnderTest.generateProdukte(anzProdukte);
+      verify(mock);
+   }
 
-		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-		mock.write(produkt0);
-		mock.close();
+   @Test
+   public final void testGenerateProdukte_1() {
 
-		replay(mock);
-		classUnderTest.generateProdukte(anzProdukte);
-		verify(mock);
+      long anzProdukte = 1;
 
-	}
+      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+      mock.write(produkt0);
+      mock.close();
 
-	@Test
-	public final void testGenerateProdukte_4() {
-		long anzProdukte = 4;
+      replay(mock);
+      classUnderTest.generateProdukte(anzProdukte);
+      verify(mock);
 
-		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-		FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
-		FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
-		FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
+   }
 
-		mock.write(produkt0);
-		mock.write(produkt1);
-		mock.write(produkt2);
-		mock.write(produkt3);
-		mock.close();
+   @Test
+   public final void testGenerateProdukte_4() {
+      long anzProdukte = 4;
 
-		replay(mock);
-		classUnderTest.generateProdukte(anzProdukte);
-		verify(mock);
-	}
+      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+      FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
+      FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
+      FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
 
-	@Test
-	public final void testGenerateProdukte_5() {
-		long anzProdukte = 5;
+      mock.write(produkt0);
+      mock.write(produkt1);
+      mock.write(produkt2);
+      mock.write(produkt3);
+      mock.close();
 
-		FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-		FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
-		FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
-		FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
-		FactoryMethodProduct produkt4 = new Produkt(4, "Product4", 1);
+      replay(mock);
+      classUnderTest.generateProdukte(anzProdukte);
+      verify(mock);
+   }
 
-		mock.write(produkt0);
-		mock.write(produkt1);
-		mock.write(produkt2);
-		mock.write(produkt3);
-		mock.write(produkt4);
-		mock.close();
+   @Test
+   public final void testGenerateProdukte_5() {
+      long anzProdukte = 5;
 
-		replay(mock);
-		classUnderTest.generateProdukte(anzProdukte);
-		verify(mock);
-	}
+      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+      FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
+      FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
+      FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
+      FactoryMethodProduct produkt4 = new Produkt(4, "Product4", 1);
+
+      mock.write(produkt0);
+      mock.write(produkt1);
+      mock.write(produkt2);
+      mock.write(produkt3);
+      mock.write(produkt4);
+      mock.close();
+
+      replay(mock);
+      classUnderTest.generateProdukte(anzProdukte);
+      verify(mock);
+   }
 
 }

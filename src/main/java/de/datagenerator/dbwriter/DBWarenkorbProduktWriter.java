@@ -4,47 +4,57 @@ import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.FactoryMethodProduct;
 import de.datagenerator.datamodel.WarenkorbProdukt;
 
-public class DBWarenkorbProduktWriter extends DBWriter {
+public class DBWarenkorbProduktWriter
+   extends DBWriter {
 
-	public DBWarenkorbProduktWriter() {
-		try {
-			initDBWriter();
-		} catch (Exception e) {
-			new LogUtil().getLogger().error(e);
-		}
-	}
-	
-	protected void createPreparedStatement() throws Exception {
-		preparedStatement = connection
-				.prepareStatement("insert into  mydb.warenkorbprodukt(idwarenkorbProdukt, produkt, bestellzeile) values (?, ?, ?)");
-	}
+   public DBWarenkorbProduktWriter() {
+      try {
+         initDBWriter();
+      } catch (Exception e) {
+         new LogUtil().getLogger().error(e);
+      }
+   }
 
-	public void write(FactoryMethodProduct factoryMethodProduct) {
-		if (factoryMethodProduct instanceof WarenkorbProdukt) {
-			writeWarenkorb((WarenkorbProdukt) factoryMethodProduct);
-		}
-	}
+   protected final void createPreparedStatement()
+      throws Exception {
+      setPreparedStatement(getConnection().prepareStatement("insert into  mydb.warenkorbprodukt(idwarenkorbProdukt, produkt, bestellzeile) values (?, ?, ?)"));
+   }
 
-	private void writeWarenkorb(WarenkorbProdukt factMethProd) {
-		try {
-			setId(factMethProd);
-			setProduktKunde(factMethProd);
-			setBestellzeile(factMethProd);
-			preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			new LogUtil().getLogger().error(e);
-		}
-	}
+   public final void write(final FactoryMethodProduct aFactoryMethodProduct) {
+      if (aFactoryMethodProduct instanceof WarenkorbProdukt) {
+         writeWarenkorb((WarenkorbProdukt) aFactoryMethodProduct);
+      }
+   }
 
-	private void setId(WarenkorbProdukt factMethProd) throws Exception {
-		preparedStatement.setString(1, String.valueOf(factMethProd.getWarenkorbId()));
-	}
+   private void writeWarenkorb(final WarenkorbProdukt aFactMethProd) {
+      try {
+         setId(aFactMethProd);
+         setProduktKunde(aFactMethProd);
+         setBestellzeile(aFactMethProd);
+         getPreparedStatement().executeUpdate();
+      } catch (Exception e) {
+         new LogUtil().getLogger().error(e);
+      }
+   }
 
-	private void setProduktKunde(WarenkorbProdukt factMethProd) throws Exception {
-		preparedStatement.setString(2, String.valueOf(factMethProd.getProduktId()));
-	}
-	
-	private void setBestellzeile(WarenkorbProdukt factMethProd) throws Exception {
-		preparedStatement.setString(3, String.valueOf(factMethProd.getBestellzeileId()));
-	}
+   private void setId(final WarenkorbProdukt aFactMethProd)
+      throws Exception {
+      int idWarenkorbProduktIdx = 1;
+      getPreparedStatement().setString(idWarenkorbProduktIdx,
+                                       String.valueOf(aFactMethProd.getWarenkorbId()));
+   }
+
+   private void setProduktKunde(final WarenkorbProdukt aFactMethProd)
+      throws Exception {
+      int produktIdx = 2;
+      getPreparedStatement().setString(produktIdx,
+                                       String.valueOf(aFactMethProd.getProduktId()));
+   }
+
+   private void setBestellzeile(final WarenkorbProdukt aFactMethProd)
+      throws Exception {
+      int bestellzeileIdx = 3;
+      getPreparedStatement().setString(bestellzeileIdx,
+                                       String.valueOf(aFactMethProd.getBestellzeileId()));
+   }
 }

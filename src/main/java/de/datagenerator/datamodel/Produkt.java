@@ -1,54 +1,57 @@
 package de.datagenerator.datamodel;
 
-public class Produkt implements FactoryMethodProduct {
+public class Produkt
+   implements FactoryMethodProduct {
 
-	private long id;
-	private String name;
-	private Integer preis;
+   private long id;
 
-	public Produkt(long id, String name, Integer preis) {
-		this.id = id;
-		this.name = name;
-		this.preis = preis;
-	}
+   private String name;
 
-	public boolean equals(Object object) {
-		boolean isEqual = false;
-		if ((object != null) && (object.getClass() == this.getClass())) {
-			Produkt produkt = (Produkt) object;
-			if (produkt.getId() == id) {
-				isEqual = true;
-			}
-		}
-		return isEqual;
-	}
+   private Integer preis;
 
-	public int hashCode() {
-		return (int) this.id;
-	}
+   public Produkt(final long aId, final String aName, final Integer aPreis) {
+      this.id = aId;
+      this.name = aName;
+      this.preis = aPreis;
+   }
 
-	public long getId() {
-		return id;
-	}
+   public final boolean equals(final Object aObject) {
+      boolean isEqual = false;
+      if ((aObject != null) && (aObject.getClass() == this.getClass())) {
+         Produkt produkt = (Produkt) aObject;
+         if (produkt.getId() == id) {
+            isEqual = true;
+         }
+      }
+      return isEqual;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public final int hashCode() {
+      return (int) this.id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public final long getId() {
+      return id;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public final void setId(final long aId) {
+      this.id = aId;
+   }
 
-	public Integer getPreis() {
-		return preis;
-	}
+   public final String getName() {
+      return name;
+   }
 
-	public void setPreis(Integer preis) {
-		this.preis = preis;
-	}
+   public final void setName(final String aName) {
+      this.name = aName;
+   }
+
+   public final Integer getPreis() {
+      return preis;
+   }
+
+   public final void setPreis(final Integer aPreis) {
+      this.preis = aPreis;
+   }
 
 }

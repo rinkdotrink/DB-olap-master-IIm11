@@ -1,54 +1,57 @@
 package de.datagenerator.datamodel;
 
-public class Kunde implements FactoryMethodProduct {
+public class Kunde
+   implements FactoryMethodProduct {
 
-	private long id;
-	private String name;
-	private long kundenNummer;
+   private long id;
 
-	public Kunde(long id, String name, long kundenNummer) {
-		this.id = id;
-		this.name = name;
-		this.kundenNummer = kundenNummer;
-	}
+   private String name;
 
-	public boolean equals(Object object) {
-		boolean isEqual = false;
-		if ((object != null) && (object.getClass() == this.getClass())) {
-			Kunde kunde = (Kunde) object;
-			if (kunde.getId() == id) {
-				isEqual = true;
-			}
-		}
-		return isEqual;
-	}
+   private long kundenNummer;
 
-	public int hashCode() {
-		return (int) this.id;
-	}
+   public Kunde(final long aId, final String aName, final long aKundenNummer) {
+      this.id = aId;
+      this.name = aName;
+      this.kundenNummer = aKundenNummer;
+   }
 
-	public long getId() {
-		return id;
-	}
+   public final boolean equals(final Object aObject) {
+      boolean isEqual = false;
+      if ((aObject != null) && (aObject.getClass() == this.getClass())) {
+         Kunde kunde = (Kunde) aObject;
+         if (kunde.getId() == id) {
+            isEqual = true;
+         }
+      }
+      return isEqual;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public final int hashCode() {
+      return (int) this.id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public final long getId() {
+      return id;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public final void setId(final long aId) {
+      this.id = aId;
+   }
 
-	public long getKundenNummer() {
-		return kundenNummer;
-	}
+   public final String getName() {
+      return name;
+   }
 
-	public void setKundenNummer(long kundenNummer) {
-		this.kundenNummer = kundenNummer;
-	}
+   public final void setName(final String aName) {
+      this.name = aName;
+   }
+
+   public final long getKundenNummer() {
+      return kundenNummer;
+   }
+
+   public final void setKundenNummer(final long aKundenNummer) {
+      this.kundenNummer = aKundenNummer;
+   }
 
 }

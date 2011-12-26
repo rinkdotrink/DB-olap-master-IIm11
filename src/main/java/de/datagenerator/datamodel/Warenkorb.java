@@ -1,44 +1,46 @@
 package de.datagenerator.datamodel;
 
-public class Warenkorb implements FactoryMethodProduct {
+public class Warenkorb
+   implements FactoryMethodProduct {
 
-	private long id;
-	private long kundenId;
+   private long id;
 
-	public Warenkorb(long id, long kundenId) {
-		this.id = id;
-		this.kundenId = kundenId;
-	}
+   private long kundenId;
 
-	public boolean equals(Object object) {
-		boolean isEqual = false;
-		if ((object != null) && (object.getClass() == this.getClass())) {
-			Warenkorb warenkorb = (Warenkorb) object;
-			if (warenkorb.getId() == id) {
-				isEqual = true;
-			}
-		}
-		return isEqual;
-	}
+   public Warenkorb(final long aId, final long aKundenId) {
+      this.id = aId;
+      this.kundenId = aKundenId;
+   }
 
-	public int hashCode() {
-		return (int) this.id;
-	}
+   public final boolean equals(final Object aObject) {
+      boolean isEqual = false;
+      if ((aObject != null) && (aObject.getClass() == this.getClass())) {
+         Warenkorb warenkorb = (Warenkorb) aObject;
+         if (warenkorb.getId() == id) {
+            isEqual = true;
+         }
+      }
+      return isEqual;
+   }
 
-	public long getId() {
-		return id;
-	}
+   public final int hashCode() {
+      return (int) this.id;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public final long getId() {
+      return id;
+   }
 
-	public long getKundenId() {
-		return kundenId;
-	}
+   public final void setId(final long aId) {
+      this.id = aId;
+   }
 
-	public void setKundenId(long kundenId) {
-		this.kundenId = kundenId;
-	}
+   public final long getKundenId() {
+      return kundenId;
+   }
+
+   public final void setKundenId(final long aKundenId) {
+      this.kundenId = aKundenId;
+   }
 
 }

@@ -1,56 +1,59 @@
 package de.datagenerator.datamodel;
 
-public class WarenkorbProdukt implements FactoryMethodProduct {
+public class WarenkorbProdukt
+   implements FactoryMethodProduct {
 
-	private long bestellzeileId;
-	private long warenkorbId;
-	private long produktId;
+   private long bestellzeileId;
 
-	public WarenkorbProdukt(long bestellzeileId, long warenkorbId,
-			long produktId) {
-		this.bestellzeileId = bestellzeileId;
-		this.warenkorbId = warenkorbId;
-		this.produktId = produktId;
-	}
+   private long warenkorbId;
 
-	public boolean equals(Object object) {
-		boolean isEqual = false;
-		if ((object != null) && (object.getClass() == this.getClass())) {
-			WarenkorbProdukt warenkorbProdukt = (WarenkorbProdukt) object;
-			if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
-				isEqual = true;
-			}
-		}
+   private long produktId;
 
-		return isEqual;
-	}
+   public WarenkorbProdukt(final long aBestellzeileId, final long aWarenkorbId,
+                           final long aProduktId) {
+      this.bestellzeileId = aBestellzeileId;
+      this.warenkorbId = aWarenkorbId;
+      this.produktId = aProduktId;
+   }
 
-	public int hashCode() {
-		return (int) this.bestellzeileId;
-	}
+   public final boolean equals(final Object aObject) {
+      boolean isEqual = false;
+      if ((aObject != null) && (aObject.getClass() == this.getClass())) {
+         WarenkorbProdukt warenkorbProdukt = (WarenkorbProdukt) aObject;
+         if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
+            isEqual = true;
+         }
+      }
 
-	public long getBestellzeileId() {
-		return bestellzeileId;
-	}
+      return isEqual;
+   }
 
-	public void setBestellzeileId(long bestellzeileId) {
-		this.bestellzeileId = bestellzeileId;
-	}
+   public final int hashCode() {
+      return (int) this.bestellzeileId;
+   }
 
-	public long getWarenkorbId() {
-		return warenkorbId;
-	}
+   public final long getBestellzeileId() {
+      return bestellzeileId;
+   }
 
-	public void setWarenkorbId(long warenkorbId) {
-		this.warenkorbId = warenkorbId;
-	}
+   public final void setBestellzeileId(final long aBestellzeileId) {
+      this.bestellzeileId = aBestellzeileId;
+   }
 
-	public long getProduktId() {
-		return produktId;
-	}
+   public final long getWarenkorbId() {
+      return warenkorbId;
+   }
 
-	public void setProduktId(long kundenId) {
-		this.produktId = kundenId;
-	}
+   public final void setWarenkorbId(final long aWarenkorbId) {
+      this.warenkorbId = aWarenkorbId;
+   }
+
+   public final long getProduktId() {
+      return produktId;
+   }
+
+   public final void setProduktId(final long aKundenId) {
+      this.produktId = aKundenId;
+   }
 
 }

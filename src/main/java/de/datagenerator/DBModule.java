@@ -13,19 +13,20 @@ import de.datagenerator.generator.ProduktGenerator;
 import de.datagenerator.generator.WarenkorbGenerator;
 import de.datagenerator.generator.WarenkorbProduktGenerator;
 
-public class DBModule extends AbstractModule {
+public class DBModule
+   extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		bind(DataGeneratorStrategy.class);
-		bind(Creator.class);
-		bind(WarenkorbGenerator.class);
-		bind(KundenGenerator.class);
-		bind(ProduktGenerator.class);
-		bind(WarenkorbProduktGenerator.class);		
-		bind(DBKundeWriter.class);
-		bind(DBProduktWriter.class);
-		bind(DBWarenkorbWriter.class);
-		bind(DBWarenkorbProduktWriter.class);
-	}
+   @Override
+   protected void configure() {
+      bind(DataGeneratorStrategy.class);
+      bind(Creator.class);
+      bind(WarenkorbGenerator.class);
+      bind(KundenGenerator.class);
+      bind(ProduktGenerator.class);
+      bind(WarenkorbProduktGenerator.class);
+      bind(DBKundeWriter.class);
+      bind(DBProduktWriter.class);
+      bind(DBWarenkorbWriter.class);
+      bind(DBWarenkorbProduktWriter.class);
+   }
 }
