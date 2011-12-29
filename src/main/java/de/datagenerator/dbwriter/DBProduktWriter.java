@@ -38,7 +38,7 @@ public class DBProduktWriter
          setPreis(aFactMethProd);
          preparedStatement.executeUpdate();
       } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
+         new LogUtil().getLogger().warn(e);
       }
    }
 

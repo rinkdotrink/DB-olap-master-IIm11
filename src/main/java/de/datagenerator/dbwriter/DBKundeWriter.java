@@ -33,7 +33,7 @@ public class DBKundeWriter
          setKundenNummer(aFactMethProd);
          getPreparedStatement().executeUpdate();
       } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
+         new LogUtil().getLogger().warn(e);
       }
    }
 

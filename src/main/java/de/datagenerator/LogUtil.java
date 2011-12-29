@@ -23,10 +23,14 @@ public class LogUtil {
             new FileAppender(layout, "logs/LogFile.log", false);
          logger.addAppender(fileAppender);
          // ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
-         logger.setLevel(Level.WARN);
+         logger.setLevel(Level.ERROR);
       } catch (Exception ex) {
          System.out.println(ex);
       }
+   }
+   
+   public final void setLevelToWarn(){
+      logger.setLevel(Level.WARN);
    }
 
    public final Logger getLogger() {
