@@ -1,25 +1,25 @@
 package de.datagenerator.datamodel;
 
-public class WarenkorbProdukt
-   implements FactoryMethodProduct {
+public class WKorbProdukt
+   implements Product {
 
    private long bestellzeileId;
 
-   private long warenkorbId;
+   private long wKorbId;
 
    private long produktId;
 
-   public WarenkorbProdukt(final long aBestellzeileId, final long aWarenkorbId,
-                           final long aProduktId) {
+   public WKorbProdukt(final long aBestellzeileId, final long aWKorbId,
+                       final long aProduktId) {
       this.bestellzeileId = aBestellzeileId;
-      this.warenkorbId = aWarenkorbId;
+      this.wKorbId = aWKorbId;
       this.produktId = aProduktId;
    }
 
    public final boolean equals(final Object aObject) {
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
-         WarenkorbProdukt warenkorbProdukt = (WarenkorbProdukt) aObject;
+         WKorbProdukt warenkorbProdukt = (WKorbProdukt) aObject;
          if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
             isEqual = true;
          }
@@ -40,12 +40,12 @@ public class WarenkorbProdukt
       this.bestellzeileId = aBestellzeileId;
    }
 
-   public final long getWarenkorbId() {
-      return warenkorbId;
+   public final long getWKorbId() {
+      return wKorbId;
    }
 
-   public final void setWarenkorbId(final long aWarenkorbId) {
-      this.warenkorbId = aWarenkorbId;
+   public final void setWKorbId(final long aWKorbId) {
+      this.wKorbId = aWKorbId;
    }
 
    public final long getProduktId() {

@@ -1,5 +1,5 @@
 package de.datagenerator.datamodel;
 
-public interface FactoryMethodProduct {
+public interface Product {
 
 }

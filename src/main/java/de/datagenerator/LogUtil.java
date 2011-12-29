@@ -28,10 +28,6 @@ public class LogUtil {
          System.out.println(ex);
       }
    }
-   
-   public final void setLevelToWarn(){
-      logger.setLevel(Level.WARN);
-   }
 
    public final Logger getLogger() {
       return logger;

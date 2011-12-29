@@ -1,18 +1,18 @@
 package de.datagenerator.datamodel;
 
 public class Kunde
-   implements FactoryMethodProduct {
+   implements Product {
 
    private long id;
 
    private String name;
 
-   private long kundenNummer;
+   private long kundenNr;
 
-   public Kunde(final long aId, final String aName, final long aKundenNummer) {
+   public Kunde(final long aId, final String aName, final long aKundenNr) {
       this.id = aId;
       this.name = aName;
-      this.kundenNummer = aKundenNummer;
+      this.kundenNr = aKundenNr;
    }
 
    public final boolean equals(final Object aObject) {
@@ -46,12 +46,12 @@ public class Kunde
       this.name = aName;
    }
 
-   public final long getKundenNummer() {
-      return kundenNummer;
+   public final long getKundenNr() {
+      return kundenNr;
    }
 
-   public final void setKundenNummer(final long aKundenNummer) {
-      this.kundenNummer = aKundenNummer;
+   public final void setKundenNr(final long aKundenNr) {
+      this.kundenNr = aKundenNr;
    }
 
 }

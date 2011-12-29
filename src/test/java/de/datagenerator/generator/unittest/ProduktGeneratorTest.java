@@ -16,7 +16,7 @@ import com.google.inject.Injector;
 
 import de.datagenerator.DBModule;
 import de.datagenerator.creator.Creator;
-import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Produkt;
 import de.datagenerator.dbwriter.DBProduktWriter;
 import de.datagenerator.generator.ProduktGenerator;
@@ -68,7 +68,7 @@ public class ProduktGeneratorTest {
 
       long anzProdukte = 1;
 
-      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
+      Product produkt0 = new Produkt(0, "Product0", 1);
       mock.write(produkt0);
       mock.close();
 
@@ -82,10 +82,10 @@ public class ProduktGeneratorTest {
    public final void testGenerateProdukte_4() {
       long anzProdukte = 4;
 
-      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-      FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
-      FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
-      FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
+      Product produkt0 = new Produkt(0, "Product0", 1);
+      Product produkt1 = new Produkt(1, "Product1", 1);
+      Product produkt2 = new Produkt(2, "Product2", 1);
+      Product produkt3 = new Produkt(3, "Product3", 1);
 
       mock.write(produkt0);
       mock.write(produkt1);
@@ -102,11 +102,11 @@ public class ProduktGeneratorTest {
    public final void testGenerateProdukte_5() {
       long anzProdukte = 5;
 
-      FactoryMethodProduct produkt0 = new Produkt(0, "Product0", 1);
-      FactoryMethodProduct produkt1 = new Produkt(1, "Product1", 1);
-      FactoryMethodProduct produkt2 = new Produkt(2, "Product2", 1);
-      FactoryMethodProduct produkt3 = new Produkt(3, "Product3", 1);
-      FactoryMethodProduct produkt4 = new Produkt(4, "Product4", 1);
+      Product produkt0 = new Produkt(0, "Product0", 1);
+      Product produkt1 = new Produkt(1, "Product1", 1);
+      Product produkt2 = new Produkt(2, "Product2", 1);
+      Product produkt3 = new Produkt(3, "Product3", 1);
+      Product produkt4 = new Produkt(4, "Product4", 1);
 
       mock.write(produkt0);
       mock.write(produkt1);

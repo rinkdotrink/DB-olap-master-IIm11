@@ -3,26 +3,23 @@ package de.datagenerator;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.datagenerator.generator.DataGeneratorStrategy;
+import de.datagenerator.generator.Generator;
 
 public class Main {
 
    public static void main(final String[] args) {
-      int kundeIdx = 0; 
-      int produktIdx = 1;
-      int warenkoerbeIdx = 2;
-      int produkteInWarenkoerbeIdx = 3;
-      
-      long anzKunde = Long.valueOf(args[kundeIdx]);
-      long anzProdukte = Long.valueOf(args[produktIdx]);
-      long anzWarenkoerbe = Long.valueOf(args[warenkoerbeIdx]);
-      long anzProdukteInWarenkorb = Long.valueOf(args[produkteInWarenkoerbeIdx]);
+      final int kundeIdx = 0;
+      final int produktIdx = 1;
+      final int wKoerbeIdx = 2;
+      final int produkteInWKorbIdx = 3;
+
+      long kunden = Long.valueOf(args[kundeIdx]);
+      long produkte = Long.valueOf(args[produktIdx]);
+      long wKoerbe = Long.valueOf(args[wKoerbeIdx]);
+      long produkteInWKorb = Long.valueOf(args[produkteInWKorbIdx]);
 
       Injector injector = Guice.createInjector(new DBModule());
-      DataGeneratorStrategy dataGeneratorStrategy =
-         injector.getInstance(DataGeneratorStrategy.class);
-      dataGeneratorStrategy.generateTemplateMethod(anzKunde, anzProdukte,
-                                                   anzWarenkoerbe,
-                                                   anzProdukteInWarenkorb);
+      Generator dataGenStrat = injector.getInstance(Generator.class);
+      dataGenStrat.generate(kunden, produkte, wKoerbe, produkteInWKorb);
    }
 }

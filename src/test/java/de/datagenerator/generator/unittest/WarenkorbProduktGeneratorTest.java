@@ -16,16 +16,16 @@ import com.google.inject.Injector;
 
 import de.datagenerator.DBModule;
 import de.datagenerator.creator.Creator;
-import de.datagenerator.datamodel.FactoryMethodProduct;
-import de.datagenerator.datamodel.WarenkorbProdukt;
-import de.datagenerator.dbwriter.DBWarenkorbProduktWriter;
-import de.datagenerator.generator.WarenkorbProduktGenerator;
+import de.datagenerator.datamodel.Product;
+import de.datagenerator.datamodel.WKorbProdukt;
+import de.datagenerator.dbwriter.DBWKorbProduktWriter;
+import de.datagenerator.generator.WKorbProduktGenerator;
 
 public class WarenkorbProduktGeneratorTest {
 
-   private WarenkorbProduktGenerator classUnderTest;
+   private WKorbProduktGenerator classUnderTest;
 
-   private DBWarenkorbProduktWriter mock;
+   private DBWKorbProduktWriter mock;
 
    private Injector injector = Guice.createInjector(new DBModule());
 
@@ -43,9 +43,9 @@ public class WarenkorbProduktGeneratorTest {
    public void setUp()
       throws Exception {
       IMocksControl mockControl = createControl();
-      mock = mockControl.createMock(DBWarenkorbProduktWriter.class);
+      mock = mockControl.createMock(DBWKorbProduktWriter.class);
       Creator creator = injector.getInstance(Creator.class);
-      classUnderTest = new WarenkorbProduktGenerator(creator, mock);
+      classUnderTest = new WKorbProduktGenerator(creator, mock);
 
    }
 
@@ -74,7 +74,7 @@ public class WarenkorbProduktGeneratorTest {
       long anzWarenkoerbe = 1;
       long anzProdukteInWarenkorb = 1;
 
-      FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
+      Product warenkorbProdukt0 = new WKorbProdukt(0, 0, 0);
       mock.write(warenkorbProdukt0);
       mock.close();
 
@@ -90,14 +90,14 @@ public class WarenkorbProduktGeneratorTest {
       long anzWarenkoerbe = 2;
       long anzProdukteInWarenkorb = 1;
 
-      FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
-      FactoryMethodProduct warenkorbProdukt1 = new WarenkorbProdukt(1, 1, 1);
-      FactoryMethodProduct warenkorbProdukt2 = new WarenkorbProdukt(2, 2, 2);
-      FactoryMethodProduct warenkorbProdukt3 = new WarenkorbProdukt(3, 3, 3);
-      FactoryMethodProduct warenkorbProdukt4 = new WarenkorbProdukt(4, 4, 0);
-      FactoryMethodProduct warenkorbProdukt5 = new WarenkorbProdukt(5, 5, 1);
-      FactoryMethodProduct warenkorbProdukt6 = new WarenkorbProdukt(6, 6, 2);
-      FactoryMethodProduct warenkorbProdukt7 = new WarenkorbProdukt(7, 7, 3);
+      Product warenkorbProdukt0 = new WKorbProdukt(0, 0, 0);
+      Product warenkorbProdukt1 = new WKorbProdukt(1, 1, 1);
+      Product warenkorbProdukt2 = new WKorbProdukt(2, 2, 2);
+      Product warenkorbProdukt3 = new WKorbProdukt(3, 3, 3);
+      Product warenkorbProdukt4 = new WKorbProdukt(4, 4, 0);
+      Product warenkorbProdukt5 = new WKorbProdukt(5, 5, 1);
+      Product warenkorbProdukt6 = new WKorbProdukt(6, 6, 2);
+      Product warenkorbProdukt7 = new WKorbProdukt(7, 7, 3);
 
       mock.write(warenkorbProdukt0);
       mock.write(warenkorbProdukt1);
@@ -121,36 +121,36 @@ public class WarenkorbProduktGeneratorTest {
       long anzWarenkoerbe = 3;
       long anzProdukteInWarenkorb = 2;
 
-      FactoryMethodProduct warenkorbProdukt0 = new WarenkorbProdukt(0, 0, 0);
-      FactoryMethodProduct warenkorbProdukt1 = new WarenkorbProdukt(1, 0, 1);
-      FactoryMethodProduct warenkorbProdukt2 = new WarenkorbProdukt(2, 1, 2);
-      FactoryMethodProduct warenkorbProdukt3 = new WarenkorbProdukt(3, 1, 3);
-      FactoryMethodProduct warenkorbProdukt4 = new WarenkorbProdukt(4, 2, 4);
-      FactoryMethodProduct warenkorbProdukt5 = new WarenkorbProdukt(5, 2, 0);
-      FactoryMethodProduct warenkorbProdukt6 = new WarenkorbProdukt(6, 3, 1);
-      FactoryMethodProduct warenkorbProdukt7 = new WarenkorbProdukt(7, 3, 2);
-      FactoryMethodProduct warenkorbProdukt8 = new WarenkorbProdukt(8, 4, 3);
-      FactoryMethodProduct warenkorbProdukt9 = new WarenkorbProdukt(9, 4, 4);
-      FactoryMethodProduct warenkorbProdukt10 = new WarenkorbProdukt(10, 5, 0);
-      FactoryMethodProduct warenkorbProdukt11 = new WarenkorbProdukt(11, 5, 1);
-      FactoryMethodProduct warenkorbProdukt12 = new WarenkorbProdukt(12, 6, 2);
-      FactoryMethodProduct warenkorbProdukt13 = new WarenkorbProdukt(13, 6, 3);
-      FactoryMethodProduct warenkorbProdukt14 = new WarenkorbProdukt(14, 7, 4);
-      FactoryMethodProduct warenkorbProdukt15 = new WarenkorbProdukt(15, 7, 0);
-      FactoryMethodProduct warenkorbProdukt16 = new WarenkorbProdukt(16, 8, 1);
-      FactoryMethodProduct warenkorbProdukt17 = new WarenkorbProdukt(17, 8, 2);
-      FactoryMethodProduct warenkorbProdukt18 = new WarenkorbProdukt(18, 9, 3);
-      FactoryMethodProduct warenkorbProdukt19 = new WarenkorbProdukt(19, 9, 4);
-      FactoryMethodProduct warenkorbProdukt20 = new WarenkorbProdukt(20, 10, 0);
-      FactoryMethodProduct warenkorbProdukt21 = new WarenkorbProdukt(21, 10, 1);
-      FactoryMethodProduct warenkorbProdukt22 = new WarenkorbProdukt(22, 11, 2);
-      FactoryMethodProduct warenkorbProdukt23 = new WarenkorbProdukt(23, 11, 3);
-      FactoryMethodProduct warenkorbProdukt24 = new WarenkorbProdukt(24, 12, 4);
-      FactoryMethodProduct warenkorbProdukt25 = new WarenkorbProdukt(25, 12, 0);
-      FactoryMethodProduct warenkorbProdukt26 = new WarenkorbProdukt(26, 13, 1);
-      FactoryMethodProduct warenkorbProdukt27 = new WarenkorbProdukt(27, 13, 2);
-      FactoryMethodProduct warenkorbProdukt28 = new WarenkorbProdukt(28, 14, 3);
-      FactoryMethodProduct warenkorbProdukt29 = new WarenkorbProdukt(29, 14, 4);
+      Product warenkorbProdukt0 = new WKorbProdukt(0, 0, 0);
+      Product warenkorbProdukt1 = new WKorbProdukt(1, 0, 1);
+      Product warenkorbProdukt2 = new WKorbProdukt(2, 1, 2);
+      Product warenkorbProdukt3 = new WKorbProdukt(3, 1, 3);
+      Product warenkorbProdukt4 = new WKorbProdukt(4, 2, 4);
+      Product warenkorbProdukt5 = new WKorbProdukt(5, 2, 0);
+      Product warenkorbProdukt6 = new WKorbProdukt(6, 3, 1);
+      Product warenkorbProdukt7 = new WKorbProdukt(7, 3, 2);
+      Product warenkorbProdukt8 = new WKorbProdukt(8, 4, 3);
+      Product warenkorbProdukt9 = new WKorbProdukt(9, 4, 4);
+      Product warenkorbProdukt10 = new WKorbProdukt(10, 5, 0);
+      Product warenkorbProdukt11 = new WKorbProdukt(11, 5, 1);
+      Product warenkorbProdukt12 = new WKorbProdukt(12, 6, 2);
+      Product warenkorbProdukt13 = new WKorbProdukt(13, 6, 3);
+      Product warenkorbProdukt14 = new WKorbProdukt(14, 7, 4);
+      Product warenkorbProdukt15 = new WKorbProdukt(15, 7, 0);
+      Product warenkorbProdukt16 = new WKorbProdukt(16, 8, 1);
+      Product warenkorbProdukt17 = new WKorbProdukt(17, 8, 2);
+      Product warenkorbProdukt18 = new WKorbProdukt(18, 9, 3);
+      Product warenkorbProdukt19 = new WKorbProdukt(19, 9, 4);
+      Product warenkorbProdukt20 = new WKorbProdukt(20, 10, 0);
+      Product warenkorbProdukt21 = new WKorbProdukt(21, 10, 1);
+      Product warenkorbProdukt22 = new WKorbProdukt(22, 11, 2);
+      Product warenkorbProdukt23 = new WKorbProdukt(23, 11, 3);
+      Product warenkorbProdukt24 = new WKorbProdukt(24, 12, 4);
+      Product warenkorbProdukt25 = new WKorbProdukt(25, 12, 0);
+      Product warenkorbProdukt26 = new WKorbProdukt(26, 13, 1);
+      Product warenkorbProdukt27 = new WKorbProdukt(27, 13, 2);
+      Product warenkorbProdukt28 = new WKorbProdukt(28, 14, 3);
+      Product warenkorbProdukt29 = new WKorbProdukt(29, 14, 4);
 
       mock.write(warenkorbProdukt0);
       mock.write(warenkorbProdukt1);

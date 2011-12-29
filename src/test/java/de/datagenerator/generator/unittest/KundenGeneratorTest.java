@@ -16,7 +16,7 @@ import com.google.inject.Injector;
 
 import de.datagenerator.DBModule;
 import de.datagenerator.creator.Creator;
-import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Kunde;
 import de.datagenerator.dbwriter.DBKundeWriter;
 import de.datagenerator.generator.KundenGenerator;
@@ -67,7 +67,7 @@ public class KundenGeneratorTest {
    public final void testGenerateKunden_1() {
       long anzKunde = 1;
 
-      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
+      Product kunde0 = new Kunde(0, "Customer0", 0);
       mock.write(kunde0);
       mock.close();
       replay(mock);
@@ -79,10 +79,10 @@ public class KundenGeneratorTest {
    public final void testGenerateKunden_4() {
       long anzKunde = 4;
 
-      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-      FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
-      FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
-      FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
+      Product kunde0 = new Kunde(0, "Customer0", 0);
+      Product kunde1 = new Kunde(1, "Customer1", 1);
+      Product kunde2 = new Kunde(2, "Customer2", 2);
+      Product kunde3 = new Kunde(3, "Customer3", 3);
 
       mock.write(kunde0);
       mock.write(kunde1);
@@ -99,11 +99,11 @@ public class KundenGeneratorTest {
    public final void testGenerateKunden_5() {
       long anzKunde = 5;
 
-      FactoryMethodProduct kunde0 = new Kunde(0, "Customer0", 0);
-      FactoryMethodProduct kunde1 = new Kunde(1, "Customer1", 1);
-      FactoryMethodProduct kunde2 = new Kunde(2, "Customer2", 2);
-      FactoryMethodProduct kunde3 = new Kunde(3, "Customer3", 3);
-      FactoryMethodProduct kunde4 = new Kunde(4, "Customer4", 4);
+      Product kunde0 = new Kunde(0, "Customer0", 0);
+      Product kunde1 = new Kunde(1, "Customer1", 1);
+      Product kunde2 = new Kunde(2, "Customer2", 2);
+      Product kunde3 = new Kunde(3, "Customer3", 3);
+      Product kunde4 = new Kunde(4, "Customer4", 4);
 
       mock.write(kunde0);
       mock.write(kunde1);

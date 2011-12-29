@@ -1,7 +1,7 @@
 package de.datagenerator.datamodel;
 
 public class Produkt
-   implements FactoryMethodProduct {
+   implements Product {
 
    private long id;
 

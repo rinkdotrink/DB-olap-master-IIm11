@@ -6,7 +6,7 @@ import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBProduktWriter;
 
 public class ProduktGenerator
-   extends DataGeneratorStrategy {
+   extends Generator {
 
    @Inject
    public ProduktGenerator(final Creator aCreator,
@@ -16,16 +16,16 @@ public class ProduktGenerator
    }
 
    @Override
-   public final void generateProdukte(final long aAnzahl) {
+   public final void generateProdukte(final long aProdukte) {
       long id;
       String name;
       Integer preis;
-      for (long i = 0; i < aAnzahl; i++) {
+      for (long i = 0; i < aProdukte; i++) {
          id = i;
          name = "Product" + id;
          preis = Integer.valueOf(1);
-         setFactoryMethodProduct(getCreator().factMethProdukt(id, name, preis));
-         getDBWriter().write(getFactoryMethodProduct());
+         setProduct(getCreator().createProdukt(id, name, preis));
+         getDBWriter().write(getProduct());
       }
       getDBWriter().close();
    }

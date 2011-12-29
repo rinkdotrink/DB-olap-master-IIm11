@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import de.datagenerator.LogUtil;
-import de.datagenerator.datamodel.FactoryMethodProduct;
+import de.datagenerator.datamodel.Product;
 
 public abstract class DBWriter {
 
@@ -14,18 +14,18 @@ public abstract class DBWriter {
 
    private ResultSet resultSet = null;
 
-   private PreparedStatement preparedStatement = null;
+   private PreparedStatement preparedStmt = null;
 
-   public abstract void write(FactoryMethodProduct aFactMethProd);
+   public abstract void write(Product aProduct);
 
    protected final void initDBWriter()
       throws Exception {
       loadSQLDriver();
       setUpDBConnection();
-      createPreparedStatement();
+      prepareStatement();
    }
 
-   protected abstract void createPreparedStatement()
+   protected abstract void prepareStatement()
       throws Exception;
 
    protected final void loadSQLDriver()
@@ -67,12 +67,12 @@ public abstract class DBWriter {
       return connection;
    }
 
-   protected final PreparedStatement getPreparedStatement() {
-      return preparedStatement;
+   protected final PreparedStatement getPreparedStmt() {
+      return preparedStmt;
    }
 
-   protected final void setPreparedStatement(final PreparedStatement aPreparedStatement) {
-      this.preparedStatement = aPreparedStatement;
+   protected final void setPreparedStmt(final PreparedStatement aPreparedStmt) {
+      this.preparedStmt = aPreparedStmt;
    }
 
 }
