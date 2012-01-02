@@ -62,7 +62,7 @@ public class WarenkorbProduktGeneratorTest {
       mock.close();
 
       replay(mock);
-      classUnderTest.generateProdukteInWarenkorb(anzKunde * anzWarenkoerbe
+      classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
          * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
 
       verify(mock);
@@ -79,7 +79,7 @@ public class WarenkorbProduktGeneratorTest {
       mock.close();
 
       replay(mock);
-      classUnderTest.generateProdukteInWarenkorb(anzKunde * anzWarenkoerbe
+      classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
          * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
       verify(mock);
    }
@@ -110,7 +110,7 @@ public class WarenkorbProduktGeneratorTest {
       mock.close();
 
       replay(mock);
-      classUnderTest.generateProdukteInWarenkorb(anzKunde * anzWarenkoerbe
+      classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
          * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
       verify(mock);
    }
@@ -185,7 +185,7 @@ public class WarenkorbProduktGeneratorTest {
       mock.close();
 
       replay(mock);
-      classUnderTest.generateProdukteInWarenkorb(anzKunde * anzWarenkoerbe
+      classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
          * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
       verify(mock);
    }

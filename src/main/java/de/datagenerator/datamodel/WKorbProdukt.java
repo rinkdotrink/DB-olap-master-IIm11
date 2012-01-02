@@ -5,14 +5,14 @@ public class WKorbProdukt
 
    private long bestellzeileId;
 
-   private long wKorbId;
+   private long wKorbProduktId;
 
    private long produktId;
 
    public WKorbProdukt(final long aBestellzeileId, final long aWKorbId,
                        final long aProduktId) {
       this.bestellzeileId = aBestellzeileId;
-      this.wKorbId = aWKorbId;
+      this.wKorbProduktId = aWKorbId;
       this.produktId = aProduktId;
    }
 
@@ -40,20 +40,20 @@ public class WKorbProdukt
       this.bestellzeileId = aBestellzeileId;
    }
 
-   public final long getWKorbId() {
-      return wKorbId;
+   public final long getWKorbProduktId() {
+      return wKorbProduktId;
    }
 
-   public final void setWKorbId(final long aWKorbId) {
-      this.wKorbId = aWKorbId;
+   public final void setWKorbProduktId(final long aWKorbProduktId) {
+      this.wKorbProduktId = aWKorbProduktId;
    }
 
    public final long getProduktId() {
       return produktId;
    }
 
-   public final void setProduktId(final long aKundenId) {
-      this.produktId = aKundenId;
+   public final void setProduktId(final long aProduktId) {
+      this.produktId = aProduktId;
    }
 
 }

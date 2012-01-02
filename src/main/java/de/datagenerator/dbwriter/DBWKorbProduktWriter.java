@@ -11,7 +11,13 @@ public class DBWKorbProduktWriter
       try {
          initDBWriter();
       } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
+         LogUtil.getLogger().error(e);
+      }
+   }
+
+   public final void write(final Product aProduct) {
+      if (aProduct instanceof WKorbProdukt) {
+         writeWKorbProdukt((WKorbProdukt) aProduct);
       }
    }
 
@@ -22,41 +28,33 @@ public class DBWKorbProduktWriter
       setPreparedStmt(getConnection().prepareStatement(stmt));
    }
 
-   public final void write(final Product aProduct) {
-      if (aProduct instanceof WKorbProdukt) {
-         writeWarenkorb((WKorbProdukt) aProduct);
-      }
-   }
-
-   private void writeWarenkorb(final WKorbProdukt aProduct) {
+   private void writeWKorbProdukt(final WKorbProdukt aWKorbProdukt) {
       try {
-         setId(aProduct);
-         setProduktKunde(aProduct);
-         setBestellzeile(aProduct);
+         setId(aWKorbProdukt.getWKorbProduktId());
+         setProduktId(aWKorbProdukt.getProduktId());
+         setBestellzeileId(aWKorbProdukt.getBestellzeileId());
          getPreparedStmt().executeUpdate();
       } catch (Exception e) {
-         new LogUtil().getLogger().warn(e);
+         LogUtil.getLogger().warn(e);
       }
    }
 
-   private void setId(final WKorbProdukt aProduct)
+   private void setId(final long aId)
       throws Exception {
       final int idWarenkorbProduktIdx = 1;
-      getPreparedStmt().setString(idWarenkorbProduktIdx,
-                                  String.valueOf(aProduct.getWKorbId()));
+      getPreparedStmt().setString(idWarenkorbProduktIdx, String.valueOf(aId));
    }
 
-   private void setProduktKunde(final WKorbProdukt aProduct)
+   private void setProduktId(final long aProduktId)
       throws Exception {
       final int produktIdx = 2;
-      getPreparedStmt().setString(produktIdx,
-                                  String.valueOf(aProduct.getProduktId()));
+      getPreparedStmt().setString(produktIdx, String.valueOf(aProduktId));
    }
 
-   private void setBestellzeile(final WKorbProdukt aProduct)
+   private void setBestellzeileId(final long aBestellzeileId)
       throws Exception {
       final int bestellzeileIdx = 3;
       getPreparedStmt().setString(bestellzeileIdx,
-                                  String.valueOf(aProduct.getBestellzeileId()));
+                                  String.valueOf(aBestellzeileId));
    }
 }

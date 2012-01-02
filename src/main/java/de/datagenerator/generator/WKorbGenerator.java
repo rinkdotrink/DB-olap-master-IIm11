@@ -3,14 +3,13 @@ package de.datagenerator.generator;
 import com.google.inject.Inject;
 
 import de.datagenerator.creator.Creator;
-import de.datagenerator.dbwriter.DBWarenkorbWriter;
+import de.datagenerator.dbwriter.DBWKorbWriter;
 
 public class WKorbGenerator
    extends Generator {
 
    @Inject
-   public WKorbGenerator(final Creator aCreator,
-                         final DBWarenkorbWriter aDbWriter) {
+   public WKorbGenerator(final Creator aCreator, final DBWKorbWriter aDbWriter) {
       setCreator(aCreator);
       setDBWriter(aDbWriter);
    }

@@ -10,11 +10,12 @@ public class LogUtil {
 
    private static Logger logger = Logger.getRootLogger();
 
-   public LogUtil() {
+   public static final Logger getLogger() {
       init();
+      return logger;
    }
 
-   public final void init() {
+   private static void init() {
       try {
          SimpleLayout layout = new SimpleLayout();
          ConsoleAppender consoleAppender = new ConsoleAppender(layout);
@@ -27,10 +28,6 @@ public class LogUtil {
       } catch (Exception ex) {
          System.out.println(ex);
       }
-   }
-
-   public final Logger getLogger() {
-      return logger;
    }
 
 }

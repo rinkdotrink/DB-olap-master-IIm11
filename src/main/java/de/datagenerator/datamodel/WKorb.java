@@ -1,13 +1,13 @@
 package de.datagenerator.datamodel;
 
-public class Warenkorb
+public class WKorb
    implements Product {
 
    private long id;
 
    private long kundenId;
 
-   public Warenkorb(final long aId, final long aKundenId) {
+   public WKorb(final long aId, final long aKundenId) {
       this.id = aId;
       this.kundenId = aKundenId;
    }
@@ -15,7 +15,7 @@ public class Warenkorb
    public final boolean equals(final Object aObject) {
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
-         Warenkorb warenkorb = (Warenkorb) aObject;
+         WKorb warenkorb = (WKorb) aObject;
          if (warenkorb.getId() == id) {
             isEqual = true;
          }

@@ -1,7 +1,5 @@
 package de.datagenerator.dbwriter;
 
-import java.sql.PreparedStatement;
-
 import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Produkt;
@@ -9,13 +7,17 @@ import de.datagenerator.datamodel.Produkt;
 public class DBProduktWriter
    extends DBWriter {
 
-   private PreparedStatement prepStmt = null;
-
    public DBProduktWriter() {
       try {
          initDBWriter();
       } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
+         LogUtil.getLogger().error(e);
+      }
+   }
+
+   public final void write(final Product aProduct) {
+      if (aProduct instanceof Produkt) {
+         writeProdukt((Produkt) aProduct);
       }
    }
 
@@ -23,41 +25,35 @@ public class DBProduktWriter
       throws Exception {
       String stmt =
          "insert into  mydb.produkt(idProdukt, name, preis) values (?, ?, ?)";
-      prepStmt = getConnection().prepareStatement(stmt);
+      preparedStmt = getConnection().prepareStatement(stmt);
    }
 
-   public final void write(final Product aProduct) {
-      if (aProduct instanceof Produkt) {
-         writeKunde((Produkt) aProduct);
-      }
-   }
-
-   private void writeKunde(final Produkt aProduct) {
+   private void writeProdukt(final Produkt aProduct) {
       try {
-         setId(aProduct);
-         setName(aProduct);
-         setPreis(aProduct);
-         prepStmt.executeUpdate();
+         setId(aProduct.getId());
+         setName(aProduct.getName());
+         setPreis(aProduct.getPreisInCent());
+         preparedStmt.executeUpdate();
       } catch (Exception e) {
-         new LogUtil().getLogger().warn(e);
+         LogUtil.getLogger().warn(e);
       }
    }
 
-   private void setId(final Produkt aProduct)
+   private void setId(final long aId)
       throws Exception {
       final int idProduktIdx = 1;
-      prepStmt.setString(idProduktIdx, String.valueOf(aProduct.getId()));
+      preparedStmt.setString(idProduktIdx, String.valueOf(aId));
    }
 
-   private void setName(final Produkt aProduct)
+   private void setName(final String aName)
       throws Exception {
       final int nameIdx = 2;
-      prepStmt.setString(nameIdx, aProduct.getName());
+      preparedStmt.setString(nameIdx, aName);
    }
 
-   private void setPreis(final Produkt aProduct)
+   private void setPreis(final int aPreisInCent)
       throws Exception {
       final int preisIdx = 3;
-      prepStmt.setString(preisIdx, String.valueOf(aProduct.getPreis()));
+      preparedStmt.setString(preisIdx, String.valueOf(aPreisInCent));
    }
 }

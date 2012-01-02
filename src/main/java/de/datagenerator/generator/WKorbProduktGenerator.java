@@ -24,23 +24,23 @@ public class WKorbProduktGenerator
    }
 
    @Override
-   public final void generateProdukteInWarenkorb(final long aBestellzeilen,
-                                                 final long aProdukteInWarenkorb) {
+   public final void generateProdukteInWKorb(final long aBestellzeilen,
+                                             final long aProdukteInWKorb) {
       if (aBestellzeilen == 1) {
-         createWarenkorbProdukt();
+         createWKorbProdukt();
       }
       for (long aktBestellzeile = 0; aktBestellzeile < aBestellzeilen / 2; aktBestellzeile++) {
-         createWarenkorbProdukt();
-         createWarenkorbProdukt();
+         createWKorbProdukt();
+         createWKorbProdukt();
          warenkorbId++;
       }
       getDBWriter().close();
    }
 
-   private void createWarenkorbProdukt() {
+   private void createWKorbProdukt() {
       produktId = modzaehler % 5;
-      setProduct(getCreator().createWKorbProdukt(bestellZeilenId, warenkorbId,
-                                                 produktId));
+      setProduct(getCreator().createProdukteInWKorb(bestellZeilenId,
+                                                    warenkorbId, produktId));
       getDBWriter().write(getProduct());
       modzaehler++;
       bestellZeilenId++;

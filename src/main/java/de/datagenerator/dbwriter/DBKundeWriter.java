@@ -1,8 +1,8 @@
 package de.datagenerator.dbwriter;
 
 import de.datagenerator.LogUtil;
-import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Kunde;
+import de.datagenerator.datamodel.Product;
 
 public class DBKundeWriter
    extends DBWriter {
@@ -11,7 +11,13 @@ public class DBKundeWriter
       try {
          initDBWriter();
       } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
+         LogUtil.getLogger().error(e);
+      }
+   }
+
+   public final void write(final Product aProduct) {
+      if (aProduct instanceof Kunde) {
+         writeKunde((Kunde) aProduct);
       }
    }
 
@@ -22,40 +28,33 @@ public class DBKundeWriter
       setPreparedStmt(getConnection().prepareStatement(stmt));
    }
 
-   public final void write(final Product aProduct) {
-      if (aProduct instanceof Kunde) {
-         writeKunde((Kunde) aProduct);
-      }
-   }
-
    private void writeKunde(final Kunde aProduct) {
       try {
-         setId(aProduct);
-         setName(aProduct);
-         setKundenNummer(aProduct);
+         setId(aProduct.getId());
+         setName(aProduct.getName());
+         setKundenNr(aProduct.getKundenNr());
          getPreparedStmt().executeUpdate();
       } catch (Exception e) {
-         new LogUtil().getLogger().warn(e);
+         LogUtil.getLogger().warn(e);
       }
    }
 
-   private void setId(final Kunde aProduct)
+   private void setId(final long aId)
       throws Exception {
       final int idKundeIdx = 1;
-      getPreparedStmt().setString(idKundeIdx, String.valueOf(aProduct.getId()));
+      getPreparedStmt().setString(idKundeIdx, String.valueOf(aId));
    }
 
-   private void setName(final Kunde aProduct)
+   private void setName(final String aName)
       throws Exception {
       final int nameIdx = 2;
-      getPreparedStmt().setString(nameIdx, aProduct.getName());
+      getPreparedStmt().setString(nameIdx, aName);
    }
 
-   private void setKundenNummer(final Kunde aProduct)
+   private void setKundenNr(final long aKundenNr)
       throws Exception {
       final int kundenNummerIdx = 3;
-      getPreparedStmt().setString(kundenNummerIdx,
-                                  String.valueOf(aProduct.getKundenNr()));
+      getPreparedStmt().setString(kundenNummerIdx, String.valueOf(aKundenNr));
    }
 
 }

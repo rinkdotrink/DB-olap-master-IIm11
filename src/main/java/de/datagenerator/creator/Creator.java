@@ -3,7 +3,7 @@ package de.datagenerator.creator;
 import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Kunde;
 import de.datagenerator.datamodel.Produkt;
-import de.datagenerator.datamodel.Warenkorb;
+import de.datagenerator.datamodel.WKorb;
 import de.datagenerator.datamodel.WKorbProdukt;
 
 public class Creator {
@@ -19,12 +19,12 @@ public class Creator {
    }
 
    public final Product createWKorb(final long aId, final long aKundenId) {
-      return new Warenkorb(aId, aKundenId);
+      return new WKorb(aId, aKundenId);
    }
 
-   public final Product createWKorbProdukt(final long aBestellzeileId,
-                                           final long aWKorbId,
-                                           final long aProduktId) {
+   public final Product createProdukteInWKorb(final long aBestellzeileId,
+                                              final long aWKorbId,
+                                              final long aProduktId) {
       return new WKorbProdukt(aBestellzeileId, aWKorbId, aProduktId);
    }
 

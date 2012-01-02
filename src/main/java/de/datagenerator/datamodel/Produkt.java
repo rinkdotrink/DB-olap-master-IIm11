@@ -7,12 +7,12 @@ public class Produkt
 
    private String name;
 
-   private Integer preis;
+   private int preisInCent;
 
-   public Produkt(final long aId, final String aName, final Integer aPreis) {
+   public Produkt(final long aId, final String aName, final int aPreisInCent) {
       this.id = aId;
       this.name = aName;
-      this.preis = aPreis;
+      this.preisInCent = aPreisInCent;
    }
 
    public final boolean equals(final Object aObject) {
@@ -46,12 +46,12 @@ public class Produkt
       this.name = aName;
    }
 
-   public final Integer getPreis() {
-      return preis;
+   public final int getPreisInCent() {
+      return preisInCent;
    }
 
-   public final void setPreis(final Integer aPreis) {
-      this.preis = aPreis;
+   public final void setPreisInCent(final int aPreisInCent) {
+      this.preisInCent = aPreisInCent;
    }
 
 }

@@ -21,23 +21,23 @@ public class Generator {
    private Injector injector = Guice.createInjector(new DBModule());
 
    public void generate(final long aKunden, final long aProdukte,
-                        final long aWarenkoerbeProKunde,
+                        final long aWKoerbeProKunde,
                         final long aProdukteInWarenkorb) {
       generateKunden(aKunden);
       generateProdukte(aProdukte);
-      generateWarenkorb(aKunden, aWarenkoerbeProKunde);
-      generateProdukteInWarenkorb(aKunden * aWarenkoerbeProKunde
-         * aProdukteInWarenkorb, aProdukteInWarenkorb);
+      generateWarenkorb(aKunden, aWKoerbeProKunde);
+      generateProdukteInWKorb(aKunden * aWKoerbeProKunde * aProdukteInWarenkorb,
+                              aProdukteInWarenkorb);
    }
 
-   public void generateKunden(final long aAnzahl) {
+   public void generateKunden(final long aKunden) {
       strategy = injector.getInstance(KundenGenerator.class);
-      strategy.generateKunden(aAnzahl);
+      strategy.generateKunden(aKunden);
    };
 
-   public void generateProdukte(final long aAnzahl) {
+   public void generateProdukte(final long aProdukte) {
       strategy = injector.getInstance(ProduktGenerator.class);
-      strategy.generateProdukte(aAnzahl);
+      strategy.generateProdukte(aProdukte);
    };
 
    public void generateWarenkorb(final long aKunden,
@@ -46,10 +46,10 @@ public class Generator {
       strategy.generateWarenkorb(aKunden, aWarenkoerbeProKunde);
    };
 
-   public void generateProdukteInWarenkorb(final long aBestellzeilen,
-                                           final long aProdukteInWarenkorb) {
+   public void generateProdukteInWKorb(final long aBestellzeilen,
+                                       final long aProdukteInWarenkorb) {
       strategy = injector.getInstance(WKorbProduktGenerator.class);
-      strategy.generateProdukteInWarenkorb(aBestellzeilen, aProdukteInWarenkorb);
+      strategy.generateProdukteInWKorb(aBestellzeilen, aProdukteInWarenkorb);
    };
 
    protected final Creator getCreator() {

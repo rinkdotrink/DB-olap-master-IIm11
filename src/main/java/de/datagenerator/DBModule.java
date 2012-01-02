@@ -6,7 +6,7 @@ import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBKundeWriter;
 import de.datagenerator.dbwriter.DBProduktWriter;
 import de.datagenerator.dbwriter.DBWKorbProduktWriter;
-import de.datagenerator.dbwriter.DBWarenkorbWriter;
+import de.datagenerator.dbwriter.DBWKorbWriter;
 import de.datagenerator.generator.Generator;
 import de.datagenerator.generator.KundenGenerator;
 import de.datagenerator.generator.ProduktGenerator;
@@ -26,7 +26,7 @@ public class DBModule
       bind(WKorbProduktGenerator.class);
       bind(DBKundeWriter.class);
       bind(DBProduktWriter.class);
-      bind(DBWarenkorbWriter.class);
+      bind(DBWKorbWriter.class);
       bind(DBWKorbProduktWriter.class);
    }
 }

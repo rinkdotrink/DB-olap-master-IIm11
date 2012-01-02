@@ -10,13 +10,22 @@ import de.datagenerator.datamodel.Product;
 
 public abstract class DBWriter {
 
+   public abstract void write(Product aProduct);
+
+   protected PreparedStatement preparedStmt = null;
+
    private Connection connection = null;
 
    private ResultSet resultSet = null;
 
-   private PreparedStatement preparedStmt = null;
-
-   public abstract void write(Product aProduct);
+   public final void close() {
+      try {
+         closeResultSet();
+         closeConnection();
+      } catch (Exception e) {
+         LogUtil.getLogger().error(e);
+      }
+   }
 
    protected final void initDBWriter()
       throws Exception {
@@ -40,13 +49,16 @@ public abstract class DBWriter {
             + "user=root&password=12345");
    }
 
-   public final void close() {
-      try {
-         closeResultSet();
-         closeConnection();
-      } catch (Exception e) {
-         new LogUtil().getLogger().error(e);
-      }
+   protected final Connection getConnection() {
+      return connection;
+   }
+
+   protected final PreparedStatement getPreparedStmt() {
+      return preparedStmt;
+   }
+
+   protected final void setPreparedStmt(final PreparedStatement aPreparedStmt) {
+      this.preparedStmt = aPreparedStmt;
    }
 
    private void closeResultSet()
@@ -61,18 +73,6 @@ public abstract class DBWriter {
       if (connection != null) {
          connection.close();
       }
-   }
-
-   protected final Connection getConnection() {
-      return connection;
-   }
-
-   protected final PreparedStatement getPreparedStmt() {
-      return preparedStmt;
-   }
-
-   protected final void setPreparedStmt(final PreparedStatement aPreparedStmt) {
-      this.preparedStmt = aPreparedStmt;
    }
 
 }
