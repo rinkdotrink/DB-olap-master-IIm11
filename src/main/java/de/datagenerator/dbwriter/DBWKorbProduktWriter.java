@@ -24,7 +24,8 @@ public class DBWKorbProduktWriter
    protected final void prepareStatement()
       throws Exception {
       String stmt =
-         "insert into  mydb.warenkorbprodukt(idwarenkorbProdukt, produkt, bestellzeile) values (?, ?, ?)";
+      // "insert into  mydb.warenkorbprodukt(bestellzeile, idwarenkorbProdukt, produkt) values (?, ?, ?)";
+         "insert into  adbc.warenkorb_has_produkt(Warenkorb_WARENKORB_ID, Produkt_PRODUKT_ID, WARENKORB_HAS_PRODUKT_ID) values (?, ?, ?)";
       setPreparedStmt(getConnection().prepareStatement(stmt));
    }
 
@@ -57,4 +58,5 @@ public class DBWKorbProduktWriter
       getPreparedStmt().setString(bestellzeileIdx,
                                   String.valueOf(aBestellzeileId));
    }
+
 }

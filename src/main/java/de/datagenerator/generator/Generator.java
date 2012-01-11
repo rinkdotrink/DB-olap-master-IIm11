@@ -11,22 +11,20 @@ import de.datagenerator.dbwriter.DBWriter;
 public class Generator {
 
    private Creator creator;
-
    private Product product;
-
    private DBWriter dbWriter;
-
    private Generator strategy;
-
    private Injector injector = Guice.createInjector(new DBModule());
 
    public void generate(final long aKunden, final long aProdukte,
                         final long aWKoerbeProKunde,
                         final long aProdukteInWarenkorb) {
+      
       generateKunden(aKunden);
       generateProdukte(aProdukte);
       generateWarenkorb(aKunden, aWKoerbeProKunde);
-      generateProdukteInWKorb(aProdukteInWarenkorb);
+      generateProdukteInWKorb(aKunden * aWKoerbeProKunde * aProdukteInWarenkorb, aProdukte);
+      
    }
 
    public void generateKunden(final long aKunden) {
@@ -45,9 +43,9 @@ public class Generator {
       strategy.generateWarenkorb(aKunden, aWarenkoerbeProKunde);
    };
 
-   public void generateProdukteInWKorb(final long aBestellzeilen) {
+   public void generateProdukteInWKorb(final long aBestellzeilen, final long aProdukte) {
       strategy = injector.getInstance(WKorbProduktGenerator.class);
-      strategy.generateProdukteInWKorb(aBestellzeilen);
+      strategy.generateProdukteInWKorb(aBestellzeilen, aProdukte);
    };
 
    protected final Creator getCreator() {

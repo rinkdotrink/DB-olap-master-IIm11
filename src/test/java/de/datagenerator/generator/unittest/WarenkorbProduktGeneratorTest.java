@@ -24,9 +24,7 @@ import de.datagenerator.generator.WKorbProduktGenerator;
 public class WarenkorbProduktGeneratorTest {
 
    private WKorbProduktGenerator classUnderTest;
-
    private DBWKorbProduktWriter mock;
-
    private Injector injector = Guice.createInjector(new DBModule());
 
    @BeforeClass
@@ -55,22 +53,25 @@ public class WarenkorbProduktGeneratorTest {
    }
 
    @Test
-   public final void testGenerateProdukteInWarenkorb_0_0_0() {
+   public final void testGenerateProdukteInWarenkorb_0_0_0_0() {
       long anzKunde = 0;
+      long anzProdukte = 0;
       long anzWarenkoerbe = 0;
       long anzProdukteInWarenkorb = 0;
+
       mock.close();
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb, anzProdukte);
 
       verify(mock);
    }
 
    @Test
-   public final void testGenerateProdukteInWarenkorb_1_1_1() {
+   public final void testGenerateProdukteInWarenkorb_1_5_1_1() {
       long anzKunde = 1;
+      long anzProdukte = 5;
       long anzWarenkoerbe = 1;
       long anzProdukteInWarenkorb = 1;
 
@@ -80,24 +81,25 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb, anzProdukte);
       verify(mock);
    }
 
    @Test
-   public final void testGenerateProdukteInWarenkorb_4_2_1() {
+   public final void testGenerateProdukteInWarenkorb_4_5_2_1() {
       long anzKunde = 4;
+      long anzProdukte = 5;
       long anzWarenkoerbe = 2;
       long anzProdukteInWarenkorb = 1;
 
       Product warenkorbProdukt0 = new WKorbProdukt(0, 0, 0);
-      Product warenkorbProdukt1 = new WKorbProdukt(1, 1, 1);
-      Product warenkorbProdukt2 = new WKorbProdukt(2, 2, 2);
-      Product warenkorbProdukt3 = new WKorbProdukt(3, 3, 3);
-      Product warenkorbProdukt4 = new WKorbProdukt(4, 4, 0);
-      Product warenkorbProdukt5 = new WKorbProdukt(5, 5, 1);
-      Product warenkorbProdukt6 = new WKorbProdukt(6, 6, 2);
-      Product warenkorbProdukt7 = new WKorbProdukt(7, 7, 3);
+      Product warenkorbProdukt1 = new WKorbProdukt(1, 0, 1);
+      Product warenkorbProdukt2 = new WKorbProdukt(2, 1, 2);
+      Product warenkorbProdukt3 = new WKorbProdukt(3, 1, 3);
+      Product warenkorbProdukt4 = new WKorbProdukt(4, 2, 4);
+      Product warenkorbProdukt5 = new WKorbProdukt(5, 2, 0);
+      Product warenkorbProdukt6 = new WKorbProdukt(6, 3, 1);
+      Product warenkorbProdukt7 = new WKorbProdukt(7, 3, 2);
 
       mock.write(warenkorbProdukt0);
       mock.write(warenkorbProdukt1);
@@ -111,13 +113,14 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb, anzProdukte);
       verify(mock);
    }
 
    @Test
-   public final void testGenerateProdukteInWarenkorb_5_3_2() {
+   public final void testGenerateProdukteInWarenkorb_5_5_3_2() {
       long anzKunde = 5;
+      long anzProdukte = 5;
       long anzWarenkoerbe = 3;
       long anzProdukteInWarenkorb = 2;
 
@@ -186,7 +189,7 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb, anzProdukte);
       verify(mock);
    }
 

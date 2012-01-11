@@ -4,9 +4,7 @@ public class WKorbProdukt
    implements Product {
 
    private long bestellzeileId;
-
    private long wKorbProduktId;
-
    private long produktId;
 
    public WKorbProdukt(final long aBestellzeileId, final long aWKorbId,
@@ -20,7 +18,9 @@ public class WKorbProdukt
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
          WKorbProdukt warenkorbProdukt = (WKorbProdukt) aObject;
-         if (warenkorbProdukt.getBestellzeileId() == bestellzeileId) {
+         if ((warenkorbProdukt.getBestellzeileId() == bestellzeileId)
+            && (warenkorbProdukt.getProduktId() == produktId)
+            && (warenkorbProdukt.getWKorbProduktId() == wKorbProduktId)) {
             isEqual = true;
          }
       }

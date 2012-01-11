@@ -11,11 +11,8 @@ import de.datagenerator.datamodel.Product;
 public abstract class DBWriter {
 
    public abstract void write(Product aProduct);
-
    protected PreparedStatement preparedStmt = null;
-
    private Connection connection = null;
-
    private ResultSet resultSet = null;
 
    public void close() {
@@ -27,7 +24,7 @@ public abstract class DBWriter {
       }
    }
 
-   public final void initDBWriter()
+   protected final void initDBWriter()
       throws Exception {
       loadSQLDriver();
       setUpDBConnection();

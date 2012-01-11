@@ -4,9 +4,7 @@ public class Produkt
    implements Product {
 
    private long id;
-
    private String name;
-
    private int preisInCent;
 
    public Produkt(final long aId, final String aName, final int aPreisInCent) {
@@ -19,7 +17,8 @@ public class Produkt
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
          Produkt produkt = (Produkt) aObject;
-         if (produkt.getId() == id) {
+         if ((produkt.getId() == id) && (produkt.getName().equals(name))
+            && produkt.getPreisInCent() == preisInCent) {
             isEqual = true;
          }
       }

@@ -24,9 +24,7 @@ import de.datagenerator.generator.KundenGenerator;
 public class KundenGeneratorTest {
 
    private KundenGenerator classUnderTest;
-
    private DBKundeWriter mock;
-
    private Injector injector = Guice.createInjector(new DBModule());
 
    @BeforeClass

@@ -4,7 +4,6 @@ public class WKorb
    implements Product {
 
    private long id;
-
    private long kundenId;
 
    public WKorb(final long aId, final long aKundenId) {
@@ -16,7 +15,7 @@ public class WKorb
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
          WKorb warenkorb = (WKorb) aObject;
-         if (warenkorb.getId() == id) {
+         if ((warenkorb.getId() == id) && (warenkorb.getKundenId() == kundenId)) {
             isEqual = true;
          }
       }

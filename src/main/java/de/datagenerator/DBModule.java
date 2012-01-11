@@ -1,7 +1,6 @@
 package de.datagenerator;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
 
 import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBKundeWriter;
@@ -19,15 +18,15 @@ public class DBModule
 
    @Override
    protected void configure() {
-      bind(Generator.class).in(Singleton.class);
-      bind(Creator.class).in(Singleton.class);
-      bind(WKorbGenerator.class).in(Singleton.class);
-      bind(KundenGenerator.class).in(Singleton.class);
-      bind(ProduktGenerator.class).in(Singleton.class);
-      bind(WKorbProduktGenerator.class).in(Singleton.class);
-      bind(DBKundeWriter.class).in(Singleton.class);
-      bind(DBProduktWriter.class).in(Singleton.class);
-      bind(DBWKorbWriter.class).in(Singleton.class);
-      bind(DBWKorbProduktWriter.class).in(Singleton.class);
+      bind(Generator.class);
+      bind(Creator.class);
+      bind(WKorbGenerator.class);
+      bind(KundenGenerator.class);
+      bind(ProduktGenerator.class);
+      bind(WKorbProduktGenerator.class);
+      bind(DBKundeWriter.class);
+      bind(DBProduktWriter.class);
+      bind(DBWKorbWriter.class);
+      bind(DBWKorbProduktWriter.class);
    }
 }

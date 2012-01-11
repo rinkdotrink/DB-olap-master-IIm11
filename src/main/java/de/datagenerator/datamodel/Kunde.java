@@ -4,9 +4,7 @@ public class Kunde
    implements Product {
 
    private long id;
-
    private String name;
-
    private long kundenNr;
 
    public Kunde(final long aId, final String aName, final long aKundenNr) {
@@ -19,7 +17,8 @@ public class Kunde
       boolean isEqual = false;
       if ((aObject != null) && (aObject.getClass() == this.getClass())) {
          Kunde kunde = (Kunde) aObject;
-         if (kunde.getId() == id) {
+         if ((kunde.getId() == id) && (kunde.getKundenNr() == kundenNr)
+            && (kunde.name.equals(name))) {
             isEqual = true;
          }
       }

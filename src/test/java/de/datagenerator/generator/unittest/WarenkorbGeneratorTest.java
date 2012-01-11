@@ -24,9 +24,7 @@ import de.datagenerator.generator.WKorbGenerator;
 public class WarenkorbGeneratorTest {
 
    private WKorbGenerator classUnderTest;
-
    private DBWKorbWriter mock;
-
    private Injector injector = Guice.createInjector(new DBModule());
 
    @BeforeClass
