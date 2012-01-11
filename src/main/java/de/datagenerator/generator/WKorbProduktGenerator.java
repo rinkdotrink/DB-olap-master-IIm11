@@ -24,8 +24,7 @@ public class WKorbProduktGenerator
    }
 
    @Override
-   public final void generateProdukteInWKorb(final long aBestellzeilen,
-                                             final long aProdukteInWKorb) {
+   public final void generateProdukteInWKorb(final long aBestellzeilen) {
       if (aBestellzeilen == 1) {
          createWKorbProdukt();
       }

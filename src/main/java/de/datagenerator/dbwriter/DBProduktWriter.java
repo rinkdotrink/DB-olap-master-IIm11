@@ -15,7 +15,7 @@ public class DBProduktWriter
       }
    }
 
-   public final void write(final Product aProduct) {
+   public void write(final Product aProduct) {
       if (aProduct instanceof Produkt) {
          writeProdukt((Produkt) aProduct);
       }

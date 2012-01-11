@@ -63,7 +63,7 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb);
 
       verify(mock);
    }
@@ -80,7 +80,7 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb);
       verify(mock);
    }
 
@@ -111,7 +111,7 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb);
       verify(mock);
    }
 
@@ -186,7 +186,7 @@ public class WarenkorbProduktGeneratorTest {
 
       replay(mock);
       classUnderTest.generateProdukteInWKorb(anzKunde * anzWarenkoerbe
-         * anzProdukteInWarenkorb, anzProdukteInWarenkorb);
+         * anzProdukteInWarenkorb);
       verify(mock);
    }
 

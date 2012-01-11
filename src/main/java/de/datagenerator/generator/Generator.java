@@ -26,8 +26,7 @@ public class Generator {
       generateKunden(aKunden);
       generateProdukte(aProdukte);
       generateWarenkorb(aKunden, aWKoerbeProKunde);
-      generateProdukteInWKorb(aKunden * aWKoerbeProKunde * aProdukteInWarenkorb,
-                              aProdukteInWarenkorb);
+      generateProdukteInWKorb(aProdukteInWarenkorb);
    }
 
    public void generateKunden(final long aKunden) {
@@ -46,10 +45,9 @@ public class Generator {
       strategy.generateWarenkorb(aKunden, aWarenkoerbeProKunde);
    };
 
-   public void generateProdukteInWKorb(final long aBestellzeilen,
-                                       final long aProdukteInWarenkorb) {
+   public void generateProdukteInWKorb(final long aBestellzeilen) {
       strategy = injector.getInstance(WKorbProduktGenerator.class);
-      strategy.generateProdukteInWKorb(aBestellzeilen, aProdukteInWarenkorb);
+      strategy.generateProdukteInWKorb(aBestellzeilen);
    };
 
    protected final Creator getCreator() {

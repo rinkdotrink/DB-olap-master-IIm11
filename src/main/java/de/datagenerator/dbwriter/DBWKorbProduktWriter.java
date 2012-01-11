@@ -15,7 +15,7 @@ public class DBWKorbProduktWriter
       }
    }
 
-   public final void write(final Product aProduct) {
+   public void write(final Product aProduct) {
       if (aProduct instanceof WKorbProdukt) {
          writeWKorbProdukt((WKorbProdukt) aProduct);
       }

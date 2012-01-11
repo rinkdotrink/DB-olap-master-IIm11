@@ -18,7 +18,7 @@ public abstract class DBWriter {
 
    private ResultSet resultSet = null;
 
-   public final void close() {
+   public void close() {
       try {
          closeResultSet();
          closeConnection();
@@ -27,7 +27,7 @@ public abstract class DBWriter {
       }
    }
 
-   protected final void initDBWriter()
+   public final void initDBWriter()
       throws Exception {
       loadSQLDriver();
       setUpDBConnection();
