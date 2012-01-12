@@ -9,6 +9,7 @@ import com.google.inject.name.Named;
 
 import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.IDBWriter;
+import de.datagenerator.generator.util.WKorbGeneratorUtil;
 
 public class WKorbGenerator
    extends Generator {

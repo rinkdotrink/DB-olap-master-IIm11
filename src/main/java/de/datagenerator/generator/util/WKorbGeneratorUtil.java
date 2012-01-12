@@ -1,4 +1,4 @@
-package de.datagenerator.generator;
+package de.datagenerator.generator.util;
 
 import java.util.Calendar;
 import java.util.Date;

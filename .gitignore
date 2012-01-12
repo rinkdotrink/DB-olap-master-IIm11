@@ -4,3 +4,4 @@
 *.classpath
 *.prefs
 *.project
+/logs

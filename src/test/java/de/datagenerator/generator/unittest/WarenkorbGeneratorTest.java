@@ -20,8 +20,8 @@ import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.WKorb;
 import de.datagenerator.dbwriter.DBWKorbWriter;
 import de.datagenerator.dbwriter.IDBWriter;
-import de.datagenerator.generator.WKorbGeneratorUtil;
 import de.datagenerator.generator.WKorbGenerator;
+import de.datagenerator.generator.util.WKorbGeneratorUtil;
 
 public class WarenkorbGeneratorTest {
 
