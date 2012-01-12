@@ -24,7 +24,6 @@ public class DBKundeWriter
    protected final void prepareStatement()
       throws Exception {
       String stmt =
-      // "insert into  mydb.kunde(idKunde, name, kundenNummer) values (?, ?, ?)";
          "insert into  adbc.kunde(KUNDE_ID, Name, Kundennummer) values (?, ?, ?)";
       setPreparedStmt(getConnection().prepareStatement(stmt));
    }
@@ -36,7 +35,7 @@ public class DBKundeWriter
          setKundenNr(aProduct.getKundenNr());
          getPreparedStmt().executeUpdate();
       } catch (Exception e) {
-         LogUtil.getLogger().warn(e);
+         LogUtil.getLogger().error(e);
       }
    }
 

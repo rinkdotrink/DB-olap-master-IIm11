@@ -20,12 +20,13 @@ import de.datagenerator.creator.Creator;
 import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.WKorb;
 import de.datagenerator.dbwriter.DBWKorbWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 import de.datagenerator.generator.WKorbGenerator;
 
 public class WarenkorbGeneratorTest {
 
    private WKorbGenerator classUnderTest;
-   private DBWKorbWriter mock;
+   private IDBWriter mock;
    private Injector injector = Guice.createInjector(new DBModule());
 
    @BeforeClass

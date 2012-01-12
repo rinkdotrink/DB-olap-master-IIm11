@@ -1,15 +1,16 @@
 package de.datagenerator.generator;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.datagenerator.creator.Creator;
-import de.datagenerator.dbwriter.DBKundeWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 
 public class KundenGenerator
    extends Generator {
 
    @Inject
-   public KundenGenerator(final Creator aCreator, final DBKundeWriter aDbWriter) {
+   public KundenGenerator(final Creator aCreator, @Named("Kunde") final IDBWriter aDbWriter) {
       setCreator(aCreator);
       setDBWriter(aDbWriter);
    }

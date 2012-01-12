@@ -6,13 +6,13 @@ import com.google.inject.Injector;
 import de.datagenerator.DBModule;
 import de.datagenerator.creator.Creator;
 import de.datagenerator.datamodel.Product;
-import de.datagenerator.dbwriter.DBWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 
 public class Generator {
 
    private Creator creator;
    private Product product;
-   private DBWriter dbWriter;
+   private IDBWriter dbWriter;
    private Generator strategy;
    private Injector injector = Guice.createInjector(new DBModule());
 
@@ -64,11 +64,11 @@ public class Generator {
       this.product = aProduct;
    }
 
-   protected final void setDBWriter(final DBWriter aDBWriter) {
+   protected final void setDBWriter(final IDBWriter aDBWriter) {
       this.dbWriter = aDBWriter;
    }
 
-   protected final DBWriter getDBWriter() {
+   protected final IDBWriter getDBWriter() {
       return dbWriter;
    }
 }

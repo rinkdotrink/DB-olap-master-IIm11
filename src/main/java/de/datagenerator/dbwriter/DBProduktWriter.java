@@ -24,7 +24,6 @@ public class DBProduktWriter
    protected final void prepareStatement()
       throws Exception {
       String stmt =
-      // "insert into  mydb.produkt(idProdukt, name, preis) values (?, ?, ?)";
          "insert into  adbc.produkt(PRODUKT_ID, Name, Preis) values (?, ?, ?)";
       preparedStmt = getConnection().prepareStatement(stmt);
    }
@@ -36,7 +35,7 @@ public class DBProduktWriter
          setPreis(aProduct.getPreisInCent());
          preparedStmt.executeUpdate();
       } catch (Exception e) {
-         LogUtil.getLogger().warn(e);
+         LogUtil.getLogger().error(e);
       }
    }
 

@@ -29,7 +29,6 @@ public class DBWKorbWriter
    protected final void prepareStatement()
       throws Exception {
       String stmt =
-      // "insert into mydb.warenkorb(idWarenkorb, kunde) values (?, ?)";
          "insert into adbc.warenkorb(WARENKORB_ID, Kunde_KUNDE_ID, Datum) values (?, ?, ?)";
       preparedStmt = getConnection().prepareStatement(stmt);
    }
@@ -41,7 +40,7 @@ public class DBWKorbWriter
          setDatum(aWKorb.getDatum());
          preparedStmt.executeUpdate();
       } catch (Exception e) {
-         LogUtil.getLogger().warn(e);
+         LogUtil.getLogger().error(e);
       }
    }
 

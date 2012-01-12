@@ -16,15 +16,16 @@ import com.google.inject.Injector;
 
 import de.datagenerator.DBModule;
 import de.datagenerator.creator.Creator;
-import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Kunde;
+import de.datagenerator.datamodel.Product;
 import de.datagenerator.dbwriter.DBKundeWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 import de.datagenerator.generator.KundenGenerator;
 
 public class KundenGeneratorTest {
 
    private KundenGenerator classUnderTest;
-   private DBKundeWriter mock;
+   private IDBWriter mock;
    private Injector injector = Guice.createInjector(new DBModule());
 
    @BeforeClass

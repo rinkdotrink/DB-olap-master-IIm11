@@ -1,9 +1,10 @@
 package de.datagenerator.generator;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.datagenerator.creator.Creator;
-import de.datagenerator.dbwriter.DBWKorbProduktWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 
 public class WKorbProduktGenerator
    extends Generator {
@@ -14,7 +15,7 @@ public class WKorbProduktGenerator
 
    @Inject
    public WKorbProduktGenerator(final Creator aCreator,
-                                final DBWKorbProduktWriter aDbWriter) {
+                                @Named("WKorbProdukt") final IDBWriter aDbWriter) {
       setCreator(aCreator);
       setDBWriter(aDbWriter);
    }

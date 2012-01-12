@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.Product;
 
-public abstract class DBWriter {
+public abstract class DBWriter implements IDBWriter {
 
    public abstract void write(Product aProduct);
    protected PreparedStatement preparedStmt = null;

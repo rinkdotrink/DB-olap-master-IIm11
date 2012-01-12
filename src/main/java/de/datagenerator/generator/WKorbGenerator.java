@@ -5,16 +5,17 @@ package de.datagenerator.generator;
 import java.util.Date;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.datagenerator.MyDate;
 import de.datagenerator.creator.Creator;
-import de.datagenerator.dbwriter.DBWKorbWriter;
+import de.datagenerator.dbwriter.IDBWriter;
 
 public class WKorbGenerator
    extends Generator {
 
    @Inject
-   public WKorbGenerator(final Creator aCreator, final DBWKorbWriter aDbWriter) {
+   public WKorbGenerator(final Creator aCreator, @Named("WKorb") final IDBWriter aDbWriter) {
       setCreator(aCreator);
       setDBWriter(aDbWriter);
    }
