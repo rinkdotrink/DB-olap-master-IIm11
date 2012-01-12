@@ -42,7 +42,7 @@ public abstract class DBWriter {
    protected final void setUpDBConnection()
       throws Exception {
       connection =
-         DriverManager.getConnection("jdbc:mysql://localhost/feedback?"
+         DriverManager.getConnection("jdbc:mysql://localhost/adbc?"
             + "user=root&password=12345");
    }
 
