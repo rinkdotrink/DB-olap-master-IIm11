@@ -1,7 +1,12 @@
 package de.datagenerator.generator;
 
+
+
+import java.util.Date;
+
 import com.google.inject.Inject;
 
+import de.datagenerator.MyDate;
 import de.datagenerator.creator.Creator;
 import de.datagenerator.dbwriter.DBWKorbWriter;
 
@@ -19,10 +24,16 @@ public class WKorbGenerator
                                        final long aWarenkoerbeProKunde) {
       long kundenId;
       long warenkorbId = 0;
+      int tt = 01;
+      int mm = 01;
+      final int yyyy = 2011;
+      
       for (long iKunde = 0; iKunde < aKunden; iKunde++) {
          kundenId = iKunde;
          for (long iWarenkorbProKunde = 0; iWarenkorbProKunde < aWarenkoerbeProKunde; iWarenkorbProKunde++) {
-            setProduct(getCreator().createWKorb(warenkorbId, kundenId));
+            mm = (int)(warenkorbId % 12) + 1;
+            Date datum = new MyDate(tt,mm,yyyy).getDate();            
+            setProduct(getCreator().createWKorb(warenkorbId, kundenId, datum));
             getDBWriter().write(getProduct());
             warenkorbId++;
          }

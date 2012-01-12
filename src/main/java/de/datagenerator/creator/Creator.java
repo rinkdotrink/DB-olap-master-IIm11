@@ -1,7 +1,9 @@
 package de.datagenerator.creator;
 
-import de.datagenerator.datamodel.Product;
+import java.util.Date;
+
 import de.datagenerator.datamodel.Kunde;
+import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.Produkt;
 import de.datagenerator.datamodel.WKorb;
 import de.datagenerator.datamodel.WKorbProdukt;
@@ -18,8 +20,8 @@ public class Creator {
       return new Produkt(aId, aName, aPreis);
    }
 
-   public final Product createWKorb(final long aId, final long aKundenId) {
-      return new WKorb(aId, aKundenId);
+   public final Product createWKorb(final long aId, final long aKundenId, final Date aDatum) {
+      return new WKorb(aId, aKundenId, aDatum);
    }
 
    public final Product createProdukteInWKorb(final long aBestellzeileId,
