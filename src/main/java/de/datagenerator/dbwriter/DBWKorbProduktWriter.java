@@ -36,6 +36,7 @@ public class DBWKorbProduktWriter
          setBestellzeileId(aWKorbProdukt.getBestellzeileId());
          getPreparedStmt().executeUpdate();
       } catch (Exception e) {
+         System.out.println(e);
          LogUtil.getLogger().warn(e);
       }
    }

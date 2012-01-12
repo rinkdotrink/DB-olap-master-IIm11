@@ -23,7 +23,7 @@ public class Generator {
       generateKunden(aKunden);
       generateProdukte(aProdukte);
       generateWarenkorb(aKunden, aWKoerbeProKunde);
-      generateProdukteInWKorb(aKunden * aWKoerbeProKunde * aProdukteInWarenkorb, aProdukte);
+      generateProdukteInWKorb(aKunden * aWKoerbeProKunde * aProdukteInWarenkorb, aProdukte, aProdukteInWarenkorb);
       
    }
 
@@ -43,9 +43,9 @@ public class Generator {
       strategy.generateWarenkorb(aKunden, aWarenkoerbeProKunde);
    };
 
-   public void generateProdukteInWKorb(final long aBestellzeilen, final long aProdukte) {
+   public void generateProdukteInWKorb(final long aBestellzeilen, final long aProdukte, final long aProdukteInWarenkorb) {
       strategy = injector.getInstance(WKorbProduktGenerator.class);
-      strategy.generateProdukteInWKorb(aBestellzeilen, aProdukte);
+      strategy.generateProdukteInWKorb(aBestellzeilen, aProdukte, aProdukteInWarenkorb);
    };
 
    protected final Creator getCreator() {
