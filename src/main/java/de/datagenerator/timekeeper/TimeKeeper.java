@@ -2,7 +2,7 @@ package de.datagenerator.timekeeper;
 
 import java.util.Date;
 
-public class TimeKeeper {
+public abstract class TimeKeeper {
 
    static long start = 0;
 
