@@ -9,8 +9,9 @@ import de.datagenerator.datamodel.Product;
 import de.datagenerator.dbwriter.IDBWriter;
 import de.datagenerator.timekeeper.KundeTimeKeeper;
 import de.datagenerator.timekeeper.ProduktTimeKeeper;
+import de.datagenerator.timekeeper.TimeKeeper;
 import de.datagenerator.timekeeper.WKorbProduktTimeKeeper;
-import de.datagenerator.timekeeper.WKorbTimeKeeper;
+import de.datagenerator.timekeeper.WKorbTimeKeepter;
 
 public class Generator {
 
@@ -19,10 +20,27 @@ public class Generator {
    private IDBWriter dbWriter;
    private Generator strategy;
    private Injector injector = Guice.createInjector(new DBModule());
-   
+
    public void generate(final long aKunden, final long aProdukte,
                         final long aWKoerbeProKunde,
                         final long aProdukteInWarenkorb) {
+      
+      System.out.println(aKunden + " Kunden | " + aProdukte + " Produkte | "
+         + aWKoerbeProKunde + " Warenkoerbe pro Kunde | "
+         + aProdukteInWarenkorb + " Produkte im Warenkorb");
+      
+      TimeKeeper.setParameter(aKunden, aProdukte, aWKoerbeProKunde,
+                              aProdukteInWarenkorb);
+      
+      generateProducts(aKunden, aProdukte, aWKoerbeProKunde,
+                       aProdukteInWarenkorb);
+      
+      System.out.println("Ende");
+   }
+
+   private void generateProducts(final long aKunden, final long aProdukte,
+                                 final long aWKoerbeProKunde,
+                                 final long aProdukteInWarenkorb) {
       generateKunden(aKunden);
       generateProdukte(aProdukte);
       generateWarenkorb(aKunden, aWKoerbeProKunde);
@@ -31,35 +49,35 @@ public class Generator {
    }
 
    public void generateKunden(final long aKunden) {
-      KundeTimeKeeper.startTimeKunde();
+      KundeTimeKeeper.startTime();
       strategy = injector.getInstance(KundenGenerator.class);
       strategy.generateKunden(aKunden);
-      KundeTimeKeeper.endTimeKunde();
+      KundeTimeKeeper.endTime();
    };
 
    public void generateProdukte(final long aProdukte) {
-      ProduktTimeKeeper.startTimeProdukt();
+      ProduktTimeKeeper.startTime();
       strategy = injector.getInstance(ProduktGenerator.class);
       strategy.generateProdukte(aProdukte);
-      ProduktTimeKeeper.endTimeProdukt();
+      ProduktTimeKeeper.endTime();
    };
 
    public void generateWarenkorb(final long aKunden,
                                  final long aWarenkoerbeProKunde) {
-      WKorbTimeKeeper.startTimeWKorb();
+      WKorbTimeKeepter.startTime();
       strategy = injector.getInstance(WKorbGenerator.class);
       strategy.generateWarenkorb(aKunden, aWarenkoerbeProKunde);
-      WKorbTimeKeeper.endTimeWKorb();
+      WKorbTimeKeepter.endTime();
    };
 
    public void generateProdukteInWKorb(final long aBestellzeilen,
                                        final long aProdukte,
                                        final long aProdukteInWarenkorb) {
-      WKorbProduktTimeKeeper.startTimeWKorbProdukt();
+      WKorbProduktTimeKeeper.startTime();
       strategy = injector.getInstance(WKorbProduktGenerator.class);
       strategy.generateProdukteInWKorb(aBestellzeilen, aProdukte,
                                        aProdukteInWarenkorb);
-      WKorbProduktTimeKeeper.endTimeWKorbProdukt();
+      WKorbProduktTimeKeeper.endTime();
    };
 
    protected final Creator getCreator() {
