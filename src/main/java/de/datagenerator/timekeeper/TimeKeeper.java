@@ -21,10 +21,6 @@ public abstract class TimeKeeper {
 
    }
 
-   public static void startTime() {
-      start = new Date().getTime();
-   }
-
    protected static long getRunningTimeKundeInSeconds() {
       long runningTime = new Date().getTime() - start;
       return runningTime / 1000;
