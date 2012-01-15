@@ -7,7 +7,9 @@ public class WKorbProduktTimeKeeper
 
    public static void startTimeWKorbProdukt() {
       start = new Date().getTime();
-      System.out.print("schreibe " + kunden * wKoerbeProKunde
+      System.out.print("schreibe [" + kunden + " Kunden * " + wKoerbeProKunde
+         + " Warenkoerbe pro Kunde * " + produkteInWarenkorb
+         + " Produkte in Warenkorb =] " + kunden * wKoerbeProKunde
          * produkteInWarenkorb + " WarenkorbProdukte: ");
    }
 
