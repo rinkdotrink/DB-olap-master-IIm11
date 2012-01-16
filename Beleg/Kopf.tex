@@ -4,11 +4,33 @@
 \usepackage{graphicx}
 \usepackage[latin9]{inputenc}
 \usepackage[german]{babel}
+%\usepackage{ngerman}
 \usepackage[T1]{fontenc}
 \usepackage[left=3cm,right=2cm]{geometry}
 \usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}	%Links im Inhaltsverzeichniss
 \usepackage{pdflscape}
+%\usepackage{lscape}
 \usepackage{here} % hiermit können die Bilder dort platziert werden, wo man sie haben möchte!!! Verwendung: \begin{figure}[H]...\end{figure}
+
+
+
+%\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt}
+%\lstset{language=Java}
+%\usepackage{makeidx}
+%\makeindex
+
+%\usepackage[acronym,toc, nonumberlist]{glossaries}
+%\newglossary[slg]{symbols}{sym}{sbl}{List of Symbols}
+
+%\addto\captionsngerman{%
+% \renewcommand\glossaryname{Glossar}}
+%\deftranslation[to=ngerman]{Acronyms}{Abkürzungsverzeichnis}
+%\deftranslation[to=ngerman]{Glossary}{Glossar}
+
+
+%\glossarystyle{listdotted}
+
+%\makeglossaries
 
 \begin{document}
 \newpage
@@ -37,7 +59,9 @@ Ingo Körner \\ Matrikelnummer: 40586 \\Hochschule Zittau/Görlitz\\ Fakultät Elek
 \input{Ingo/Einleitung}
 \input{Ingo/Aufgabenstellung}
 \input{Ingo/EasyMock}
-\input{Ingo/Datengenerator}
+\input{Ingo/GoogleGuice}
+\input{Ingo/DatengeneratorAnalyse}
+\input{Ingo/DatengeneratorEntwurf}
 
 \newpage
 \begin{flushleft}
@@ -47,6 +71,19 @@ Ingo Körner \\ Matrikelnummer: 40586 \\Hochschule Zittau/Görlitz\\ Fakultät Elek
 \end{thebibliography}
 \end{flushleft}
 
+
+%\listoffigures
+
+%\addcontentsline{toc}{section}{\bibname}
+%\addcontentsline{toc}{section}{\listfigurename}
+%\addcontentsline{toc}{section}{\indexname}\printindex
+
+
+%\printglossaries
+%\printglossary[type=symbols,style=long]
+%\printglossary[type=main,title=Glossar,toctitle=Glossar]
+\newpage
+%\printglossary[type=\acronymtype]
 
 
 
