@@ -9,7 +9,7 @@
       <w>160</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>TestDataGenerator</panel_attributes>
+    <panel_attributes>DataGenerator</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -27,7 +27,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>370</x>
-      <y>120</y>
+      <y>230</y>
       <w>100</w>
       <h>70</h>
     </coordinates>
@@ -41,7 +41,7 @@ kundenId</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>370</x>
-      <y>320</y>
+      <y>120</y>
       <w>100</w>
       <h>90</h>
     </coordinates>
@@ -71,7 +71,7 @@ preis</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>370</x>
-      <y>220</y>
+      <y>320</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -87,11 +87,23 @@ kundenId</panel_attributes>
       <x>280</x>
       <y>80</y>
       <w>110</w>
-      <h>170</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>30;30;90;150</additional_attributes>
+    <additional_attributes>30;30;90;250</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>280</x>
+      <y>80</y>
+      <w>110</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>30;30;90;160</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -104,18 +116,6 @@ kundenId</panel_attributes>
     <panel_attributes>lt=-
 </panel_attributes>
     <additional_attributes>30;30;90;50</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>280</x>
-      <y>80</y>
-      <w>110</w>
-      <h>270</h>
-    </coordinates>
-    <panel_attributes>lt=-
-</panel_attributes>
-    <additional_attributes>30;30;90;250</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
