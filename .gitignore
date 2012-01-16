@@ -5,3 +5,9 @@
 *.prefs
 *.project
 /logs
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
