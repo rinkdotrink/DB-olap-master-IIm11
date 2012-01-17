@@ -7,10 +7,12 @@ import org.apache.log4j.SimpleLayout;
 
 public class LogUtil {
 
-   private static Logger logger = Logger.getRootLogger();
+   private static Logger logger;
 
    public static final Logger getLogger() {
-      init();
+      if (logger == null) {
+         init();
+      }
       return logger;
    }
 
@@ -19,6 +21,7 @@ public class LogUtil {
          SimpleLayout layout = new SimpleLayout();
          FileAppender fileAppender =
             new FileAppender(layout, "logs/LogFile.log", false);
+         logger = Logger.getRootLogger();
          logger.addAppender(fileAppender);
          // ALL | DEBUG | INFO | WARN | ERROR | FATAL | OFF:
          logger.setLevel(Level.ERROR);

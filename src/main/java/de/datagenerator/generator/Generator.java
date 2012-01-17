@@ -46,21 +46,21 @@ public class Generator {
                               aProdukte, aProdukteInWarenkorb);
    }
 
-   public void generateKunden(final long aKunden) {
+   protected void generateKunden(final long aKunden) {
       KundeTimeKeeper.startTimeKunde();
       strategy = injector.getInstance(KundenGenerator.class);
       strategy.generateKunden(aKunden);
       KundeTimeKeeper.endTime();
    };
 
-   public void generateProdukte(final long aProdukte) {
+   protected void generateProdukte(final long aProdukte) {
       ProduktTimeKeeper.startTimeProdukt();
       strategy = injector.getInstance(ProduktGenerator.class);
       strategy.generateProdukte(aProdukte);
       ProduktTimeKeeper.endTime();
    };
 
-   public void generateWarenkorb(final long aKunden,
+   protected void generateWarenkorb(final long aKunden,
                                  final long aWarenkoerbeProKunde) {
       WKorbTimeKeepter.startTimeWKorb();
       strategy = injector.getInstance(WKorbGenerator.class);
@@ -68,7 +68,7 @@ public class Generator {
       WKorbTimeKeepter.endTime();
    };
 
-   public void generateProdukteInWKorb(final long aBestellzeilen,
+   protected void generateProdukteInWKorb(final long aBestellzeilen,
                                        final long aProdukte,
                                        final long aProdukteInWarenkorb) {
       WKorbProduktTimeKeeper.startTimeWKorbProdukt();

@@ -40,9 +40,12 @@ Abbildung \ref{fig:EntwurfCreatorUndDatamodelKomponente} auf Seite \pageref{fig:
 \end{figure}
 
 \subsection{Stored Procedures}
-Client-Server-System als Zwei-Schichten-Architekur.
+Der Generator hat eine zweischichtige Architektur (two tier architecture). Die Komponente Generator greift auf die Dienste der Komponente DBWriter zu. Auch sonst wurde in der Anwendung auf geringe Kopplung geachtet (demeters law).
 
-\subsection{Kontext und Dependency Injection mit Google Guice}
-Architekurmuster
+\subsection{Prepared Statement}
+Die generierten Testdaten werden über sogenannte Prepared Statements in die Tabellen geschrieben. Prepared Statements enthalten Platzhalter für die eigentlich zu schreibenden Daten. Prepared Statements bieten sich u.a. dann an, wenn sich bei dem Statement nur die Parameterwerte unterscheiden. Prepared Statements bringen einen Geschwindigkeitsvorteil, da sie bereits im DBMS vorübersetzt werden und der DBWriter mit sehr viel generierten Parameterwerten aufgerufen wird.
 
 \subsection{Entwurfsmuster}
+Der Creator ist als einfache Fabrik implementiert. Durch ihn werden konkrete Instanziierungen aus dem Clientcode entfernt und somit die Clients von konkreten Klassen entkoppelt (Dependency Inversion Principle)
+
+In z.B. DBWriter konnte initDBWriter() als Template Method implementiert werden. Sie definiert die Schritte für die Initialisierung eines DBWriters, wobei die Unterklassen entscheiden, wie sie die abstrakte Hook-Methode prepareStatement() implementieren. Durch die Template Method werden die Highlevel Komponenten loadSQLDriver() und setUpDBConnection() von Lowlevel Komponente prepareStatement() entkoppelt. Die Lowlevel-Komponenten prepareStatement() kann sich in ein System reinhängen, und Highlevel Komponenten bestimmen, wann und wie sie erforderlich sind. Die Lowlevel Komponente prepareStatement() ruft Highlevel Komponente nie direkt auf (Hollywood Prinzip).

@@ -1,6 +1,19 @@
 \subsection{Implementierung und Test}
 Das Projekt liegt als Maven-Eclipse-Projekt unter git@github.com:rinkdotrink/DB-olap-master-IIm11.git
 
+\subsection{Clean Code}
+Das Projekt folgt dem Clean Code Ansatz, dass unter anderem besagt, dass Variablen und Methoden nicht kommentiert werden, sondern sich selbst beschreiben sollen. Bei diesem Ansatz wird dringend empfohlen, das jede Methode immer nur eine einzige Aufgabe erledigt.
+
+Die Anwendung wurde Test Driven implementiert. Zu jeder öffentlichen Methode wurde vor ihrer Implementierung ein Test geschrieben.
+
+Es wurde all das, was veränderlich ist, wie z.B. die Generatoren für Kunden, Produkte etc. von den gleich bleibenden Teilen in der Generator-Klasse getrennt. Damit sind die Klassen für Erweiterungen offen, aber für Veränderungen geschlossen. D.h. Klassen können erweitert werden um neues Verhalten hinzuzufügen, aber ohne bestehenden Code zu verändern (open/closed principle).
+
+Es wurde gegen Schnittstellen und nicht auf Implementierungen programmiert. Dadurch sind die Objekte lose gekoppelt und der Code ist offen für Veränderungen, da die Objekte untereinander nur Schnittstellen kennen und sonst wenig Kenntnisse voneinander haben.
+
+Es wurde darauf geachtet, dass jede Klasse nur eine einzige Verantwortlichkeit hat (hohe Kohäsion).
+
+Es wurde nur der Code vererbt, der sich mit hoher Wahrscheinlichkeit nicht ändert.
+
 \subsubsection{Projektumgebung}
 Eclipse-IDE 3.7, JDK 1.7, JUnit 4.8.2, Maven 3, Guice 3, EasyMock 3.0, Log4J 1.2.16, mysql-connector-java 5.1.6, Umlet 11.3
 
