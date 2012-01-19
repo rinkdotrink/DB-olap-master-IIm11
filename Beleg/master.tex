@@ -1,0 +1,191 @@
+\documentclass[a4paper,12pt,oneside,bibtotoc,numbers=noenddot]{scrreprt}
+
+% ben\"{o}tigte Pakete
+%\usepackage[utf8]{inputenc}
+%\usepackage[isolatin]{inputenc}
+\usepackage{ngerman}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{BachelorThesis}
+
+% Allgemeine Informationen
+\newcommand\mytitle{Titel der Arbeit}
+\newcommand\myauthor{Name des Autors oder der Autoren}
+\newcommand\mydepartment{Informatik und Elektrotechnik}
+\newcommand\myinstitute{Hochschule Zittau/G\"{o}rlitz}
+\newcommand\mytutor{Name und Titel des betreuenden Professors}
+\newcommand\mySecondTutor{Name und Titel des betrieblichen Betreuers}
+
+% Abstracts
+\newcommand\mysubject{Das deutsche Abstract.}
+\newcommand\mysubjectenglish{The english abstract.}
+
+% PDF-Einstellungen
+\hypersetup
+{
+	pdftitle = \mytitle,
+	pdfsubject = \mysubject,
+	pdfauthor = \myauthor,
+	pdfkeywords = {},
+	colorlinks = {true},
+	pdfborder = 0 0 0
+}
+
+
+\begin{document}
+\nocite{*}
+
+%
+\pagenumbering{alph}
+\begin{titlepage}
+\thispagestyle{empty}
+ \begin{center}
+ {\bfseries \Huge Das Wohnheimprojekt und die Performance-Messungen von Datenbank-Konfigurationen}
+ \vspace{2cm} \\
+ {\bfseries \huge \scshape Beleg-Arbeit\\}
+ \vspace{2cm}
+ {\normalsize eingereicht am Fachbereich\\}
+ {\bfseries \Large Informatik\\}
+ {\normalsize der Hochschule Zittau/Görlitz (HAW)\\}
+ \vspace{2cm}
+ {\normalsize als Prüfungsleistung im Fach\\}
+ {\bfseries \Large Fortgeschrittene Datenbank-Konzepte 1\\}
+ \vspace{2cm}
+ {\normalsize vorgelegt von:\\}
+ {\bfseries \Large Christof Ochmann (35989)\\
+ Stefan Lüttke (xxxxx) \\
+ Ingo Körner (40586)\\}
+ \vspace{1cm}
+ {\normalsize  Görlitz, 2. Februar 2012\\}
+ \vspace{0.5cm}
+ betreuender Professor:	Prof. ten Hagen\\
+ \vfill
+\end{center}
+\end{titlepage}
+
+%
+
+%% Kurzreferat
+\thispagestyle{empty}
+\section*{Kurzreferat}
+\mysubject
+\section*{Abstract}
+\mysubjectenglish
+
+\pagenumbering{Roman}
+\tableofcontents
+\listoffigures
+\lstlistoflistings
+
+\begin{listofacronyms}
+\acronym{Mutex}{Mutual Exclusion}
+\end{listofacronyms}
+
+\newpage
+\pagestyle{chapterStyle}
+\pagenumbering{arabic}
+
+
+\part{Wohnheimprojekt}
+
+\part{Performance-Messungen von Datenbank Konfigurationen}
+
+\section{Theorie}
+\input{Ingo/Einleitung}
+\input{Ingo/Aufgabenstellung}
+\input{Ingo/EasyMock}
+\input{Ingo/GoogleGuice}
+\input{Ingo/DatengeneratorAnalyse}
+\input{Ingo/DatengeneratorEntwurf}
+
+
+\chapter{Theoretische Grundlagen}
+Die f\"{u}r den Untersuchungsgegenstand relevanten Themen, die \"{u}ber die
+grundlegenden Studieninhalte hinausgehen; oft auch anwendungsspezifische Aspekte - ca. 6 Seiten
+
+\chapter{Ist-Analyse}
+Welche Defizite sollen mit der Arbeit behoben werden, welche nicht? Pr\"{a}zisierung
+der Zielstellung - ca. 6 Seiten
+
+\chapter{L\"{o}sungskonzept}
+Wie sollen die Defizite behoben werden? Methoden, fachliche Auseinandersetzung
+mit alternativen Ans\"{a}tzen und Auffassungen, Systembeschreibung (Architektur,
+Vorgehensmodell, \ldots) - ca. 12 Seiten
+
+\chapter{Implementierung}
+Umsetzung des L\"{o}sungskonzepts, Begr\"{u}ndung der verwendeten Technologien - ca. 8
+Seiten
+
+\chapter{Ergebnisse}
+Objektive Bewertung der vorliegenden L\"{o}sung, diverse Testverfahren,
+Nutzerbefragungen - ca. 4 Seiten
+
+\chapter{Fazit und Ausblick}
+Zusammenfassung s\"{a}mtlicher Ergebnisse in Bezug auf die Zielerf\"{u}llung und
+Vorschl\"{a}ge f\"{u}r weiterf\"{u}hrende Arbeiten - ca. 2 Seiten
+
+\bibliographystyle{alphadin}
+\bibliography{literatur}
+
+\begin{appendix}
+\pagestyle{appendixAStyle}
+\chapter{Codebeispiele}
+
+\pagestyle{appendixBStyle}
+\chapter{Abbildungen}
+\end{appendix}
+\newpage
+\chapter{Arbeitsaufteilung}
+\begin{table}[h]
+
+	\begin{center}
+		\begin{tabular}{|l||c|c|c|c|c|c|}
+	  	\hline
+	  		 \textbf{Arbeit}		&	\textbf{Cristof Ochmann}	&	\textbf{Stefan Lüttke}	& \textbf{Ingo Körner}  \\ \hline \hline
+				  			Thema 1   	&     x              &                   &                     \\
+				  			Thema 2	    &                   &          	x	      & 	             			\\ \hline
+							  Thema 3   	&                   &                   &     x 			            \\ 
+			  			 \hline
+			  			 \hline
+					Belegkapitel 		
+					
+%%%%%%%%%%%%%%%%%%%% Christof					
+					&									     
+					\ref{Einleitung}, \& \ref{Einleitung}
+					
+%%%%%%%%%%%%%%%%%%%% Stefan					
+					&                       
+					~\ref{Einleitung}
+%%%%%%%%%%%%%%%%%%%% Ingo					
+					&                     
+					~\ref{Einleitung}, ~\ref{Einleitung}, ~\ref{Einleitung} - ~\ref{Einleitung}
+					\\\hline\hline			       
+		\end{tabular}			
+	\end{center}
+\end{table}
+
+
+
+
+
+%\baeiderkl{\myauthor}{G\"{o}rlitz, \today}
+\newpage
+\chapter{Eigenständigkeitserklärung}
+Hiermit erkläre ich, dass ich diese Arbeit selbständig verfasst habe.\\
+Mir ist bekannt, dass jede Form des Plagiats mit der Note 5 (Betrugsversuch) bewertet wird. \\
+
+\textbf{Ochmann, Christof} \\ 
+\renewcommand{\baselinestretch}{1.25}\normalsize{
+\noindent\hspace*{80mm}%
+Unterschrift:\\}
+
+\textbf{Lüttke, Stefan}\\
+\renewcommand{\baselinestretch}{1.25}\normalsize{
+\noindent\hspace*{80mm}%
+Unterschrift:\\}
+
+\textbf{Körner, Ingo}\\
+\renewcommand{\baselinestretch}{1.25}\normalsize{
+\noindent\hspace*{80mm}%
+Unterschrift:\\}
+\end{document}
