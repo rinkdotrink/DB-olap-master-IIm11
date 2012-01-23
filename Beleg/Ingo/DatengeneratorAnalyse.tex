@@ -1,7 +1,6 @@
-\section{Datengenerator}
 Die Testdaten zum Füllen der Tabellen werden mit einem Datengenerator erzeugt.
 
-\subsection{Analyse}
+\section{Analyse}
 Der Datengenerator soll die Testdaten für die vier Tabellen 
 \begin{itemize}
 	\item Kunde,
@@ -24,11 +23,11 @@ Die maximale Anzahl der Bestellzeilen ergibt sich aus der Anzahl der Kunden * de
 
 Für jede Tabelle soll ausgegeben werden, wieviel Zeit der Generator insgesamt für den Schreibvorgang benötigte. Damit wird es auch möglich, die Schreibperformance einer Datenbankkonfiguration zu messen und auszuwerten.
 
-\subsubsection{Anwendungsfalldiagramm}
+\subsection{Anwendungsfalldiagramm}
 
 Die Abbildung \ref{fig:AnwendungsfalldiagrammDatengenerator} auf Seite \pageref{fig:AnwendungsfalldiagrammDatengenerator} zeigt das Anwendungsfalldiagramm des Prototypen.
 
-\subsubsection{User Stories}
+\subsection{User Stories}
 
 1. AF - Datengenerator mit Aufrufparametern ausführen
 Um die Testdaten zu generieren und in die Tabellen zu schreiben ruft der Anwender den Datengenerator als Jar-Datei über die Kommandozeile auf und übergibt ihm die folgenden vier Aufrufparameter in gegebeneer Reihenfolge:
@@ -45,13 +44,13 @@ Der Anwender notiert sich die vom Generator auf der Konsole ausgegebenen Gesamtz
 3. AF - Anzahl der insgesamt geschriebenen Tupel pro Tabelle übernehmen
 Der Anwender notiert sich die auf der Konsole ausgegebenen Werte der vom Generator insgesamt geschriebenen Tupel für jede Tabelle.
 
-\subsubsection{Nichtfunktionale Anforderungen}
+\subsection{Nichtfunktionale Anforderungen}
 Da im späteren Projektverlauf leicht neue Tabellen hinzukommen können, soll die Anwendung leicht anpassbar sein.
 
-\subsubsection{Analyseklassendiagramm}
+\subsection{Analyseklassendiagramm}
 Die Abbildung \ref{fig:AnalyseDatengenerator} auf Seite \pageref{fig:AnalyseDatengenerator} zeigt das Analyseklassendiagramm des Datengenerators.
 
-\subsubsection{UI-Mockup}
+\subsection{UI-Mockup}
 Die Abbildung \ref{fig:UI-MockUp} auf Seite \pageref{fig:UI-MockUp} zeigt das UI-Mockup des Datengenerators.
 
 

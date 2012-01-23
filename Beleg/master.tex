@@ -1,9 +1,9 @@
 \documentclass[a4paper,12pt,oneside,bibtotoc,numbers=noenddot]{scrreprt}
 
-% ben\"{o}tigte Pakete
-%\usepackage[utf8]{inputenc}
-%\usepackage[isolatin]{inputenc}
-\usepackage{ngerman}
+%Pakete
+\usepackage[latin9]{inputenc}
+\usepackage[ngerman]{babel}
+
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{BachelorThesis}
@@ -40,7 +40,7 @@
 \begin{titlepage}
 \thispagestyle{empty}
  \begin{center}
- {\bfseries \Huge Das Wohnheimprojekt und die Performance-Messungen von Datenbank-Konfigurationen}
+ {\bfseries \Huge Das Wohnheimprojekt sowie das Projekt Performance-Messungen von Datenbank-Konfigurationen}
  \vspace{2cm} \\
  {\bfseries \huge \scshape Beleg-Arbeit\\}
  \vspace{2cm}
@@ -58,7 +58,7 @@
  \vspace{1cm}
  {\normalsize  Görlitz, 2. Februar 2012\\}
  \vspace{0.5cm}
- betreuender Professor:	Prof. ten Hagen\\
+ Betreuer:	Prof. ten Hagen\\
  \vfill
 \end{center}
 \end{titlepage}
@@ -90,13 +90,15 @@
 
 \part{Performance-Messungen von Datenbank Konfigurationen}
 
-\section{Theorie}
+\chapter{Theorie}
 \input{Ingo/Einleitung}
 \input{Ingo/Aufgabenstellung}
 \input{Ingo/EasyMock}
 \input{Ingo/GoogleGuice}
+\chapter{Datengenerator}
 \input{Ingo/DatengeneratorAnalyse}
 \input{Ingo/DatengeneratorEntwurf}
+\input{Ingo/ImplementierungUndTest}
 
 
 \chapter{Theoretische Grundlagen}
