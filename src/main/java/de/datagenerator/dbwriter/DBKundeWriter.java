@@ -6,10 +6,10 @@ import de.datagenerator.datamodel.Product;
 
 public class DBKundeWriter
    extends DBWriter {
-
+   
    public DBKundeWriter() {
       try {
-         initDBWriter();
+         initDBWriter();                  
       } catch (Exception e) {
          LogUtil.getLogger().error(e);
       }
@@ -30,10 +30,13 @@ public class DBKundeWriter
 
    private void writeKunde(final Kunde aProduct) {
       try {
+         commitDelayer--;
+         
          setId(aProduct.getId());
          setName(aProduct.getName());
          setKundenNr(aProduct.getKundenNr());
          getPreparedStmt().executeUpdate();
+
       } catch (Exception e) {
          LogUtil.getLogger().error(e);
       }
