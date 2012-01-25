@@ -46,12 +46,13 @@ public abstract class DBWriter implements IDBWriter {
       stmt.execute("SET SQL_LOG_BIN=0");
       stmt.execute("SET AUTOCOMMIT=0");
       
-//      ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES");
-//      System.out.println(res.toString());
-//      while(res.next()){
-//         System.out.println(res.getString(1) + " "+ res.getString(2));         
-//      }
-//      
+      ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES LIKE '%size%';");
+      System.out.println(res.toString());
+      while(res.next()){
+         System.out.println(res.getString(1) + " "+ res.getString(2)); 
+         
+      }
+      System.out.println();
 //      stmt.execute("SET  @@global.innodb_buffer_pool_size=512MB");
       
       
