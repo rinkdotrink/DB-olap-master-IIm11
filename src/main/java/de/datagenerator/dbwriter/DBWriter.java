@@ -46,13 +46,13 @@ public abstract class DBWriter implements IDBWriter {
       stmt.execute("SET SQL_LOG_BIN=0");
       stmt.execute("SET AUTOCOMMIT=0");
       
-      ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES LIKE '%size%';");
-      System.out.println(res.toString());
-      while(res.next()){
-         System.out.println(res.getString(1) + " "+ res.getString(2)); 
-         
-      }
-      System.out.println();
+      //ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES LIKE '%size%';");
+      //System.out.println(res.toString());
+      //while(res.next()){
+      //   System.out.println(res.getString(1) + " "+ res.getString(2)); 
+      //   
+      //}
+      //System.out.println();
 //      stmt.execute("SET  @@global.innodb_buffer_pool_size=512MB");
       
       
@@ -74,7 +74,7 @@ public abstract class DBWriter implements IDBWriter {
       throws Exception {
       connection =
          DriverManager.getConnection("jdbc:mysql://localhost/adbc?"
-            + "user=root&password=12345");
+            + "user=root&password=root");
    }
 
    protected final Connection getConnection() {
