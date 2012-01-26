@@ -40,7 +40,8 @@
 \begin{titlepage}
 \thispagestyle{empty}
  \begin{center}
- {\bfseries \Huge Das Wohnheimprojekt sowie das Projekt Performance-Messungen von Datenbank-Konfigurationen}
+ {\bfseries \Huge Wohnheimprojekt}
+ {\bfseries \Huge Datenbankkonfigurationen} 
  \vspace{2cm} \\
  {\bfseries \huge \scshape Beleg-Arbeit\\}
  \vspace{2cm}
@@ -67,10 +68,12 @@
 
 %% Kurzreferat
 \thispagestyle{empty}
-\section*{Kurzreferat}
-\mysubject
 \section*{Abstract}
-\mysubjectenglish
+\input{Ingo/Abstract}
+
+%\mysubject
+%\section*{Abstract}
+%\mysubjectenglish
 
 \pagenumbering{Roman}
 \tableofcontents
@@ -88,7 +91,7 @@
 
 \part{Wohnheimprojekt}
 
-\part{Performance-Messungen von Datenbank Konfigurationen}
+\part{Performancemessungen von Datenbankkonfigurationen}
 
 \chapter{Theorie}
 \input{Ingo/Einleitung}
@@ -103,30 +106,30 @@
 \input{Ingo/ImplementierungUndTest}
 
 
-\chapter{Theoretische Grundlagen}
-Die f\"{u}r den Untersuchungsgegenstand relevanten Themen, die \"{u}ber die
-grundlegenden Studieninhalte hinausgehen; oft auch anwendungsspezifische Aspekte - ca. 6 Seiten
+%\chapter{Theoretische Grundlagen}
+%Die f\"{u}r den Untersuchungsgegenstand relevanten Themen, die \"{u}ber die
+%grundlegenden Studieninhalte hinausgehen; oft auch anwendungsspezifische Aspekte - %ca. 6 Seiten
 
-\chapter{Ist-Analyse}
-Welche Defizite sollen mit der Arbeit behoben werden, welche nicht? Pr\"{a}zisierung
-der Zielstellung - ca. 6 Seiten
+%\chapter{Ist-Analyse}
+%Welche Defizite sollen mit der Arbeit behoben werden, welche nicht? %Pr\"{a}zisierung
+%der Zielstellung - ca. 6 Seiten
 
-\chapter{L\"{o}sungskonzept}
-Wie sollen die Defizite behoben werden? Methoden, fachliche Auseinandersetzung
-mit alternativen Ans\"{a}tzen und Auffassungen, Systembeschreibung (Architektur,
-Vorgehensmodell, \ldots) - ca. 12 Seiten
+%\chapter{L\"{o}sungskonzept}
+%Wie sollen die Defizite behoben werden? Methoden, fachliche Auseinandersetzung
+%mit alternativen Ans\"{a}tzen und Auffassungen, Systembeschreibung (Architektur,
+%Vorgehensmodell, \ldots) - ca. 12 Seiten
 
-\chapter{Implementierung}
-Umsetzung des L\"{o}sungskonzepts, Begr\"{u}ndung der verwendeten Technologien - ca. 8
-Seiten
+%\chapter{Implementierung}
+%Umsetzung des L\"{o}sungskonzepts, Begr\"{u}ndung der verwendeten Technologien - %ca. 8
+%Seiten
 
-\chapter{Ergebnisse}
-Objektive Bewertung der vorliegenden L\"{o}sung, diverse Testverfahren,
-Nutzerbefragungen - ca. 4 Seiten
+%\chapter{Ergebnisse}
+%Objektive Bewertung der vorliegenden L\"{o}sung, diverse Testverfahren,
+%Nutzerbefragungen - ca. 4 Seiten
 
-\chapter{Fazit und Ausblick}
-Zusammenfassung s\"{a}mtlicher Ergebnisse in Bezug auf die Zielerf\"{u}llung und
-Vorschl\"{a}ge f\"{u}r weiterf\"{u}hrende Arbeiten - ca. 2 Seiten
+%\chapter{Fazit und Ausblick}
+%Zusammenfassung s\"{a}mtlicher Ergebnisse in Bezug auf die Zielerf\"{u}llung und
+%Vorschl\"{a}ge f\"{u}r weiterf\"{u}hrende Arbeiten - ca. 2 Seiten
 
 \bibliographystyle{alphadin}
 \bibliography{literatur}
@@ -175,21 +178,23 @@ Vorschl\"{a}ge f\"{u}r weiterf\"{u}hrende Arbeiten - ca. 2 Seiten
 %\baeiderkl{\myauthor}{G\"{o}rlitz, \today}
 \newpage
 \chapter{Eigenständigkeitserklärung}
-Hiermit erkläre ich, dass ich diese Arbeit selbständig verfasst habe.\\
-Mir ist bekannt, dass jede Form des Plagiats mit der Note 5 (Betrugsversuch) bewertet wird. \\
+Hiermit erkläre ich, dass ich diese Arbeit selbständig verfasst habe. Mir ist bekannt, dass jede Form des Plagiats mit der Note 5 (Betrugsversuch) bewertet wird.
 
-\textbf{Ochmann, Christof} \\ 
-\renewcommand{\baselinestretch}{1.25}\normalsize{
-\noindent\hspace*{80mm}%
-Unterschrift:\\}
+%\begin{tabular}{@{}llr@{}}
+\begin{tabular}{@{}p{6.0cm}p{6.0cm}}
+	  	
+	  		 	
+	  		 & \\
+	  		 & \\
+				  			\textbf{Ochmann, Christof} &               Unterschrift:\\		
+				 &\\
+				 & \\			
+				  			\textbf{Lüttke, Stefan}   	&                   Unterschrift:\\			
+				 &\\
+				 & \\
+				  			\textbf{Körner, Ingo}   	&                     Unterschrift:\\
+			
+\end{tabular}
 
-\textbf{Lüttke, Stefan}\\
-\renewcommand{\baselinestretch}{1.25}\normalsize{
-\noindent\hspace*{80mm}%
-Unterschrift:\\}
 
-\textbf{Körner, Ingo}\\
-\renewcommand{\baselinestretch}{1.25}\normalsize{
-\noindent\hspace*{80mm}%
-Unterschrift:\\}
 \end{document}

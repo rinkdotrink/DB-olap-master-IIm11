@@ -1,5 +1,5 @@
 \section{Dependency Injection}
-Der Datengenerator verwendet das Architektur-Muster Dependency Injection um Abhängigkeiten zwischen Objekten zu minimieren. Dabei kümmert sich das Objekt nicht mehr selbst um die Erzeugung seiner abhängigen Objekte. Diese Abhängigkeiten werden von einem Framework erstellt. Der Code des Objektes wird unabhängig von seiner Umgebung. Dadurch wird das Objekt leichter unit-testbar, da Abhängigkeiten zentral verfügbar sind.
+Der Datengenerator verwendet das Architektur-Muster Dependency Injection um Abhängigkeiten zwischen Objekten zu minimieren. Dabei kümmert sich das Objekt nicht mehr selbst um die Erzeugung seiner abhängigen Objekte. Diese Abhängig\-keiten werden von einem Framework erstellt. Der Code des Objektes wird unabhängig von seiner Umgebung. Dadurch wird das Objekt leichter unit-testbar, da Abhängigkeiten zentral verfügbar sind.
 
 \subsection{Dependency Injection mit Google Guice}
 In dem Datengenerator wird das Dependency Injection Framework Google Guice verwendet. Eine Abhängigkeit wird am besten über einen Konstruktor in ein Objekt injiziert. Dafür braucht der Konstruktor nur mit @Inject annotiert werden.
