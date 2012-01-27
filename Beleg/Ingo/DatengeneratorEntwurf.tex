@@ -4,7 +4,7 @@ Abbildung \ref{fig:Komponentendiagramm} auf Seite \pageref{fig:Komponentendiagra
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/Komponentendiagramm.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/Komponentendiagramm.png}
 \caption{Komponentendiagramm}
 \label{fig:Komponentendiagramm}
 \end{figure}
@@ -14,7 +14,7 @@ Abbildung \ref{fig:EntwurfGeneratorkomponente} auf Seite \pageref{fig:EntwurfGen
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/EntwurfGeneratorkomponente.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/EntwurfGeneratorkomponente.png}
 \caption{Entwurf der Generatorkomponente}
 \label{fig:EntwurfGeneratorkomponente}
 \end{figure}
@@ -24,7 +24,7 @@ Abbildung \ref{fig:EntwurfDBWriterkomponente} auf Seite \pageref{fig:EntwurfDBWr
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/EntwurfDBWriterkomponente.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/EntwurfDBWriterkomponente.png}
 \caption{Entwurf der DBWriterkomponente}
 \label{fig:EntwurfDBWriterkomponente}
 \end{figure}
@@ -34,18 +34,19 @@ Abbildung \ref{fig:EntwurfCreatorUndDatamodelKomponente} auf Seite \pageref{fig:
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/EntwurfCreatorUndDatamodelKomponente.png}
+\includegraphics[width=0.9\textwidth]{Ingo/Bilder/EntwurfCreatorUndDatamodelKomponente.png}
 \caption{Entwurf der Creatorkomponente}
 \label{fig:EntwurfCreatorUndDatamodelKomponente}
 \end{figure}
 
-\subsection{Stored Procedures}
-Der Generator hat eine zweischichtige Architektur (two tier architecture). Die Komponente Generator greift auf die Dienste der Komponente DBWriter zu. Auch sonst wurde in der Anwendung auf geringe Kopplung geachtet (demeters law).
+\subsection{Architektur}
+Der Generator hat eine zweischichtige Architektur (two tier architecture). Die Komponente Generator greift auf die Dienste der Komponente DBWriter zu. Auch sonst wurde in der Anwendung auf geringe Kopplung geachtet.
 
 \subsection{Prepared Statement}
 Die generierten Testdaten werden über sogenannte Prepared Statements in die Tabellen geschrieben. Prepared Statements enthalten Platzhalter für die eigentlich zu schreibenden Daten. Prepared Statements bieten sich u.a. dann an, wenn sich bei dem Statement nur die Parameterwerte unterscheiden. Prepared Statements bringen einen Geschwindigkeitsvorteil, da sie bereits im DBMS vorübersetzt werden und der DBWriter mit sehr viel generierten Parameterwerten aufgerufen wird.
 
 \subsection{Entwurfsmuster}
-Der Creator ist als einfache Fabrik implementiert. Durch ihn werden konkrete Instanziierungen aus dem Clientcode entfernt und somit die Clients von konkreten Klassen entkoppelt (Dependency Inversion Principle)
+Der Creator ist als einfache Fabrik implementiert. Durch ihn werden konkrete Instanziierungen aus dem Clientcode entfernt und somit die Clients von konkreten Klassen entkoppelt (Dependency Inversion Principle).
 
-In z.B. DBWriter konnte initDBWriter() als Template Method implementiert werden. Sie definiert die Schritte für die Initialisierung eines DBWriters, wobei die Unterklassen entscheiden, wie sie die abstrakte Hook-Methode prepareStatement() implementieren. Durch die Template Method werden die Highlevel Komponenten loadSQLDriver() und setUpDBConnection() von Lowlevel Komponente prepareStatement() entkoppelt. Die Lowlevel-Komponenten prepareStatement() kann sich in ein System reinhängen, und Highlevel Komponenten bestimmen, wann und wie sie erforderlich sind. Die Lowlevel Komponente prepareStatement() ruft Highlevel Komponente nie direkt auf (Hollywood Prinzip).
+In z.B. DBWriter konnte initDBWriter() als Template Method implementiert werden. Sie definiert die Schritte für die Initialisierung eines DBWriters, wobei die Unterklassen entscheiden, wie sie die abstrakte Hook-Methode prepareStatement() implementieren. Durch die Template Method werden die Highlevel Komponenten loadSQLDriver() und setUpDBConnection() von Lowlevel Komponente prepareStatement() entkoppelt. Die Lowlevel-Komponenten prepareStatement() kann sich in initDBWriter() reinhängen, und die Highlevel Komponenten initDBWriter() bestimmt, wann und wie prepareStatement() aufgerufen wird. Die Lowlevel Komponente prepareStatement() ruft die Highlevel Komponente dabei nie direkt auf (Hollywood Prinzip).
+\cite{bib2}

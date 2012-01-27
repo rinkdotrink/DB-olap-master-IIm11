@@ -6,6 +6,11 @@
 
 \usepackage{listings}
 \usepackage{graphicx}
+
+%\usepackage{makeidx}
+%\makeindex
+
+
 \usepackage{BachelorThesis}
 
 % Allgemeine Informationen
@@ -35,20 +40,21 @@
 \begin{document}
 \nocite{*}
 
+
 %
 \pagenumbering{alph}
 \begin{titlepage}
 \thispagestyle{empty} 
  \begin{center}
  {\bfseries \LARGE Teil 1\\}
- {\bfseries \Huge Das Wohnheimprojekt \\} 
+ {\bfseries \huge Das Wohnheimprojekt \\} 
  \vspace{1cm}
  {\bfseries \LARGE Teil 2\\}
- {\bfseries \Huge Datenbankkonfigurationen für ausgewählte Anwendungsfälle\\}
+ {\bfseries \huge Das Projekt Datenbankkonfigurationen\\}
  \vspace{1.0cm} 
- {\bfseries \huge \scshape Beleg-Arbeit\\}
+ {\bfseries \huge Belegarbeit\\}
  \vspace{1.0cm}
- {\normalsize eingereicht am Fachbereich\\}
+ {\normalsize eingereicht als Entwurf am Fachbereich\\}
  {\bfseries \Large Informatik\\}
  {\normalsize der Hochschule Zittau/Görlitz (HAW)\\}
  \vspace{1cm}
@@ -60,7 +66,7 @@
  Stefan Lüttke (xxxxx) \\
  Ingo Körner (40586)\\}
  \vspace{1cm}
- {\normalsize  Görlitz, 2. Februar 2012\\}
+ {\normalsize  Görlitz, 27. Januar 2012\\}
  \vspace{0.5cm}
  Betreuer:	Prof. ten Hagen\\
  \vfill
@@ -71,7 +77,6 @@
 
 %% Kurzreferat
 \thispagestyle{empty}
-\section*{Abstract}
 \input{Ingo/Abstract}
 
 %\mysubject
@@ -84,8 +89,25 @@
 \lstlistoflistings
 
 \begin{listofacronyms}
-\acronym{Mutex}{Mutual Exclusion}
+\acronym{OLAP}{Online Analytical Processing}
+\acronym{OLTP}{Online Transaction Processing}
 \end{listofacronyms}
+
+\begin{flushleft}
+\begin{thebibliography}{sotief}
+\bibitem{bib1}{Martin, Robert C. (2008): Clean Code: A Handbook of Agile Software Craftsmanship. Prentice Hall International}
+
+\bibitem{bib2}{Freeman, Eric (2007): Entwurfsmuster von Kopf bis Fuß. O'REILLY}
+
+\bibitem{bib3}{\begin{verbatim}http://www.easymock.org/EasyMock3_0_Documentation.html
+Abruf (21.12.2011)\end{verbatim}} 
+
+\bibitem{bib4}{\begin{verbatim}http://dev.mysql.com Abruf (11.01.2012)\end{verbatim}} 
+
+\end{thebibliography}
+\end{flushleft}
+
+
 
 \newpage
 \pagestyle{chapterStyle}
@@ -94,16 +116,17 @@
 
 \part{Wohnheimprojekt}
 
-\part{Datenbankkonfigurationen für ausgeählte Anwendungsfälle}
+\part{Das Projekt Datenbank\-konfigura\-tionen}
 
 \chapter{Theorie}
 \input{Ingo/Einleitung}
 \input{Ingo/Aufgabenstellung}
 \input{Ingo/RelevanzForschungsgegenstand}
 \input{Ingo/AktuellerWissensstand}
+\input{Ingo/Anwendungsfaelle}
 \input{Ingo/EasyMock}
 \input{Ingo/GoogleGuice}
-\chapter{Datengenerator}
+\chapter{Datengenerator}\label{Datengenerator}
 \input{Ingo/DatengeneratorAnalyse}
 \input{Ingo/DatengeneratorEntwurf}
 \input{Ingo/ImplementierungUndTest}
@@ -135,15 +158,17 @@
 %Vorschl\"{a}ge f\"{u}r weiterf\"{u}hrende Arbeiten - ca. 2 Seiten
 
 \bibliographystyle{alphadin}
-\bibliography{literatur}
+%\bibliography{literatur}
 
-\begin{appendix}
-\pagestyle{appendixAStyle}
-\chapter{Codebeispiele}
+%\begin{appendix}
+%\pagestyle{appendixAStyle}
+%\chapter{Codebeispiele}
 
-\pagestyle{appendixBStyle}
-\chapter{Abbildungen}
-\end{appendix}
+%\pagestyle{appendixBStyle}
+%\chapter{Abbildungen}
+%\end{appendix}
+
+
 \newpage
 \chapter{Arbeitsaufteilung}
 \begin{table}[h]
@@ -152,24 +177,17 @@
 		\begin{tabular}{|l||c|c|c|c|c|c|}
 	  	\hline
 	  		 \textbf{Arbeit}		&	\textbf{Cristof Ochmann}	&	\textbf{Stefan Lüttke}	& \textbf{Ingo Körner}  \\ \hline \hline
-				  			Thema 1   	&     x              &                   &                     \\
-				  			Thema 2	    &                   &          	x	      & 	             			\\ \hline
-							  Thema 3   	&                   &                   &     x 			            \\ 
-			  			 \hline
-			  			 \hline
-					Belegkapitel 		
-					
-%%%%%%%%%%%%%%%%%%%% Christof					
-					&									     
-					\ref{Einleitung}, \& \ref{Einleitung}
-					
-%%%%%%%%%%%%%%%%%%%% Stefan					
-					&                       
-					~\ref{Einleitung}
-%%%%%%%%%%%%%%%%%%%% Ingo					
-					&                     
-					~\ref{Einleitung}, ~\ref{Einleitung}, ~\ref{Einleitung} - ~\ref{Einleitung}
-					\\\hline\hline			       
+				  			Abstract   	&                   &                   & ~\ref{Abstract}          \\
+				  			Einleitung  &                   &          		      & ~\ref{Einleitung} 	             			\\
+							  Aufgabenstellung&               &                   & ~\ref{Aufgabenstellung}     			            \\ 
+							  Forschungsgegenstand&           &                   & ~\ref{RelevanzDesForschungsgegenstandes} \\ 
+							  akt. Wissensstand&                   &                   & ~\ref{DerAktuelleWissensstand}  \\ 
+							  Anwendungsfälle&                &                   & ~\ref{AnwendungsfaelleFuerDatenbankanwendungen}\\ 
+							  EasyMock   	&                   &                   & ~\ref{EasyMock} 			            \\ 
+							  Dependency Injection&           &                   & ~\ref{DependencyInjection}     \\ 
+							  Datengenerator&                 &                   & ~\ref{Datengenerator}         \\
+							  \hline			  
+			  	\hline
 		\end{tabular}			
 	\end{center}
 \end{table}

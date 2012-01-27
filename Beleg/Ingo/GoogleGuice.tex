@@ -1,7 +1,18 @@
-\section{Dependency Injection}
+\section{Dependency Injection}\label{DependencyInjection}
 Der Datengenerator verwendet das Architektur-Muster Dependency Injection um Abhängigkeiten zwischen Objekten zu minimieren. Dabei kümmert sich das Objekt nicht mehr selbst um die Erzeugung seiner abhängigen Objekte. Diese Abhängig\-keiten werden von einem Framework erstellt. Der Code des Objektes wird unabhängig von seiner Umgebung. Dadurch wird das Objekt leichter unit-testbar, da Abhängigkeiten zentral verfügbar sind.
 
 \subsection{Dependency Injection mit Google Guice}
 In dem Datengenerator wird das Dependency Injection Framework Google Guice verwendet. Eine Abhängigkeit wird am besten über einen Konstruktor in ein Objekt injiziert. Dafür braucht der Konstruktor nur mit @Inject annotiert werden.
 
-Codebeispiel
+\lstset{language=C,caption={Dependency Injection über einen Konstruktor},label=GoogleGuice1}
+\lstinputlisting[language=Java]{Ingo/Listings/GoogleGuice.java}
+
+In der configure()-Methode wird Google Guice u.a. bekannt gemacht, welche Implementierung von IDBWriter und Creator injiziert werden sollen.
+
+\lstset{language=Java,caption={configure},label=configure}
+\lstinputlisting[language=Java]{Ingo/Listings/DBModule.java}
+
+Da die Main()-Methodedas nicht von Guice instanziiert wird, kann in ihm keine Constructor Context Injection verwendet werden. Um in Main.java selbst Klassen erzeugen zu können, die mit Guice verwaltet werden, wird com.google.inject.Injector benutzt.
+
+\lstset{language=Java,caption={Injector},label=Injector}
+\lstinputlisting[language=Java]{Ingo/Listings/Main.java}

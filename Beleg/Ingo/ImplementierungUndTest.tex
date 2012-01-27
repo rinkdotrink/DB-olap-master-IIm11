@@ -3,7 +3,7 @@ Das Projekt liegt als Maven-Eclipse-Projekt unter: \\
 git@github.com:rinkdotrink/DB-olap-master-IIm11.git
 
 \subsection{Clean Code}
-Das Projekt folgt dem Clean Code Ansatz, dass unter anderem besagt, dass Variablen und Methoden nicht kommentiert werden, sondern sich selbst beschreiben sollen. Bei diesem Ansatz wird dringend empfohlen, das jede Methode immer nur eine einzige Aufgabe erledigt.
+Das Projekt folgt dem Clean Code Ansatz, welches unter anderem besagt, dass Variablen und Methoden nicht kommentiert werden, sondern sich selbst beschreiben sollen. Bei diesem Ansatz wird dringend empfohlen, das jede Methode immer nur eine einzige Aufgabe erledigt.
 
 Die Anwendung wurde Test Driven implementiert. Zu jeder öffentlichen Methode wurde vor ihrer Implementierung ein Test geschrieben.
 
@@ -14,28 +14,20 @@ Es wurde gegen Schnittstellen und nicht auf Implementierungen programmiert. Dadu
 Es wurde darauf geachtet, dass jede Klasse nur eine einzige Verantwortlichkeit hat (hohe Kohäsion).
 
 Es wurde nur der Code vererbt, der sich mit hoher Wahrscheinlichkeit nicht ändert.
+\cite{bib1}
 
 \subsection{Projektumgebung}
 Eclipse-IDE 3.7, JDK 1.7, JUnit 4.8.2, Maven 3, Guice 3, EasyMock 3.0, Log4J 1.2.16, mysql-connector-java 5.1.6, Umlet 11.3
 
-\subsection{Projekt aus dem repository laden}
-Berechtigungen
-git pull
-
 \subsection{Maven}
+Um Java-Programme standardisiert erstellen und verwalten zu können, wird Apache Maven eingesetzt.
 
 \subsection{Maven-Projekt in Eclipse importieren}
-
-
+Das Projekt muss von github gepullt werden und kann dann in Eclipse unter \texttt{File -> Import -> Maven -> Existing Maven Projects} importieren werden.
 
 \subsection{Maven Projekt ausführen}
-Entweder über Jar oder über Eclipse
+In Eclipse erst auf das Projekt klicken und dann auf \texttt{Run As -> Run Configurations..} klicken. Links in den Konfigurationen auf Java Application doppelklicken. Unter Arguments müssen die vier Übergabeparameter eingetragen werden.
 
-\subsection{Jar mit allen Abhängigkeiten erstellen}
-package
-
-
-\subsection{Implementierung der Funktionalität}
-Die drei Komponenten
-
-\subsection{Unit Test mit EasyMock 3.0}
+\subsection{Bugtracker}
+Der Bugtracker ist zu finden unter:\\
+\texttt{https://github.com/rinkdotrink/DB-olap-master-IIm11}
