@@ -74,7 +74,7 @@ public abstract class DBWriter implements IDBWriter {
       throws Exception {
       connection =
          DriverManager.getConnection("jdbc:mysql://localhost/adbc?"
-            + "user=root&password=root");
+            + "user=root&password=12345");
    }
 
    protected final Connection getConnection() {
