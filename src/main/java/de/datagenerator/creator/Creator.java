@@ -20,14 +20,15 @@ public class Creator {
       return new Produkt(aId, aName, aPreis);
    }
 
-   public final Product createWKorb(final long aId, final long aKundenId, final Date aDatum) {
-      return new WKorb(aId, aKundenId, aDatum);
+   public final Product createWKorb(final long aId, final long aKundenId) {
+      return new WKorb(aId, aKundenId);
    }
 
    public final Product createProdukteInWKorb(final long aBestellzeileId,
                                               final long aWKorbId,
-                                              final long aProduktId) {
-      return new WKorbProdukt(aBestellzeileId, aWKorbId, aProduktId);
+                                              final long aProduktId,
+                                              final Date aDatum) {
+      return new WKorbProdukt(aBestellzeileId, aWKorbId, aProduktId, aDatum);
    }
 
 }

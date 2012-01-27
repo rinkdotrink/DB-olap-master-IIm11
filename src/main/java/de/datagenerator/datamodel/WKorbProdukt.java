@@ -1,17 +1,21 @@
 package de.datagenerator.datamodel;
 
+import java.util.Date;
+
 public class WKorbProdukt
    implements Product {
 
    private long bestellzeileId;
    private long wKorbProduktId;
    private long produktId;
+   private Date datum;
 
    public WKorbProdukt(final long aBestellzeileId, final long aWKorbId,
-                       final long aProduktId) {
+                       final long aProduktId, final Date aDatum) {
       this.bestellzeileId = aBestellzeileId;
       this.wKorbProduktId = aWKorbId;
       this.produktId = aProduktId;
+      this.datum = aDatum;
    }
 
    public final boolean equals(final Object aObject) {
@@ -20,7 +24,8 @@ public class WKorbProdukt
          WKorbProdukt warenkorbProdukt = (WKorbProdukt) aObject;
          if ((warenkorbProdukt.getBestellzeileId() == bestellzeileId)
             && (warenkorbProdukt.getProduktId() == produktId)
-            && (warenkorbProdukt.getWKorbProduktId() == wKorbProduktId)) {
+            && (warenkorbProdukt.getWKorbProduktId() == wKorbProduktId)
+            && (warenkorbProdukt.getDatum().equals(datum))) {
             isEqual = true;
          }
       }
@@ -54,6 +59,14 @@ public class WKorbProdukt
 
    public final void setProduktId(final long aProduktId) {
       this.produktId = aProduktId;
+   }
+
+   public Date getDatum() {
+      return datum;
+   }
+
+   public void setDatum(Date datum) {
+      this.datum = datum;
    }
 
 }

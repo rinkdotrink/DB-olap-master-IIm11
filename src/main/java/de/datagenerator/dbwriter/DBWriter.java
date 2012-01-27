@@ -9,14 +9,13 @@ import java.sql.Statement;
 import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.Product;
 
-public abstract class DBWriter implements IDBWriter {
+public abstract class DBWriter
+   implements IDBWriter {
 
    public abstract void write(Product aProduct);
    protected PreparedStatement preparedStmt = null;
-   protected long commitDelayer = 100000;
    private Connection connection = null;
    private ResultSet resultSet = null;
-   
 
    public void close() {
       try {
@@ -34,9 +33,7 @@ public abstract class DBWriter implements IDBWriter {
       setUpDBConnection();
       prepareStatement();
       getConnection().setAutoCommit(false);
-      
-      
-   // Disable foreign keys check
+
       Statement stmt = getConnection().createStatement();
       stmt.execute("SET FOREIGN_KEY_CHECKS=0");
       stmt.execute("SET UNIQUE_CHECKS=0");
@@ -45,21 +42,18 @@ public abstract class DBWriter implements IDBWriter {
       stmt.execute("SET SQL_NOTES=0");
       stmt.execute("SET SQL_LOG_BIN=0");
       stmt.execute("SET AUTOCOMMIT=0");
-      
-      //ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES LIKE '%size%';");
-      //System.out.println(res.toString());
-      //while(res.next()){
-      //   System.out.println(res.getString(1) + " "+ res.getString(2)); 
-      //   
-      //}
-      //System.out.println();
-//      stmt.execute("SET  @@global.innodb_buffer_pool_size=512MB");
-      
-      
-      
+
+      // ResultSet res = stmt.executeQuery("SHOW GLOBAL VARIABLES LIKE '%size%';");
+      // System.out.println(res.toString());
+      // while(res.next()){
+      // System.out.println(res.getString(1) + " "+ res.getString(2));
+      //
+      // }
+      // System.out.println();
+      // stmt.execute("SET  @@global.innodb_buffer_pool_size=512MB");
+
       stmt.close();
-      
-      
+
    }
 
    protected abstract void prepareStatement()

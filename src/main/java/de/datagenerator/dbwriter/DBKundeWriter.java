@@ -30,8 +30,6 @@ public class DBKundeWriter
 
    private void writeKunde(final Kunde aProduct) {
       try {
-         commitDelayer--;
-         
          setId(aProduct.getId());
          setName(aProduct.getName());
          setKundenNr(aProduct.getKundenNr());

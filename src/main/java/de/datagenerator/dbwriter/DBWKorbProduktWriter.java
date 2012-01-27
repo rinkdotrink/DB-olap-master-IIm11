@@ -1,5 +1,8 @@
 package de.datagenerator.dbwriter;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+
 import de.datagenerator.LogUtil;
 import de.datagenerator.datamodel.Product;
 import de.datagenerator.datamodel.WKorbProdukt;
@@ -24,7 +27,7 @@ public class DBWKorbProduktWriter
    protected final void prepareStatement()
       throws Exception {
       String stmt =
-         "insert into  adbc.warenkorb_has_produkt(Warenkorb_WARENKORB_ID, Produkt_PRODUKT_ID, WARENKORB_HAS_PRODUKT_ID) values (?, ?, ?)";
+         "insert into  adbc.warenkorb_has_produkt(Warenkorb_WARENKORB_ID, Produkt_PRODUKT_ID, WARENKORB_HAS_PRODUKT_ID, Datum) values (?, ?, ?, ?)";
       setPreparedStmt(getConnection().prepareStatement(stmt));
    }
 
@@ -33,9 +36,10 @@ public class DBWKorbProduktWriter
          setId(aWKorbProdukt.getWKorbProduktId());
          setProduktId(aWKorbProdukt.getProduktId());
          setBestellzeileId(aWKorbProdukt.getBestellzeileId());
-         getPreparedStmt().executeUpdate();
+         setDatum(aWKorbProdukt.getDatum());
+         getPreparedStmt().executeUpdate();         
       } catch (Exception e) {
-         LogUtil.getLogger().error(e);         
+         LogUtil.getLogger().error(e);
       }
    }
 
@@ -56,6 +60,22 @@ public class DBWKorbProduktWriter
       final int bestellzeileIdx = 3;
       getPreparedStmt().setString(bestellzeileIdx,
                                   String.valueOf(aBestellzeileId));
+   }
+
+   private void setDatum(final java.util.Date aSQLUtilDatum)
+      throws SQLException {
+      {
+         final int datumIdx = 4;
+         java.sql.Date sqlDate = getSQLDate(aSQLUtilDatum);
+         preparedStmt.setDate(datumIdx, sqlDate);
+      }
+   }
+
+   private java.sql.Date getSQLDate(java.util.Date aSQLUtilDatum) {
+      SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+      String aSQLUtilStr = fmt.format(aSQLUtilDatum);
+      java.sql.Date sqlDate = java.sql.Date.valueOf(new String(aSQLUtilStr));
+      return sqlDate;
    }
 
 }
