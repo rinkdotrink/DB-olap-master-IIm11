@@ -2,6 +2,9 @@
 *.class
 *.jar
 *.classpath
+*.project
+.project
+.classpath
 *.prefs
 *.project
 /logs
