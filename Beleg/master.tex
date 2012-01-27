@@ -7,18 +7,8 @@
 \usepackage{listings}
 \usepackage{graphicx}
 
-
-
-\usepackage{makeidx}
-\makeindex
-
-
-
-
-
-
-
-
+%\usepackage{makeidx}
+%\makeindex
 
 
 \usepackage{BachelorThesis}
@@ -50,6 +40,7 @@
 \begin{document}
 \nocite{*}
 
+
 %
 \pagenumbering{alph}
 \begin{titlepage}
@@ -59,7 +50,7 @@
  {\bfseries \huge Das Wohnheimprojekt \\} 
  \vspace{1cm}
  {\bfseries \LARGE Teil 2\\}
- {\bfseries \huge Datenbankkonfigurationen \\ aus\-gewählter An\-wendungs\-fälle\\}
+ {\bfseries \huge Das Projekt Datenbankkonfigurationen\\}
  \vspace{1.0cm} 
  {\bfseries \huge Belegarbeit\\}
  \vspace{1.0cm}
@@ -86,7 +77,6 @@
 
 %% Kurzreferat
 \thispagestyle{empty}
-\section*{Abstract}
 \input{Ingo/Abstract}
 
 %\mysubject
@@ -99,7 +89,6 @@
 \lstlistoflistings
 
 \begin{listofacronyms}
-\acronym{Mutex}{Mutual Exclusion}
 \acronym{OLAP}{Online Analytical Processing}
 \acronym{OLTP}{Online Transaction Processing}
 \end{listofacronyms}
@@ -113,7 +102,8 @@
 
 \bibitem{bib2}{Freeman, Eric (2007): Entwurfsmuster von Kopf bis Fuß. O'REILLY}
 
-\bibitem{bib3}{\begin{verbatim}http://www.easymock.org/EasyMock3_0_Documentation.html Abruf (21.12.2011)\end{verbatim}} 
+\bibitem{bib3}{\begin{verbatim}http://www.easymock.org/EasyMock3_0_Documentation.html
+Abruf (21.12.2011)\end{verbatim}} 
 
 \bibitem{bib4}{\begin{verbatim}http://dev.mysql.com Abruf (11.01.2012)\end{verbatim}} 
 
@@ -129,7 +119,7 @@
 
 \part{Wohnheimprojekt}
 
-\part{Datenbank\-konfigura\-tionen aus\-gewähl\-ter An\-wendungs\-fälle}
+\part{Das Projekt Datenbank\-konfigura\-tionen}
 
 \chapter{Theorie}
 \input{Ingo/Einleitung}
@@ -139,11 +129,11 @@
 \input{Ingo/Anwendungsfaelle}
 \input{Ingo/EasyMock}
 \input{Ingo/GoogleGuice}
-\chapter{Datengenerator}
+\chapter{Datengenerator}\label{Datengenerator}
 \input{Ingo/DatengeneratorAnalyse}
 \input{Ingo/DatengeneratorEntwurf}
 \input{Ingo/ImplementierungUndTest}
-\printindex
+
 
 %\chapter{Theoretische Grundlagen}
 %Die f\"{u}r den Untersuchungsgegenstand relevanten Themen, die \"{u}ber die
@@ -190,24 +180,17 @@
 		\begin{tabular}{|l||c|c|c|c|c|c|}
 	  	\hline
 	  		 \textbf{Arbeit}		&	\textbf{Cristof Ochmann}	&	\textbf{Stefan Lüttke}	& \textbf{Ingo Körner}  \\ \hline \hline
-				  			Thema 1   	&     x              &                   &                     \\
-				  			Thema 2	    &                   &          	x	      & 	             			\\ \hline
-							  Thema 3   	&                   &                   &     x 			            \\ 
-			  			 \hline
-			  			 \hline
-					Belegkapitel 		
-					
-%%%%%%%%%%%%%%%%%%%% Christof					
-					&									     
-					\ref{Einleitung}, \& \ref{Einleitung}
-					
-%%%%%%%%%%%%%%%%%%%% Stefan					
-					&                       
-					~\ref{Einleitung}
-%%%%%%%%%%%%%%%%%%%% Ingo					
-					&                     
-					~\ref{Einleitung}, ~\ref{Einleitung}, ~\ref{Einleitung} - ~\ref{Einleitung}
-					\\\hline\hline			       
+				  			Abstract   	&                   &                   & ~\ref{Abstract}          \\
+				  			Einleitung  &                   &          		      & ~\ref{Einleitung} 	             			\\
+							  Aufgabenstellung&               &                   & ~\ref{Aufgabenstellung}     			            \\ 
+							  Forschungsgegenstand&           &                   & ~\ref{RelevanzDesForschungsgegenstandes} \\ 
+							  Wissensstand&                   &                   & ~\ref{DerAktuelleWissensstand}  \\ 
+							  Anwendungsfälle&                &                   & ~\ref{AnwendungsfaelleFuerDatenbankanwendungen}\\ 
+							  EasyMock   	&                   &                   & ~\ref{EasyMock} 			            \\ 
+							  Dependency Injection&           &                   & ~\ref{DependencyInjection}     \\ 
+							  Datengenerator&                 &                   & ~\ref{Datengenerator}         \\
+							  \hline			  
+			  	\hline
 		\end{tabular}			
 	\end{center}
 \end{table}
