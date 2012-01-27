@@ -12,6 +12,7 @@ public class ProduktTimeKeeper
 
    static public void endTime() {
       System.out.println(getRunningTimeKundeInSeconds() + " s");
+      allTime += getRunningTimeKundeInSeconds();
    }
 
 }

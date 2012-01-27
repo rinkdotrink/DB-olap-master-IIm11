@@ -15,5 +15,7 @@ public class WKorbProduktTimeKeeper
 
    static public void endTime() {
       System.out.println(getRunningTimeKundeInSeconds() + " s");
+      allTime += getRunningTimeKundeInSeconds();
+      System.out.println("TotalTime: " +allTime+ " s");
    }
 }

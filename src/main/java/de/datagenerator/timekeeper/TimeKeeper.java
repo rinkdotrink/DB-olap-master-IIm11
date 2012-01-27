@@ -10,6 +10,7 @@ public abstract class TimeKeeper {
    static long produkte;
    static long wKoerbeProKunde;
    static long produkteInWarenkorb;
+   static long allTime = 0;
 
    public static void setParameter(final long aKunden, final long aProdukte,
                                    final long aWKoerbeProKunde,
@@ -24,5 +25,7 @@ public abstract class TimeKeeper {
    protected static long getRunningTimeKundeInSeconds() {
       long runningTime = new Date().getTime() - start;
       return runningTime / 1000;
-   }
+   }   
+   
+   
 }
