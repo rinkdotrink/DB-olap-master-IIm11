@@ -6,6 +6,21 @@
 
 \usepackage{listings}
 \usepackage{graphicx}
+
+
+
+\usepackage{makeidx}
+\makeindex
+
+
+
+
+
+
+
+
+
+
 \usepackage{BachelorThesis}
 
 % Allgemeine Informationen
@@ -85,30 +100,22 @@
 
 \begin{listofacronyms}
 \acronym{Mutex}{Mutual Exclusion}
+\acronym{OLAP}{Online Analytical Processing}
+\acronym{OLTP}{Online Transaction Processing}
 \end{listofacronyms}
+
 
 \newpage
 \clearpage
 \begin{flushleft}
 \begin{thebibliography}{sotief}
-\bibitem{gwt0}{Daum, Berthold (2005): Java-Entwicklung mit Eclipse 3.1. dpunkt.verlag, Heidelberg}
+\bibitem{bib1}{Martin, Robert C. (2008): Clean Code: A Handbook of Agile Software Craftsmanship. Prentice Hall International}
 
-\bibitem{gwt8}{Lange, Fabian (2008): Eclipse Rich Ajax Platform: Bringing Rich Client Into the Web. Apress, New York}
+\bibitem{bib2}{Freeman, Eric (2007): Entwurfsmuster von Kopf bis Fuﬂ. O'REILLY}
 
-\bibitem{gwt6}{Steyer, Ralph (2007): Das Google Web Toolkit. Entwickler.Press, Frankfurt, M.}
+\bibitem{bib3}{\begin{verbatim}http://www.easymock.org/EasyMock3_0_Documentation.html Abruf (21.12.2011)\end{verbatim}} 
 
-\bibitem{gwt1}{\begin{verbatim}http://mojo.codehaus.org/gwt-maven-plugin Abruf (14.06.2011)\end{verbatim}} 
-
-\bibitem{gwt2}{\begin{verbatim}http://www.ralfebert.de/eclipse_rcp Abruf (14.06.2011)\end{verbatim}} 
-
-\bibitem{gwt3}{\begin{verbatim}http://www.contentmanager.de/magazin/artikel_1492_java_eclipse_rcp.html 
-(14.06.2011)\end{verbatim}} 
-
-\bibitem{gwt4}{\begin{verbatim}http://www.easymock.org/EasyMock3_0_Documentation.html Abruf (14.06.2011)\end{verbatim}} 
-
-\bibitem{gwt5}{\begin{verbatim}http://blog.discovr.net/post/516021390 Abruf (14.06.2011)\end{verbatim}} 
-
-\bibitem{gwt7}{\begin{verbatim}http://de.wikipedia.org/wiki/Client Abruf (30.07.2011)\end{verbatim}} 
+\bibitem{bib4}{\begin{verbatim}http://dev.mysql.com Abruf (11.01.2012)\end{verbatim}} 
 
 \end{thebibliography}
 \end{flushleft}
@@ -136,7 +143,7 @@
 \input{Ingo/DatengeneratorAnalyse}
 \input{Ingo/DatengeneratorEntwurf}
 \input{Ingo/ImplementierungUndTest}
-
+\printindex
 
 %\chapter{Theoretische Grundlagen}
 %Die f\"{u}r den Untersuchungsgegenstand relevanten Themen, die \"{u}ber die
@@ -173,6 +180,8 @@
 %\pagestyle{appendixBStyle}
 %\chapter{Abbildungen}
 %\end{appendix}
+
+
 \newpage
 \chapter{Arbeitsaufteilung}
 \begin{table}[h]
