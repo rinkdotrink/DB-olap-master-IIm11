@@ -14,7 +14,7 @@ import de.datagenerator.generator.KundenGenerator;
 import de.datagenerator.generator.ProduktGenerator;
 import de.datagenerator.generator.WKorbGenerator;
 import de.datagenerator.generator.WKorbProduktGenerator;
-
+ 
 public class DBModule
    extends AbstractModule {
 
