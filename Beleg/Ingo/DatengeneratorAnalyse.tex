@@ -17,9 +17,15 @@ erzeugen und in die Tabellen schreiben. Dabei sollen dem Generator vier Paramete
 \end{enumerate}
 
 Der Generator muss für alle beliebigen Startparameter die Tupel der einzelnen Tabellen korrekt miteinander verknüpfen. Deswegen erzeugt der Generator auch die Primär- und Fremdschlüssel der Tupel selbst. 
-Die maximale Anzahl der Warenkörbe ergibt sich aus der Anzahl der Kunden * der Anzahl der Warenkörbe pro Kunde. In der Warenkorbtabelle müssen bei einer Anzahl von z.B. 10 Warenkörben pro Kunde auch je 10 Warenkörbe existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Kunden zeigen. In der Warenkorbtabelle sollen im Datum alle Monate des Jahres 2011 gleichmäßig verteilt vorkommen. 
+Die maximale Anzahl der Warenkörbe ergibt sich wie folgt:\\
 
-Die maximale Anzahl der Bestellzeilen ergibt sich aus der Anzahl der Kunden * der Anzahl der Warenkörbe pro Kunde * der Anzahl der Produkte in einem Warenkorb. Die möglichen Produkte sollen gleichmäßig über alle Bestellzeilen verteilt sein. In der WarenkorbProdukt-Tabelle müssen bei einer Anzahl von z.B. 7 Produkten im Warenkorb auch je 7 Bestellzeilen existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Warenkorb zeigen.
+$Warenkoerbe = Kunden * Warenkoerbe pro Kunde$
+
+In der Warenkorbtabelle müssen bei einer Anzahl von z.B. 10 Warenkörben pro Kunde auch je 10 Warenkörbe existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Kunden zeigen. In der Warenkorbtabelle sollen im Datum alle Monate des Jahres 2011 gleichmäßig verteilt vorkommen. 
+
+Die maximale Anzahl der Bestellzeilen ergibt sich wie folgt:\\
+$Bestellzeilen = Kunden * WarenkoerbeProKunde * ProdukteImWarenkorb.$\\
+Die möglichen Produkte sollen gleichmäßig über alle Bestellzeilen verteilt sein. In der WarenkorbProdukt-Tabelle müssen bei einer Anzahl von z.B. 7 Produkten im Warenkorb auch je 7 Bestellzeilen existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Warenkorb zeigen.
 
 Für jede Tabelle soll ausgegeben werden, wieviel Zeit der Generator insgesamt für den Schreibvorgang benötigte. Damit wird es auch möglich, die Schreibperformance einer Datenbankkonfiguration zu messen und auszuwerten.
 
@@ -29,7 +35,7 @@ Die Abbildung \ref{fig:AnwendungsfalldiagrammDatengenerator} auf Seite \pageref{
 
 \subsection{User Stories}
 
-1. AF - Datengenerator mit Aufrufparametern ausführen
+1. AF - Datengenerator mit Aufrufparametern ausführen\\
 Um die Testdaten zu generieren und in die Tabellen zu schreiben ruft der Anwender den Datengenerator als Jar-Datei über die Kommandozeile auf und übergibt ihm die folgenden vier Aufrufparameter in gegebeneer Reihenfolge:
 \begin{enumerate}
 	\item die Anzahl der zu erzeugenden Kunden
@@ -38,10 +44,10 @@ Um die Testdaten zu generieren und in die Tabellen zu schreiben ruft der Anwende
 	\item die Anzahl der Produkte im Warenkorb
 \end{enumerate}
 
-2. AF - Zeiten für die Schreibvorgänge übernehmen
+2. AF - Zeiten für die Schreibvorgänge übernehmen\\
 Der Anwender notiert sich die vom Generator auf der Konsole ausgegebenen Gesamtzeiten der einzelnen Schreibvorgänge.
 
-3. AF - Anzahl der insgesamt geschriebenen Tupel pro Tabelle übernehmen
+3. AF - Anzahl der insgesamt geschriebenen Tupel pro Tabelle übernehmen\\
 Der Anwender notiert sich die auf der Konsole ausgegebenen Werte der vom Generator insgesamt geschriebenen Tupel für jede Tabelle.
 
 \subsection{Nichtfunktionale Anforderungen}
@@ -57,14 +63,14 @@ Die Abbildung \ref{fig:UI-MockUp} auf Seite \pageref{fig:UI-MockUp} zeigt das UI
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/AnalyseDatengenerator.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/AnalyseDatengenerator.png}
 \caption{Analyse Datengenerator}
 \label{fig:AnalyseDatengenerator}
 \end{figure}
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/AnwendungsfalldiagrammDatengenerator.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/AnwendungsfalldiagrammDatengenerator.png}
 \caption{Anwendungsfalldiagramm Datengenerator}
 \label{fig:AnwendungsfalldiagrammDatengenerator}
 \end{figure}
@@ -72,7 +78,7 @@ Die Abbildung \ref{fig:UI-MockUp} auf Seite \pageref{fig:UI-MockUp} zeigt das UI
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.8\textwidth]{Ingo/Bilder/UIMockUp.png}
+\includegraphics[width=1\textwidth]{Ingo/Bilder/UIMockUp.png}
 \caption{UI-MockUp}
 \label{fig:UI-MockUp}
 \end{figure}
