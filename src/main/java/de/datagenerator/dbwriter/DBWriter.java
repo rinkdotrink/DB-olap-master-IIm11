@@ -38,7 +38,7 @@ public abstract class DBWriter
       stmt.execute("SET FOREIGN_KEY_CHECKS=0");
       stmt.execute("SET UNIQUE_CHECKS=0");
       stmt.execute("SET SQL_LOG_OFF=1");
-      stmt.execute("SET innodb_table_locks=1");
+//      stmt.execute("SET innodb_table_locks=1");
       stmt.execute("SET SQL_NOTES=0");
       stmt.execute("SET SQL_LOG_BIN=0");
       stmt.execute("SET AUTOCOMMIT=0");
