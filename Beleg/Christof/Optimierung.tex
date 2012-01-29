@@ -1,0 +1,51 @@
+\section{Optimierungsmaßnahmen}
+
+\subsection{Indizes}
+Bei einer Indizierung werden Objekte geordnet, was unter Umständen bei  Suchvorgängen enorme Geschwindigkeitsvorteile mit sich bringt. Ohne eine Indizierung müsste die Datenbank die Suche bei dem ersten Datensatz beginnen und dann die gesamte Tabelle sequentiell nach passenden Datensätzen durchforsten. Mit einem Index kann die Suche an einer bestimmten Position in der Mitte der Datendatei beginnen, was eine gezielte und schnelle Suche ermöglicht.
+
+MySQL speichert die Indizes in B-Trees, unterstützt aber auch Hash-Indizes. Bei der Erstellung von Queries muss.. 
+
+\subsubsection{B-Tree-Indizierung}
+Ein B-Tree-Index eignet sich gut für Ausdrücke mit Vergleichsoperatoren und beim dem BETWEEN-Operator. Auch ein LIKE-Vergleich ist möglich wenn das Argument ein Konstanten-String ist, der nicht mit einem Jokerzeichen(=\%) beginnt.  Ein B-Tree-Index eignet sich auch für das Sortieren oder Gruppieren einer Tabelle.
+MySQL kann auch mehrspaltige Indizes erstellen, dabei muss man jedoch beachten,  dass bei den Abfragen immer die erste Spalte des Indexes in einer WHERE-Klausel angegeben wird, sonst wird der Teil-Index nicht benutzt:
+\begin{verbatim}
+	z.B. INDEX name(nachname,vorname)
+	
+	Index wird benutzt 				-> SELECT *FROM test WHERE nachname="'Schmidt"'
+	Index wird nicht benutzt  -> SELECT *FROM test WHERE vorname ="'Hans"'
+\end{verbatim}
+Das bedeutet, dass wenn beispielsweise ein dreispaltiger Index für (Spalte1,Spalte2,Spalte3) angelegt wird, wird er für (Spalte1),(Spalte1,Spalte2) und (Spalte1,Spalte2,Spalte3) eingesetzt. Für (Spalte2) und für (Spalte2,Spalte3) kommt die Suchfunktionalität mit dem Index nicht zum Einsatz. Das muss man bei der Erstellung von SQL-Anweisungen beachten.
+Außerdem muss der Index alle AND-Ebenen in der WHERE-Klausel einbeziehen, sonst wird er ebenfalls nicht zur Optimierung benutzt:
+\begin{verbatim}
+	z.B. INDEX anschrift(nachname,vorname,ort)
+	
+	wird benutzt			  -> WHERE nachmame = "`Schmidt"' AND 
+														vorname = "`Hans"' AND ort"'Halle"'	
+	wird nicht benutzt  -> WHERE vorname ="'Hans"' AND ort ="'Buxtehude"'
+\end{verbatim}
+Wenn eine Abfrage auf einen großen Anteil von Datensätzen zugreifen muss, kann es passieren, dass der Optimierer auf die Verwendung eines Indexes verzichtet und einen Full Table-Scan anordnet, da dadurch sich weniger Suchvorgänge ergeben. Es sei denn, die Abfrage enthält eine LIMIT-Klausel und somit nur ein paar Datensätze abgerufen werden sollen, wird trotzdem ein Index verwendet, da sich diese Datensätze mit dem Index schneller finden lassen.
+\subsubsection{Hash-Indizierung}
+Ein Hash-Index unterscheidet sich grundsätzlich dadurch, dass er nur vollständige Schlüssel zur Suche nach einem Datensatz verwenden kann. Außerdem kann der Optimierer einen Hash-Index nicht zur Beschleunigung von ORDER-BY-Operationen verwenden und auch für Vergleiche mit  < > ist er nicht geeignet. Der Hash-Index eignet sich aber sehr gut für Vergleiche mit den Operatoren = oder < = >
+
+\subsection{Partitionierung}
+Bei der Partitionierung werden die Daten der einzelnen Tabellen nach bestimmten Regeln getrennt und auf mehrere physikalische Einheiten verteilt. Die Regel wird von dem Benutzer ausgewählt und als Partitionierungsfunktion bezeichnet. Es kann sich dabei um Modulus, um eine Hash-Funktion oder um einen Vergleich mit einer Menge von Wertebereichen oder Wertelisten handeln.
+MySQL unterstützt nur die horizontale Partitionierung. Dabei werden die Tabellen zeilenweise getrennt. 
+
+\subsubsection{Partitionierungsfunktionen in MySQL}
+\begin{enumerate}
+\item Range Partitioning \\
+Den verschiedenen Partitionen werden Zeilen zugeordnet, deren Spaltenwerte einem bestimmten Wertebereich entsprechen. Beispielsweise die verkauften Produkte im ersten Quartal wäre eine Partition und die verkauften Produkte im zweiten Quartal wäre eine weitere Partition.
+
+\item List Partitioning \\
+Diese Methode ist dem Range Partitioning ähnlich. Der Unterschied ist nur der, dass die Kriterien nicht fortlaufend sein müssen und willkürlich ausgewählt werden können. Es wird eine Entscheidungsliste für jede Partition erstellt. Beispielsweise die verkauften Produkte in den Jahren 02, 04, 06 wäre eine Partition und eine weitere Partition wären die verkauften Produkte in den Jahren 01, 03, 05.
+
+\item Hash Partitioning und Linear Hash-Partitioning \\
+Bei dieser Methode werden die Daten gleichmäßig verteilt. Für den Hash gibt man hauptsächlich einen Spaltenwert an. Meistens wird dabei die Modulo-Funktion verwendet und bei dem linearen Hashing ein linearer Zweierpotenz-Algorithmus. 
+
+\item Key Partitioning \\
+Diese Partitionierung ist der  Hash-Partitionierung sehr ähnlich. Der Unterschied besteht darin, dass der Primärschlüssel der Tabelle als Kriterium dient und dieser wird für die MD5-Operation verwendet.
+
+\item Subpartitioning \\
+Es besteht die Möglichkeit die partitionierten Tabellen noch weiter zu unterteilen.
+
+\end{enumerate}
