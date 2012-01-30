@@ -38,15 +38,20 @@ Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, 
 Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden. 
 
 \section{Testdurchführung}
+
 \subsection{Behauptung}
 
-\subsection{Kalt- und Warmstart ohne Index}
+\subsection{Testergebnisse bei 1 Mio. Kunden}
 \begin{figure}[htp]
 \centering
-\includegraphics[width=1\textwidth]{Christof/Bilder/KaltWarm.jpg}
-\caption{Kalt- und Warmstart}
-\label{fig:KaltWarm}
+\includegraphics[width=0.75\textwidth]{Christof/Bilder/auswert1.jpg}
+\caption{Testergebnisse}
+\label{fig:auswert1}
 \end{figure}
+
+\subsection{Testauswertung}
+
+
 
 
 
