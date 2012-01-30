@@ -1,0 +1,42 @@
+\section{Die MySQL-Datenbank}
+
+\subsection{MySQL-Architektur}
+Die MySQL-Architektur unterscheidet sich deutlich von den Architekturen anderer Datenbanken. Die wichtigste Eigenschaft der MySQL-Datenbank ist die Speichermaschinen-Architekur (engl.: storage-engine architecture), die den Serverprozess mit dem SQL-Parsing und weiteren Funktionalitäten von der Datenspeicherung und dem Datenabruf entkoppelt. Dabei werden die Tabellen mit den Datensätzen in speziellen Dateien abgelegt, auf die ausschließlich die Speichermaschinen(engl.: storage-engines) Zugriff haben.  Je nach Anforderung und Funktionalität der jeweiligen Speichermaschine wird der Zugriff entsprechend organisiert und optimiert.  Die Speichermaschinen-Architektur ist somit der größte und gleichzeitig wichtigste Unterschied zu vielen anderen kommerziellen Datenbanken wie z.B. Oracle DB oder DB2. 
+
+\subsection{Der logische Aufbau der MySQL-Architektur}
+\begin{enumerate}
+ \item Der obersten Schicht sind Dienstprogramme zugeordnet, welche nicht nur von MySQL  benötigt werden. Dazu gehören Managementdienste und Werkzeuge zur Serververwaltung, die beispielsweise für die Behandlung von Verbindungen, Sicherheit, Authentifizierung benötigt werden.
+ \item Die mittlere Schicht beinhaltet die Hauptfunktionalitäten der MySQL-Datenbank. Dazu gehört Parsing, Optimierung, Analyse und das Caching von Queries. Außerdem enthält sie jegliche Funktionalität, die über den Speichermaschinen hinweg bereitgestellt wird, wie beispielsweise die Stored Procedures, Trigger und Views.
+ \item Die unterste Schicht enthält die austauschbaren Speichermaschinen, die jeweils einen unterschiedlichen Tabellentyp verwalten. Die Speichermaschinen sind verantwortlich für die Speicherung und den Abruf aller Daten in der MySQL-Datenbank. Jeder Tabellentyp besitzt seine Vor- und Nachteile und ist je nach Anwendungsfall besser oder schlechter geeignet. Der Datenbank-Administrator hat die Möglichkeit den Tabellentyp, in dem die Records gespeichert werden festzulegen und sogar unterschiedliche Tabellentypen in derselben Datenbank zu verwenden.
+\end{enumerate}
+
+Die Kommunikation mit dem Server (zwischen der zweiten und der dritten Schicht) basiert auf der Storage-Engine-API. Diese Schnittstelle verdeckt die Unterschiede zwischen den Speichermaschinen und macht sie transparent auf der Query-Ebene. Jede Speichermaschine ist eine Klasse, dessen Instanz mit dem MySQL-Server über ein spezielles Handler-Interface kommuniziert. Jeder Thread, der mit einer bestimmten Tabelle arbeiten muss, legt einen Handler an. Der MySQL-Server erteilt dem Handler Befehle,  die solche Operationen wie "`eine Transaktion beginnen"' oder "`Zeile mit dem Primärschlüssel einlesen"' ausführen. Die Storage-Engines reagieren auf diese Befehle, die Anfragen aus den höheren Schichten ausführen sollen.
+
+\subsection{Ablauf einer SQL-Abfrage in MySQL}
+\begin{enumerate}
+ \item Der Client sendet eine Anfrage an den MySQL-Server und noch bevor der Query geparst wird, prüft MySQL ob dieser Query nicht schon im Query Cache vorhanden ist.  Falls ein passendes Query gefunden wurde, werden die Zugriffsrechte geprüft und die gespeicherten Ergebnisse der Anfrage an den Client gesendet. Ansonsten durchgeht das SQL-Query einen festen Ablaufplan.
+ \item Zuerst wird es geparst um Token und einen Parse-Baum zu erhalten.  Mit einem Preprozessor wird untersucht ob alle Tabellen und Spalten aus der Abfrage existieren, außerdem werden jegliche Namen aufgelöst und Zugriffsrechte geprüft. Anschließend werden mit einer Query Optimierung  unnötige Dateizugriffe minimiert und es wird nach einer möglichst schnellen Anfragebearbeitung gesucht. Der Query-Optimizer erstellt einen sogenannten Ausführungsplan (engl.: execution plan).
+ \item Die Abfrageausführungs-Engine (engl.: query execution engine) führt Schritt für Schritt den Ausführungsplan aus und  ruft dabei die API-Befehle der entsprechenden Engine auf.
+ \item Zum Schluss wird das Abfrage-Ergebnis an den Client gesendet. Wenn der Query cacheable ist, wird das Ergebnis der Abfrage im Query Cache gespeichert.
+\end{enumerate}
+
+\subsection{Speichermaschinen und Tabellentypen}
+Es stellt sich nun die Frage, wodurch sich die verschiedenen Tabellentypen voneinander unterscheiden und  nach welchen Kriterien wählt man die richtige Storage-Engine aus. 
+Grundsätzlich lassen sich die Tabellentypen in transaktionssichere und nicht-transaktionssichere einteilen, die jeweils unterschiedliche Vorteile haben.
+
+Transaktionssichere Tabellen sind ACID-konform und haben den Vorteil, dass man bei einem Systemabsturz oder bei  Hardwareausfällen die Daten auf jeden Fall mit Hilfe der automatischen Wiederherstellung oder der Sicherungskopie und dem Transaktionslog zurückbekommt. Wenn Autocommit deaktiviert wurde, können mehrere Anweisungen zusammengefasst und auch Änderungen mit einem ROLLBACK verworfen werden. Wenn ein Update fehlschlägt, werden alle Änderungen im Gegensatz zu nichttransaktionssicheren Tabellen rückgängig gemacht. 
+
+Der wichtigste Vorteil von nichttransaktionssichere Tabellen ist die Geschwindigkeit un der Speicherverbrauch im RAM und auf der Festplatte.
+
+
+\subsubsection{MyISAM-Engine}
+Sie verwaltet nichttransaktionssichere Tabellen. Unter anderem bietet sie eine Volltextindizierung und Komprimierung an. Es werden jedoch nur die Indexblöcke im Cache(Key Buffer) zwischengespeichert, und für die einzelnen Datensätze wird der Dateisystem-Cache des Betriebssystems(Operating system cache) benutzt.  Aus diesem Grund macht es Sinn dem Dateisystem-Cache mehr Speicher zur Verfügung zu stellen als dem Key Buffer. Bei MyISAM wird jede Tabelle in drei Dateien auf der Festplatte gespeichert:  das Tabellenformat(Tabellenname.frm), die Datendatei(Tabellenname.MYD) und die Indexdatei(Tabellenname.MYI).  Bei einem Datanbank-Lock wird die komplette Tabelle gesperrt, was unter Umständen einen Flaschenhals darstellen kann. Um mehr Geschwindigkeit zu erzielen, ist es empfehlenswert mit entsprechenden Tabellenoptionen die Daten- und Indexdatei in unterschiedliche Verzeichnisse zu legen. 
+
+\subsubsection{InnoDB-Engine}
+Sie ist die Standard-Storage-Engine und verwaltet transaktionssichere Tabellen. Es werden die vier Isolationslevel(Read Uncommited, Read Commited, Repeatable Read und Serializalbe)implementiert und mithilfe von Multiversion Concurrency Control wird eine sehr hohe Parallelität erreicht.  Die Daten werden in einer oder mehreren Datendateien abgespeichert, die zusammen als ein Tablespace bezeichnet werden. Der Tablespace wird vollständig von der InnoDB-Engine verwaltet. Es sind somit im Gegensatz zu MyISAM Tabellen beliebiger Größe möglich. Ein weiteres wichtiges Merkmal von der Inno-DB-Engine ist, dass bei einem Datenbank-Lock nur die jeweilige Zeile gesperrt wird und bei SELECT-Anweisungen konsistente Leseoperationen ohne Sperren möglich sind. Außerdem werden sowohl die Indizes als auch die Daten im eigenen Bufferpool zwischengespeichert.
+
+\subsubsection{Memory}
+Sie bietet eine nicht-transaktionssichere Verwaltung von Tabellen im Arbeitsspeicher an. Die Daten sind somit nicht permanent gesichert. Diese Daten-Engine unterstützt auch nicht die Option AUTO\_INCREMENT und die Datentypen BLOB oder TEXT. Diese Speicher-Engine eignet sich vor allem für einen sehr schnellen Datenzugriff.
+
+\subsubsection{Archive}
+Mit der Speicher-Engine Archive können große Datenmengen ohne Indizes mit einem sehr kleinen Speicherverbrauch verwaltet werden. Die Zeilen werden bei einer INSERT-Anweisung komprimiert und im Kompressionspuffer gespeichert.  Es werden INSERTs und SELECTs unterstützt, nicht jedoch DELETE, REPLACE oder UPDATE. Archive nutzt genauso wie die InnoDB Zeilensperren.
