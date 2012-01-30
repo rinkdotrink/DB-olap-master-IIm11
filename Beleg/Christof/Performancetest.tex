@@ -4,58 +4,17 @@ Jede Versuchsreihe besteht aus vier Testläufen zu je einem Use Case. Am Anfang  
 \subsection{SELECT-Anweisungen}
 \begin{enumerate}
 \item \textbf{Use Case 1: Welches Produkt wurde wie oft gekauft?}
-\begin{verbatim}
-SELECT adbc.Produkt.Name, COUNT(*)
-FROM adbc.Produkt, adbc.Warenkorb_has_Produkt
-WHERE adbc.Produkt.PRODUKT_ID = 
-      adbc.Warenkorb_has_Produkt.Produkt_PRODUKT_ID
-GROUP BY adbc.Produkt.Name;
-\end{verbatim}
+\lstset{language=Java,caption={UseCase1},label=Use Case 1}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase1.java}
 \item \textbf{Wieviel Umsatz wurde von wem in bestimmtem Zeitraum generiert?}
-\begin{verbatim}
-SELECT adbc.kunde.Name, SUM(adbc.produkt.Preis)
-FROM adbc.kunde,adbc.Produkt, 
-     adbc.Warenkorb, 
-     adbc.Warenkorb_has_Produkt
-WHERE produkt.PRODUKT_ID = warenkorb_has_produkt.Produkt_PRODUKT_ID 
-    AND warenkorb_has_produkt.Warenkorb_WARENKORB_ID 
-        = warenkorb.WARENKORB_ID
-    AND warenkorb.Kunde_KUNDE_ID = kunde.KUNDE_ID    
-    AND (warenkorb_has_produkt.Datum BETWEEN
-         '2011-01-01' AND '2011-03-01')
-GROUP BY adbc.kunde.Name;
-\end{verbatim}
+\lstset{language=Java,caption={UseCase2},label=Use Case 2}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \item \textbf{Wie viele Kunden haben in bestimmten Zeitraum bestellt?}
-\begin{verbatim}
-SELECT COUNT(DISTINCT(adbc.kunde.KUNDE_ID))
-FROM adbc.Kunde, adbc.Warenkorb, adbc.warenkorb_has_produkt
-WHERE warenkorb.Kunde_KUNDE_ID = kunde.KUNDE_ID
-AND warenkorb.WARENKORB_ID = 
-    warenkorb_has_produkt.Warenkorb_WARENKORB_ID
-AND warenkorb_has_produkt.Datum = '2011-01-01';
-\end{verbatim}
+\lstset{language=Java,caption={UseCase3},label=Use Case 3}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \item \textbf{Wie viel Umsatz wurde an den ersten drei Tagen der ersten drei Monate generiert?}
-\begin{verbatim}
-SELECT adbc.kunde.Name, SUM(adbc.produkt.Preis)
-FROM adbc.kunde,adbc.Produkt, 
-     adbc.Warenkorb, 
-     adbc.Warenkorb_has_Produkt
-WHERE produkt.PRODUKT_ID = 
-      warenkorb_has_produkt.Produkt_PRODUKT_ID 
-AND warenkorb_has_produkt.Warenkorb_WARENKORB_ID = 
-		warenkorb.WARENKORB_ID
-AND warenkorb.Kunde_KUNDE_ID = kunde.KUNDE_ID
-AND ((warenkorb_has_produkt.Datum = '2011-01-01')
-OR   (warenkorb_has_produkt.Datum = '2011-01-05')
-OR   (warenkorb_has_produkt.Datum = '2011-01-09')    
-OR   (warenkorb_has_produkt.Datum = '2011-02-02')
-OR   (warenkorb_has_produkt.Datum = '2011-02-06')    
-OR   (warenkorb_has_produkt.Datum = '2011-02-10')
-OR   (warenkorb_has_produkt.Datum = '2011-03-10')
-OR   (warenkorb_has_produkt.Datum = '2011-03-14')    
-OR   (warenkorb_has_produkt.Datum = '2011-03-18'))      
-GROUP BY adbc.kunde.Name;
-\end{verbatim}
+\lstset{language=Java,caption={UseCase4},label=Use Case 4}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \end{enumerate}
 \subsection{EXPLAIN-Anweisung}
 Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, um nützliche Informationen zum Ausführungsplan des Optimierers zu erhalten. Die EXPLAIN-Anweisung liefert u.a. Daten darüber, ob die Indizes auch wirklich benutzt wurden, in welcher Reihenfolge die Tabellen verknüpft werden sowie weitere Informationen, die helfen sollen die SELECT-Anweisungen zu beschleunigen.  
