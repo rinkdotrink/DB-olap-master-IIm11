@@ -17,8 +17,8 @@ Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vie
 \lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \end{enumerate}
 
-\subsection{Konfigurationen der MySQL-Datenbank und der InnoDB-Engine}
-Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfiguration der MySQL-Datenbank und der Speichermaschine InnoDB:
+\subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}
+Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfiguration der MySQL-Datenbank und der Tabellen. Vor jedem Testlauf werden die entsprechenden Konfigurationseintellungen mit SQL-Anweisungen durchgeführt.
 \begin{enumerate}
 \item \textbf{K1} : Kaltstart ohne Index
 \item \textbf{K2} : Warmstart ohne Index
@@ -38,8 +38,8 @@ Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, 
 Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden. 
 
 \section{Testdurchführung}
+\subsection{Behauptung}
 
-blabla
 \subsection{Kalt- und Warmstart ohne Index}
 \begin{figure}[htp]
 \centering
