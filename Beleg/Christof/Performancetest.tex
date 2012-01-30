@@ -1,6 +1,6 @@
 \section{Testvorbereitung}
 Wir wählen die InnoDB als Speichermaschine aus, da sie die Transaktionssicherheit gewährleistet und sich dadurch für das Betreiben eines Webshops am besten eignet. 
-Jede Versuchsreihe hat eine bestimmte Konfiguration und besteht aus vier Testläufen zu je einem Use Case. Am Anfang  werden Testdaten mit einer  bestimmten Anzahl von Kunden, einer konstanten Anzahl von Produkten (1000), einer konstanten Anzahl von Warenkörben pro Kunde(5) und genauso einer konstanten Anzahl von Produkten pro Warenkorb(5) generiert. Die Anzahl der Kunden erhöht sich mit jedem Testlauf. In jeder Versuchsreihe werden die vier verschiedenen Use Cases betrachtet, die durch eine unterschiedliche SELECT-Anweisung an die MySQL-Datenbank realisiert werden:
+Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vier Testläufen zu je einem Use Case. Am Anfang  werden Testdaten mit einer  bestimmten Anzahl von Kunden, einer konstanten Anzahl von Produkten (1000), einer konstanten Anzahl von Warenkörben pro Kunde(5) und genauso einer konstanten Anzahl von Produkten pro Warenkorb(5) generiert. Die Anzahl der Kunden erhöht sich mit jedem Testlauf. In jeder Versuchsreihe werden die vier verschiedenen Use Cases betrachtet, die durch eine unterschiedliche SELECT-Anweisung an die MySQL-Datenbank realisiert werden:
 \subsection{SELECT-Anweisungen}
 \begin{enumerate}
 \item \textbf{Use Case 1: Welches Produkt wurde wie oft gekauft?}
