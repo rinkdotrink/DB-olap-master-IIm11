@@ -39,9 +39,16 @@ Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitione
 
 \section{Testdurchführung}
 
-\subsection{Behauptung}
+\subsection{Annahmen und Vorüberlegungen}
+\begin{enumerate}
+\item Der Warmstart ohne Index(K2) sollte gegenüber einem Kaltstart ohne Index(K1) eine Geschwindigkeitssteigerung bewirken, da die Queries und deren Ergebnismenge durch die vorherige Abfrage in Query-Cache gespeichert wurden.
+\item Das Hinzufügen von Indizes ist der erste wichtige Schritt bei der Optimierung von SELECT-Anweisungen und sollte bei der richtigen Formulierung der SELECT-Anweisung einen enormen Geschwindigkeitsvorteil gegenüber Abfragen auf Tabellen ohne Indizes bieten. Es ist die Frage zu beantworten, ob es bei diesen Use Cases einen großen Geschwindigkeitsunterschied zwischen der Hash-Indizierung(K3) und der B-Tree-Indizierung(K4) gibt und wodurch sich eventuelle Unterschiede ergeben.  
+\item Wenn wir die Konfiguration K3 nehmen und diese um ein B-Tree-Index auf das Datum(K5) ergänzen, sollten bei dem Use Case 3 die Zeilen mit dem gesuchten Datum schneller gefunden werden als ohne den B-Tree-Index.
+\item Eine zusätzliche List-Partitionierung auf die drei Monate in jedem Quartal sollte die Suche nach einem konstanten Datumswert(Use Case 3) noch schneller ablaufen, denn es wird nur in der einen Partition gesucht.          \item (--------------wird noch ergänzt---------------)
+\item usw.
+\end{enumerate}
+\subsection{Testergebnisse bei einer Million Kunden}
 
-\subsection{Testergebnisse bei 1 Mio. Kunden}
 \begin{figure}[htp]
 \centering
 \includegraphics[width=0.75\textwidth]{Christof/Bilder/auswert1.jpg}
@@ -50,8 +57,30 @@ Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitione
 \end{figure}
 
 \subsection{Testauswertung}
+\begin{enumerate}
+\item Der Kaltstart ohne Index(K1) gegenüber dem Warmstart ohne Index(K2) hat keinen Geschwindigkeitsvorteil gebracht. Die Werte unterscheiden sich nur sehr gering voneinander. Wahrscheinlich liegt es an der geringen Komplexität der Statements und der kleinen Anzahl von Tabellen, da das Parsen dadurch nicht viel zeitaufwändiger ist.
+\item Die Indizes brachten wie erwartet einen enormen Geschwindigkeisunterschied, bei 100 Tausend Kunden hat die Abfrage für den Use Case 1 um den Faktor 29 kürzer gedauert. Im direkten Vergleich zwischen K3 und K4 gab es so gut wie keine Unterschiede bei allen Use Cases. Auch der Ausführungsplan mit Hilfe der EXPLAIN-Anweisung zeigte keine Unterschiede bei den Zugriffstypen. Bei allen Use Cases wurde auf die selbe Art auf die Tabellen zugegriffen.    
+\item Die Vermutung hat sich bestätigt und bei dem Use Case 3 gibt es eine deutliche Performancesteigerung mit dem zusätzlichen B-Tree-Index auf das Datum(K5). Es bleibt nun aber die Frage zu klären, wieso sich der Use Case 2 bei dieser Konfiguration als einziger verschlechtert hat obwohl die Zugriffstypen im Vergleich zur Konfiguration 3 die selben sind und die B-Tree-Indizierung für BETWEEN-Operatoren eigentlich gut geeignet ist.
+\item Der Use Case 3 ist mit der Konfiguration 6 tatsächlich noch schneller ausgeführt worden, was hauptsächlich an dem List-Partitioning liest. Die Zeit für den Use Case 2 hat sich jedoch noch weiter verschlechtet.
+\item (--------------wird noch ergänzt---------------) 
+\item (--------------wird noch ergänzt---------------)
+\item usw.      
+\end{enumerate}
 
+\subsection{Alle Messwerte}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{Christof/Bilder/TabTeil1.jpg}
+\caption{Messwerte Teil 1}
+\label{fig:erg1}
+\end{figure}
 
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{Christof/Bilder/TabTeil2.jpg}
+\caption{Messwerte Teil 2}
+\label{fig:erg2}
+\end{figure}
 
 
 
