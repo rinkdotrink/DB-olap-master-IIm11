@@ -1,4 +1,4 @@
-#UC2 Wieviel Umsatz wurde von wem in bestimmtem Zeitraum generiert?
+#UC2 Wieviel Umsatz wurde von wem in einem bestimmtem Zeitraum generiert?
 SELECT adbc.kunde.Name, SUM(adbc.produkt.Preis)
 FROM adbc.kunde,adbc.Produkt, adbc.Warenkorb, adbc.Warenkorb_has_Produkt
 WHERE produkt.PRODUKT_ID = warenkorb_has_produkt.Produkt_PRODUKT_ID 

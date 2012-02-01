@@ -1,4 +1,4 @@
-#UC4 Wieviel Umsatz wurde an den ersten drei Tagen der ersten drei Monate generiert?
+#UC4 Wer hat wieviel an den gegebenen neun Tagen umgesetzt?
 SELECT adbc.kunde.Name, SUM(adbc.produkt.Preis)
 FROM adbc.kunde,adbc.Produkt, adbc.Warenkorb, adbc.Warenkorb_has_Produkt
 WHERE produkt.PRODUKT_ID = warenkorb_has_produkt.Produkt_PRODUKT_ID 
