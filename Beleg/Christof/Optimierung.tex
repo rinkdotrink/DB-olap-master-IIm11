@@ -1,9 +1,8 @@
 \section{Optimierungsmaßnahmen}
 
 \subsection{Indizes}
-Bei einer Indizierung werden Objekte geordnet, was unter Umständen bei  Suchvorgängen enorme Geschwindigkeitsvorteile mit sich bringt. Ohne eine Indizierung müsste die Datenbank die Suche bei dem ersten Datensatz beginnen und dann die gesamte Tabelle sequentiell nach passenden Datensätzen durchforsten. Mit einem Index kann die Suche an einer bestimmten Position in der Mitte der Datendatei beginnen, was eine gezielte und schnelle Suche ermöglicht.
-
-MySQL speichert die Indizes in B-Trees, unterstützt aber auch Hash-Indizes. Bei der Erstellung von Queries muss.. 
+Ein Index ist bei der MyISAM eine zusätzliche Datei und bei der InnoDB ein zusätzlicher Dateibereich mit sortierten Querverweisen auf die Datensätze einer Tabelle, was unter Umständen bei Suchvorgängen enorme Geschwindigkeitsvorteile mit sich bringt. Ohne eine Indizierung müsste die Datenbank die Suche bei dem ersten Datensatz beginnen und dann die gesamte Tabelle sequentiell nach passenden Datensätzen durchforsten. Mit einem Index kann die Suche an einer bestimmten Position in der Mitte der Datendatei beginnen, was eine gezielte und schnelle Suche ermöglicht.
+Indizes eignen sich nur für Spalten, nach denen oft gesucht wird oder die man sortieren möchte. Bei Datensätzen, die oft verändert werden, sind Indizes nicht geeignet, da bei jeder Änderung auch der Index verändert werden muss. Bei den InnoDB-Tabellen werden die Indizes auch zum Row-Level-Locking verwendet, um die gesperrten Datensätze intern zu kennzeichnen, was aus Performancegründen im Index erfolgt und nicht in den eigentlichen Tabellen. MySQL unterstützt die B-Tree-Indizierung sowie die Hash-Indizierung. 
 
 \subsubsection{B-Tree-Indizierung}
 Ein B-Tree-Index eignet sich gut für Ausdrücke mit Vergleichsoperatoren und beim dem BETWEEN-Operator. Auch ein LIKE-Vergleich ist möglich wenn das Argument ein Konstanten-String ist, der nicht mit einem Jokerzeichen(=\%) beginnt.  Ein B-Tree-Index eignet sich auch für das Sortieren oder Gruppieren einer Tabelle.
