@@ -1,11 +1,8 @@
-\section{Anwendungsfälle für Datenbankanwendungen}\label{AnwendungsfaelleFuerDatenbankanwendungen}
+\section{Szenarien für Datenbankanwendungen}\label{AnwendungsfaelleFuerDatenbankanwendungen}
 
 \begin{itemize}
-\item \textbf{Anwendungsfall 1}\\
-Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. (innoDB)
-
-\item \textbf{Anwendungsfall 2}\\
-Das Management des Online-Shops möchte Abfragen auf bestimmten Tabellen tätigen, wie z.B.:
+\item \textbf{Szenario 1}\\
+Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. Das Management möchte auf der selben Datenbank Abfragen auf bestimmten Tabellen tätigen, wie z.B.:
 
 \begin{itemize}
 \item Welches Produkt wurde wie oft gekauft?
@@ -13,11 +10,11 @@ Das Management des Online-Shops möchte Abfragen auf bestimmten Tabellen tätigen,
 \item Wie viele Kunden haben in einem bestimmten Zeitraum bestellt?
 \end{itemize}
 
-Dabei soll die Antwortzeit auch bei Queries über alle Daten nicht länger als eine Sekunde dauern. (Memory)
+In den Tabellen befinden sich mehrere Millionen Tupel und der Arbeitsspeicher die nicht in den Arbeitsspeicher des Servers passen. die Abfragen können auch über Nacht auf dem Produktivsystem laufen. (innoDB)
 
-\item \textbf{Anwendungsfall 3}\\
+\item \textbf{Szenario 3}\\
 Ein bekannter Blogger möchte das Weblog-System WordPress einsetzen um Beiträge zu veröffentlichen. Die Kommentare und Blog-Posts werden strukturiert gespeichert. Zu bestimmten Spitzenzeiten laden hunderte Leser gleichzeitig seine Blogposts. (MyISAM)
 
-\item \textbf{Anwendungsfall 4}\\
+\item \textbf{Szenario 4}\\
 In einer Erdbebenwarnstation sollen Bodenerschütterungen durch einen Seismografen erfasst und digital archiviert werden. Der Seismograf misst 50 mal in der Sekunde. Es sollen auch feinste Amplitudenausschläge erfasst werden. (Archive)
 \end{itemize}
