@@ -32,19 +32,19 @@ MySQL unterstützt nur die horizontale Partitionierung. Dabei werden die Tabellen
 
 \subsubsection{Partitionierungsfunktionen in MySQL}
 \begin{enumerate}
-\item Range Partitioning \\
+\item \textbf{Range Partitioning} \\
 Den verschiedenen Partitionen werden Zeilen zugeordnet, deren Spaltenwerte einem bestimmten Wertebereich entsprechen. Beispielsweise die verkauften Produkte im ersten Quartal wäre eine Partition und die verkauften Produkte im zweiten Quartal wäre eine weitere Partition.
 
-\item List Partitioning \\
+\item \textbf{List Partitioning} \\
 Diese Methode ist dem Range Partitioning ähnlich. Der Unterschied ist nur der, dass die Kriterien nicht fortlaufend sein müssen und willkürlich ausgewählt werden können. Es wird eine Entscheidungsliste für jede Partition erstellt. Beispielsweise die verkauften Produkte in den Jahren 02, 04, 06 wäre eine Partition und eine weitere Partition wären die verkauften Produkte in den Jahren 01, 03, 05.
 
-\item Hash Partitioning und Linear Hash-Partitioning \\
+\item \textbf{Hash Partitioning und Linear Hash-Partitioning} \\
 Bei dieser Methode werden die Daten gleichmäßig verteilt. Für den Hash gibt man hauptsächlich einen Spaltenwert an. Meistens wird dabei die Modulo-Funktion verwendet und bei dem linearen Hashing ein linearer Zweierpotenz-Algorithmus. 
 
-\item Key Partitioning \\
+\item \textbf{Key Partitioning} \\
 Diese Partitionierung ist der  Hash-Partitionierung sehr ähnlich. Der Unterschied besteht darin, dass der Primärschlüssel der Tabelle als Kriterium dient und dieser wird für die MD5-Operation verwendet.
 
-\item Subpartitioning \\
+\item \textbf{Subpartitioning} \\
 Es besteht die Möglichkeit die partitionierten Tabellen noch weiter zu unterteilen.
 
 \end{enumerate}
