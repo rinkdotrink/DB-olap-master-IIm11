@@ -1,5 +1,7 @@
 \section{Szenarien für Datenbankanwendungen}\label{AnwendungsfaelleFuerDatenbankanwendungen}
 
+Im Folgenden werden drei verschiedene Szenarien für Datenbankanwendungen gegeben. Für jedes Szenario kann die 
+
 \begin{itemize}
 \item \textbf{Szenario 1}\\
 Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. Das Management möchte auf der selben Datenbank Abfragen auf bestimmten Tabellen tätigen, wie z.B.:
@@ -7,10 +9,14 @@ Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. Das
 \begin{itemize}
 \item Welches Produkt wurde wie oft gekauft?
 \item Wieviel Umsatz wurde von wem in einem bestimmtem Zeitraum generiert?
-\item Wie viele Kunden haben in einem bestimmten Zeitraum bestellt?
+\item Wie viele Kunden haben an einem bestimmten Zeitpunkt bestellt?
+\item Wer hat wieviel an den gegebenen neun Tagen umgesetzt?
 \end{itemize}
 
-In den Tabellen befinden sich mehrere Millionen Tupel und der Arbeitsspeicher die nicht in den Arbeitsspeicher des Servers passen. die Abfragen können auch über Nacht auf dem Produktivsystem laufen. (innoDB)
+In den Tabellen befinden sich mehrere Millionen Tupel. Diese passen nicht in den Arbeitsspeicher des Servers der Firma. Die Abfragen sollen über Nacht auf dem Produktivsystem laufen. (innoDB)
+
+\item \textbf{Szenario 2}\\
+Eine Softwareunternehmen das Browserspiele entwickelt, möchte von den Spielerdaten Statistiken erstellen. Ihnen steht eine Serverinfrastruktur für In-Memory-Computing zur Verfügung. (Memory)
 
 \item \textbf{Szenario 3}\\
 Ein bekannter Blogger möchte das Weblog-System WordPress einsetzen um Beiträge zu veröffentlichen. Die Kommentare und Blog-Posts werden strukturiert gespeichert. Zu bestimmten Spitzenzeiten laden hunderte Leser gleichzeitig seine Blogposts. (MyISAM)
