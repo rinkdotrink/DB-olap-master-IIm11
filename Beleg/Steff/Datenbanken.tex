@@ -1,0 +1,44 @@
+\section{Eingesetzte Datenbanken}
+Während der Arbeiten am Projekt musste entschieden werden welche  Datenbank benutzt werden sollte. Um dies zu entscheiden orientierten wir uns zunächst an der Vorlesung, da wir in der darin genutzten Datenbank sicher sein konnten, dass sämtliche benötigten Funktionen enthalten waren. Diese Datenbank war Oracle SQL. Eine andere Datenbank, auf die wir später erst ein Auge geworfen haben war MySQL, da sie neben der Oracle SQL ebenfalls alle nötigen Funktionen enthielt.
+\subsection{Oracle SQL}
+Die erste Datenbank mit der wir gearbeitet haben war Oracle. Da sie bereits in der Vorlesung vorgestellt wurde. Es gibt sie in zwei Versionen:
+
+\begin{itemize}
+	\item Die kostenfreie Express-Version
+	\begin{itemize}
+		\item Unbegrenzt nutzbar
+		\item Eingeschränkte Funktionen
+		\item Leicht zu installieren
+	\end{itemize}
+	\item Die kostenpflichtige Enterprise-Version
+	\begin{itemize}
+		\item o	Nutzung ohne Lizenz auf 30 Tage begrenzt
+		\item Voller Funktionsumfang
+		\item Komplizierte Installation 
+\end{itemize}
+
+
+\end{itemize}
+Beide Versionen konnten von uns genutzt werden, da man in der Express-Version bereits das Datenbankschema und die Abfragen zusammenstellen und testen konnte, bevor man sie in der Enterprise-Version mit Partitioning ergänzt. So war es möglich etwas Zeit zu sparen.
+\subsection{MySQL}
+Auf Grund von Installations- und Konfigurationsproblemen mit der Oracle-Datenbank haben wir sehr viel Zeit verloren. Daher wurde entschieden sich zusätzlich MySQL anzusehen. Die Analyse der Funktionen ergab, dass wir ausschließlich die kostenfreie Version benötigten, was deshalb erstaunlich war, da MySQL von Oracle übernommen worden ist.\newline
+Neben dem Partitioning besitzt MySQL auch die Möglichkeit die Folgenden Indexe zu benutzen:
+
+\begin{itemize}
+	\item B-Tree
+	\item R-Tree
+	\item Hash-Table
+\end{itemize}
+
+Darüber hinaus wird die Freie MySQL-Datenbank mit einem Entwicklungstool ausgeliefert. Damit war es möglich die Schemas in einem ERD zu designen und diese dann einfach mit einer beliebigen MySQL-Datenbank zu synchronisieren.
+
+\subsection{Evaluierung und Entscheidung}
+Somit kamen wir an den Punkt, an dem wir uns entscheiden mussten, welche der Datenbanken wir letztendlich für die Versuche benutzen. Abzuwägen waren dabei diese Eigenschafften:
+
+\begin{itemize}
+	\item Funktionsumfang
+	\item Kosten
+	\item Installationskomplexität
+\end{itemize}
+
+Vom Funktionsumfang waren sich die kostenfreie Version von MySQL und die kostenpflichtige Version von Oracle ebenbürtig. Bei den Kosten bzw. der Beschränkung die für die benötigten Funktionen vorhanden war MySQL dann im Vorteil. Die endgültige Entscheidung mit MySQL weiter zu arbeiten wurde jedoch getroffen, nachdem klar war das sich die MySQL-Datenbank schneller und einfacher installieren und konfigurieren lies.
