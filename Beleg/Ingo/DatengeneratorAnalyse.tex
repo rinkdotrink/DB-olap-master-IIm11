@@ -21,13 +21,13 @@ Die maximale Anzahl der Warenkörbe ergibt sich wie folgt:\\
 
 $Warenkoerbe = Kunden * Warenkoerbe pro Kunde$
 
-In der Warenkorbtabelle müssen bei einer Anzahl von z.B. 10 Warenkörben pro Kunde auch je 10 Warenkörbe existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Kunden zeigen. In der Warenkorbtabelle sollen im Datum alle Monate des Jahres 2011 gleichmäßig verteilt vorkommen. 
+In der Warenkorbtabelle müssen bei einer Anzahl von z.B. 10 Warenkörben pro Kunde auch je 10 Warenkörbe existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Kunden zeigen.
 
 Die maximale Anzahl der Bestellzeilen ergibt sich wie folgt:\\
 $Bestellzeilen = Kunden * WarenkoerbeProKunde * ProdukteImWarenkorb.$\\
-Die möglichen Produkte sollen gleichmäßig über alle Bestellzeilen verteilt sein. In der WarenkorbProdukt-Tabelle müssen bei einer Anzahl von z.B. 7 Produkten im Warenkorb auch je 7 Bestellzeilen existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Warenkorb zeigen.
+Die möglichen Produkte sollen gleichmäßig über alle Bestellzeilen verteilt sein. In der WarenkorbProdukt-Tabelle müssen bei einer Anzahl von z.B. 7 Produkten im Warenkorb auch je 7 Bestellzeilen existieren, die mit ihrem Fremdschlüssel auf den jeweiligen Warenkorb zeigen. In der WarenkorbProdukt-Tabelle sollen im Datum alle Monate und Tage des Jahres 2011 gleichmäßig verteilt vorkommen.
 
-Für jede Tabelle soll ausgegeben werden, wieviel Zeit der Generator insgesamt für den Schreibvorgang benötigte. Damit wird es auch möglich, die Schreibperformance einer Datenbankkonfiguration zu messen und auszuwerten.
+Für jede Tabelle soll ausgegeben werden, wieviel Zeit der Generator insgesamt für den Schreibvorgang benötigte. Damit wäre es auch möglich, die Schreibperformance einer Datenbankkonfiguration zu messen und auszuwerten.
 
 \subsection{Anwendungsfalldiagramm}
 
@@ -36,7 +36,7 @@ Die Abbildung \ref{fig:AnwendungsfalldiagrammDatengenerator} auf Seite \pageref{
 \subsection{User Stories}
 
 \textbf{1. AF - Datengenerator mit Aufrufparametern ausführen}\\
-Um die Testdaten zu generieren und in die Tabellen zu schreiben ruft der Anwender den Datengenerator als Jar-Datei über die Kommandozeile auf und übergibt ihm die folgenden vier Aufrufparameter in gegebeneer Reihenfolge:
+Um die Testdaten zu generieren und in die Tabellen zu schreiben, ruft der Anwender den Datengenerator als Jar-Datei über die Kommandozeile auf und übergibt ihm die folgenden vier Aufrufparameter in gegebeneer Reihenfolge:
 \begin{enumerate}
 	\item die Anzahl der zu erzeugenden Kunden
 	\item die Anzahl der zu erzeugenden Produkte

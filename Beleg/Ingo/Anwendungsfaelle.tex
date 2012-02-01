@@ -1,9 +1,9 @@
 \section{Szenarien für Datenbankanwendungen}\label{AnwendungsfaelleFuerDatenbankanwendungen}
 
-Im Folgenden werden drei verschiedene Szenarien für Datenbankanwendungen gegeben. Für jedes Szenario kann die 
+Im Folgenden werden verschiedene Szenarien für Datenbankanwendungen gegeben. Für jedes Szenario bietet MySQL eine speziell optimierte Engine. Engines verwalten z.B. Transaktionen, Indexe und referenzielle Integrität. Im Kapitel \ref{Speichermaschinen} auf Seite \pageref{Speichermaschinen} wird darauf eingegangen, welche Eigenschaften Engines besitzen.
 
 \begin{itemize}
-\item \textbf{Szenario 1}\\
+\item \textbf{Szenario 1 -  Engine: InnoDB}\\
 Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. Das Management möchte auf der selben Datenbank Abfragen auf bestimmten Tabellen tätigen, wie z.B.:
 
 \begin{itemize}
@@ -13,14 +13,16 @@ Ein Online-Shop will seine Bestellungen über eine MySQL-Datenbank abwickeln. Das
 \item Wer hat wieviel an den gegebenen neun Tagen umgesetzt?
 \end{itemize}
 
-In den Tabellen befinden sich mehrere Millionen Tupel. Diese passen nicht in den Arbeitsspeicher des Servers der Firma. Die Abfragen sollen über Nacht auf dem Produktivsystem laufen. (innoDB)
+In den Tabellen befinden sich mehrere Millionen Tupel. Diese passen nicht in den Arbeitsspeicher des Servers der Firma. Die Abfragen sollen über Nacht auf dem Produktivsystem laufen.
 
-\item \textbf{Szenario 2}\\
-Eine Softwareunternehmen das Browserspiele entwickelt, möchte von den Spielerdaten Statistiken erstellen. Ihnen steht eine Serverinfrastruktur für In-Memory-Computing zur Verfügung. (Memory)
+\item \textbf{Szenario 2 - Engine: Memory}\\
+Eine Softwareunternehmen das Browserspiele entwickelt, möchte von den Spielerdaten Statistiken erstellen. Ihnen steht eine Serverinfrastruktur für In-Memory-Computing zur Verfügung.
 
-\item \textbf{Szenario 3}\\
-Ein bekannter Blogger möchte das Weblog-System WordPress einsetzen um Beiträge zu veröffentlichen. Die Kommentare und Blog-Posts werden strukturiert gespeichert. Zu bestimmten Spitzenzeiten laden hunderte Leser gleichzeitig seine Blogposts. (MyISAM)
+\item \textbf{Szenario 3 - Engine: MyISAM}\\
+Ein bekannter Blogger möchte das Weblog-System WordPress einsetzen um Beiträge zu veröffentlichen. Die Kommentare und Blog-Posts werden strukturiert gespeichert. Zu bestimmten Spitzenzeiten laden hunderte Leser gleichzeitig seine Blogposts.
 
-\item \textbf{Szenario 4}\\
-In einer Erdbebenwarnstation sollen Bodenerschütterungen durch einen Seismografen erfasst und digital archiviert werden. Der Seismograf misst 50 mal in der Sekunde. Es sollen auch feinste Amplitudenausschläge erfasst werden. (Archive)
+\item \textbf{Szenario 4 - Engine: Archive}\\
+In einer Erdbebenwarnstation sollen Bodenerschütterungen durch einen Seismografen erfasst und digital archiviert werden. Der Seismograf misst 50 mal in der Sekunde. Es sollen auch feinste Amplitudenausschläge erfasst werden. 
 \end{itemize}
+
+Um die Performance von Konfigurationen zu messen, wird das Szenario 1 und damit die Engine InnoDB gewählt. Es könnte natürlich auch jedes andere Szenario gewählt und weiter untersucht werden.
