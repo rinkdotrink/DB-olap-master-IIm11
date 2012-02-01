@@ -8,10 +8,9 @@
 	\label{fig:ADBC_ERD}
 \end{figure}
 
-Das ERD beschreibt die Architektur unserer Datenbank. Die ursprüngliche Planung sah vor, dass die Datenbank bei ausreichender Zeit noch erweitert werden konnte um mehr Anwendungsfälle simulieren zu können. In diesem Fall wären die Tabellen die grün markiert sind, sowie die angrenzenden Verbindungsverbindungstabellen(rot markiert) zusätzlich erstellt worden.
-Die Tabellen mit der höchsten Priorität waren aber Kunde, Warenkorb und Produkt. Dadurch wurde das Datenmodell, welches letzten Endes erstellt wurde äußerst kompakt.\\
+Das ERD beschreibt die Architektur unserer Datenbank. Die ursprüngliche Planung sah vor, dass die Datenbank bei ausreichender Zeit noch erweitert werden konnte um mehr Anwendungsfälle simulieren zu können. In diesem Fall wären die Tabellen die grün markiert sind, sowie die angrenzenden Verbindungsverbindungstabellen (rot markiert) zusätzlich erstellt worden.
+Die Tabellen mit der höchsten Priorität waren aber Kunde, Warenkorb und Produkt. Dadurch wurde das Datenmodell, welches letzten Endes erstellt wurde, äußerst kompakt.\\
 Anm.: Grafik wird noch generiert\\
-Da es in MySQL nicht ohne weiteres möglich ist die Indexe für die Versuche zu entfernen, wurden zwei Datenmodelle erzeugt, welche jeweils miteinander kompatibel sind. Dadurch waren wir in der Lage die Versuche relativ schnell hintereinander zu absolvieren. Außerdem konnte so eine Optimierung der Zeiten für die 'Inserts' erreicht werden.
 \subsection{Datenbankabfragen}
 \begin{figure}[h]
 	\centering
@@ -19,11 +18,12 @@ Da es in MySQL nicht ohne weiteres möglich ist die Indexe für die Versuche zu en
 	\caption{Datenbankabfragen}
 	\label{fig:AbfragenUC}
 \end{figure}
-Da unser Projekt einen Webshop imitieren sollte, haben wir unsere Anwendungsfälle so gewählt, wie sie auch in der Realität gefunden werden können. Sie könnten unter anderem Managern bei der Auswertung ihrer Geschäfte dienen. Das gesamte Spektrum an möglichen Abfragen abzudecken, hätte jedoch den Zeitrahmen extrem gesprengt. Deshalb wurde sich für die folgenden drei Abfragen entschieden:
+Da unser Projekt einen Webshop imitieren sollte, haben wir unsere Anwendungsfälle so gewählt, wie sie auch in der Realität gefunden werden können. Sie könnten unter anderem Managern bei der Auswertung ihrer Geschäfte dienen. Das gesamte Spektrum an möglichen Abfragen abzudecken, hätte jedoch den Zeitrahmen extrem gesprengt. Deshalb wurde sich für die folgenden vier Abfragen entschieden:
 \begin{itemize}
 	\item Welches Produkt wurde wie oft gekauft?
-	\item Wie viel Umsatz wurde von wem in bestimmtem Zeitraum generiert?
-	\item Wie viele Kunden haben in bestimmten Zeitraum bestellt? 
+	\item Wieviel Umsatz wurde von wem in einem bestimmtem Zeitraum generiert?
+	\item Wie viele Kunden haben an einem bestimmten Zeitpunkt bestellt?
+	\item Wer hat wieviel an den gegebenen neun Tagen umgesetzt?
 \end{itemize}
 Diese Abfragen haben unterschiedliche Komplexitäten. So müssen bei der zweiten Abfrage sämtliche Tabellen einbezogen werden, während bei der ersten Abfrage nur zwei Tabellen involviert sind.
 Auf diese Weise soll ein möglichst breites Spektrum an Abfragen getestet werden, um sicher zu stellen, dass die Versuche so aussagekräftig wie möglich werden.
