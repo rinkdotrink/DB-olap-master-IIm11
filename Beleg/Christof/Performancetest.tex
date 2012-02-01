@@ -11,10 +11,10 @@ Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vie
 \lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \item \textbf{Wie viele Kunden haben in bestimmten Zeitraum bestellt?}
 \lstset{language=Java,caption={UseCase3},label=Use Case 3}
-\lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase3.java}
 \item \textbf{Wie viel Umsatz wurde an den ersten drei Tagen der ersten drei Monate generiert?}
 \lstset{language=Java,caption={UseCase4},label=Use Case 4}
-\lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
+\lstinputlisting[language=Java]{Christof/Listings/UseCase4.java}
 \end{enumerate}
 
 \subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}
@@ -44,8 +44,10 @@ Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitione
 \item Der Warmstart ohne Index(K2) sollte gegenüber einem Kaltstart ohne Index(K1) eine Geschwindigkeitssteigerung bewirken, da die Queries und deren Ergebnismenge durch die vorherige Abfrage in Query-Cache gespeichert wurden.
 \item Das Hinzufügen von Indizes ist der erste wichtige Schritt bei der Optimierung von SELECT-Anweisungen und sollte bei der richtigen Formulierung der SELECT-Anweisung einen enormen Geschwindigkeitsvorteil gegenüber Abfragen auf Tabellen ohne Indizes bieten. Es ist die Frage zu beantworten, ob es bei diesen Use Cases einen großen Geschwindigkeitsunterschied zwischen der Hash-Indizierung(K3) und der B-Tree-Indizierung(K4) gibt und wodurch sich eventuelle Unterschiede ergeben.  
 \item Wenn wir die Konfiguration K3 nehmen und diese um ein B-Tree-Index auf das Datum(K5) ergänzen, sollten bei dem Use Case 3 die Zeilen mit dem gesuchten Datum schneller gefunden werden als ohne den B-Tree-Index.
-\item Eine zusätzliche List-Partitionierung auf die drei Monate in jedem Quartal sollte die Suche nach einem konstanten Datumswert(Use Case 3) noch schneller ablaufen, denn es wird nur in der einen Partition gesucht.          \item (--------------wird noch ergänzt---------------)
-\item usw.
+\item Mit einer zusätzlichen List-Partitionierung auf die drei Monate(K6) in jedem Quartal müsste die Suche nach einem konstanten Datumswert(Use Case 3) noch schneller ablaufen, denn es sollte nur in der einen Partition gesucht werden. Interessant ist hierbei auch, wie die List-Partitionierung mit BETWEEN beim Use Case 2 umgeht.    
+\item Mit einem Hash-Partitioning auf die 12 Monate(K7) würde es einen Vorteil bringen, wenn nur auf eine bzw.  drei Partitionen(ein Quartal)zugegriffen wird. Wenn jedoch alle Partitionen durchsucht werden, dann bringt es eher Nachteile. Die Frage ist wie reagiert Hash-Partitioning auf eine BETWEEN-Anweisung.  
+\item Das Range-Partitioning auf die Quartale(K8) sollte eigentlich die Geschwindigkeit für den Use Case 2 mit der BETWEEN-Anweisung verkürzen. Denn bei dem verwendeten Range-Partitioning entspricht eine Partition jeweils einem Quartal und im Use Case 2 wird die Datum-Spalte nach Werten in einem Quartal gesucht.
+\item Die Konfiguration 9 unterscheidet sich von der Konfiguration 10 dadurch, dass sie ein B-Tree-Index auf das Datum enthält. Bei beiden Konfigurationen werden insgesamt 16 Teilpartitionen auf das Datum erstellt. Es soll dadurch herausgefunden werden, ob die Teilpartitionierung bei diesen SELECT-Anweisungen die Ausführung beschleunigt. 
 \end{enumerate}
 \subsection{Testergebnisse bei einer Million Kunden}
 
@@ -60,11 +62,11 @@ Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitione
 \begin{enumerate}
 \item Der Kaltstart ohne Index(K1) gegenüber dem Warmstart ohne Index(K2) hat keinen Geschwindigkeitsvorteil gebracht. Die Werte unterscheiden sich nur sehr gering voneinander. Wahrscheinlich liegt es an der geringen Komplexität der Statements und der kleinen Anzahl von Tabellen, da das Parsen dadurch nicht viel zeitaufwändiger ist.
 \item Die Indizes brachten wie erwartet einen enormen Geschwindigkeisunterschied, bei 100 Tausend Kunden hat die Abfrage für den Use Case 1 um den Faktor 29 kürzer gedauert. Im direkten Vergleich zwischen K3 und K4 gab es so gut wie keine Unterschiede bei allen Use Cases. Auch der Ausführungsplan mit Hilfe der EXPLAIN-Anweisung zeigte keine Unterschiede bei den Zugriffstypen. Bei allen Use Cases wurde auf die selbe Art auf die Tabellen zugegriffen.    
-\item Die Vermutung hat sich bestätigt und bei dem Use Case 3 gibt es eine deutliche Performancesteigerung mit dem zusätzlichen B-Tree-Index auf das Datum(K5). Es bleibt nun aber die Frage zu klären, wieso sich der Use Case 2 bei dieser Konfiguration als einziger verschlechtert hat obwohl die Zugriffstypen im Vergleich zur Konfiguration 3 die selben sind und die B-Tree-Indizierung für BETWEEN-Operatoren eigentlich gut geeignet ist.
-\item Der Use Case 3 ist mit der Konfiguration 6 tatsächlich noch schneller ausgeführt worden, was hauptsächlich an dem List-Partitioning liest. Die Zeit für den Use Case 2 hat sich jedoch noch weiter verschlechtet.
-\item (--------------wird noch ergänzt---------------) 
-\item (--------------wird noch ergänzt---------------)
-\item usw.      
+\item Die Vermutung hat sich bestätigt und bei dem Use Case 3 gibt es eine deutliche Performancesteigerung mit dem zusätzlichen B-Tree-Index auf das Datum(K5). Es bleibt nun aber die Frage zu klären, wieso sich der Use Case 2 bei der Konfiguration 5 als einziger verschlechtert hat obwohl die Zugriffstypen im Vergleich zur Konfiguration 3 die selben sind und die B-Tree-Indizierung für BETWEEN-Operatoren eigentlich gut geeignet ist. Wenn man sich den Ausführungsplan anschaut, dann erkennt man, dass bei der Konfiguration 3 der Optimierer bei der Verknüpfung der Tabellen zuerst einen Full-Table-Scan mit der Tabelle Kunde durchführt, die 25-Mal kleiner ist als die Warenkorb\_Has\_Product Tabelle. Und bei der Konfiguration 5 fängt er zuerst mit der großen Tabelle Warenkorb\_Has\_Product an, was trotz der Indizierung etwas länger dauert als wenn er einen vollständigen Tabellenscan mit der Tabelle Kunde gleich zu Beginn der Verknüpfung durchführt.
+\item Der Use Case 3 ist mit der Konfiguration 6 tatsächlich noch schneller ausgeführt worden, was hauptsächlich an dem List-Partitioning liegt und nur eine Partition gescannt wird. Die Zeit für den Use Case 2 hat sich jedoch noch weiter verschlechtet. Das liegt wahrscheinlich daran, dass er wieder mit der großen Tabelle Warenkorb\_Has\_Produkt beginnt und aufgrund dieses BETWEEN alle Partitionen gescannt werden.
+\item Der Wert für Use Case 2 ist bei der Konfiguration 7 extrem schlecht, der Grund dafür ist wahrscheinlich das Hash-Partitioning mit der BETWEEN-Anweisung überhaupt nicht klar kommt und somit alle 12 Partitionen gescannt werden, was uns auch der Ausführungplan beweist. Der Use Case 4 schneidet bei dieser Konfiguration ebenfalls am schlechtesten ab. Bei der Hash-Partitionierung werden die Daten gleichmäßig verteilt, aber man kann nicht wissen welche Daten in welchen "`Partitions-Topf"' kommen und er scannt für die drei verschiedenen Monate die drei Partitionen( xxxxxxxxxxx muss Ingo fragen, nochmals testen xxxxxxxxxxx).
+\item Das Range-Partitioning geht mit der BETWEEN-Anweisung am besten um und wir erhalten somit für den Use Case 2 mit der Konfiguration 8 das beste Ergebnis. Beim Use Case 1 muss er sowieso die ganze Tabelle Produkt scannen und nimmt keinen Index auf den Schlüssel. Die Frage bleibt zu klären wieso der Use Case 1 beim Hash-Partitioning besser abschneidet.
+\item Die Teilpartitionierung mit einem B-Tree-Index auf das Datum liefert bei allen Use Cases ein relativ gutes Ergebnis und erweist sich als die beste Konfiguration bei diesen Anwendungsfällen. Vor allem bei dem Use Case 1 und Use Case 4 sind die Messwerte besonders gut.      
 \end{enumerate}
 
 \subsection{Alle Messwerte}
