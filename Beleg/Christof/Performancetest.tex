@@ -17,20 +17,6 @@ Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vie
 \lstinputlisting[language=Java]{Christof/Listings/UseCase4.java}
 \end{enumerate}
 
-\subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}
-Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfiguration der MySQL-Datenbank und der Tabellen. Vor jedem Testlauf werden die entsprechenden Konfigurationseintellungen mit SQL-Anweisungen durchgeführt.
-\begin{enumerate}
-\item \textbf{K1} : Kaltstart ohne Index
-\item \textbf{K2} : Warmstart ohne Index
-\item \textbf{K3} : Hash-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
-\item \textbf{K4} : B-Tree-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
-\item \textbf{K5} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / ohne Partitioning
-\item \textbf{K6} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit List-Partitioning auf MONTH(Datum) für jedes Quartal
-\item \textbf{K7} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit Hash-Partitioning auf MONTH(Datum) für jeden Monat
-\item \textbf{K8} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree Index auf Datum / mit Range-Partitioning auf COLUMNS(Datum) für jedes Quartal
-\item \textbf{K9} : Hash Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit Sub-Partitioning (Range-Partitioning quartalsweise auf Datum und für jedes Quartal jeweils vier Hash-Partitions auf TO\_DAYS(Datum))
-\item \textbf{K10}: Hash-Indizes auf Primary Keys und Foreign Keys / mit Sub-Partitioning (Range-Partitioning quartalsweise auf Datum und für jedes Quartal jeweils vier Hash-Partitions auf TO\_DAYS(Datum)
-\end{enumerate}
 
 \subsection{EXPLAIN-Anweisung}
 Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, um nützliche Informationen zum Ausführungsplan des Optimierers zu erhalten. Die EXPLAIN-Anweisung liefert u.a. Daten darüber, ob die Indizes auch wirklich benutzt wurden, in welcher Reihenfolge die Tabellen verknüpft werden sowie weitere Informationen, die helfen sollen die SELECT-Anweisungen zu beschleunigen.
@@ -59,14 +45,29 @@ In der Spalte \textit{Extra} bedeutet der Kommentar \textbf{Using index}, dass M
 \end{itemize} 
   
 \subsection{EXPLAIN PARTITIONS-Anweisung}
-Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden. 
+Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden.
+
+\subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}
+Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfiguration der MySQL-Datenbank und der Tabellen. Vor jedem Testlauf werden die entsprechenden Konfigurationseintellungen mit SQL-Anweisungen durchgeführt.
+\begin{enumerate}
+\item \textbf{K1} : Kaltstart ohne Index
+\item \textbf{K2} : Warmstart ohne Index
+\item \textbf{K3} : Hash-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
+\item \textbf{K4} : B-Tree-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
+\item \textbf{K5} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / ohne Partitioning
+\item \textbf{K6} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit List-Partitioning auf MONTH(Datum) für jedes Quartal
+\item \textbf{K7} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit Hash-Partitioning auf MONTH(Datum) für jeden Monat
+\item \textbf{K8} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree Index auf Datum / mit Range-Partitioning auf COLUMNS(Datum) für jedes Quartal
+\item \textbf{K9} : Hash Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / mit Sub-Partitioning (Range-Partitioning quartalsweise auf Datum und für jedes Quartal jeweils vier Hash-Partitions auf TO\_DAYS(Datum))
+\item \textbf{K10}: Hash-Indizes auf Primary Keys und Foreign Keys / mit Sub-Partitioning (Range-Partitioning quartalsweise auf Datum und für jedes Quartal jeweils vier Hash-Partitions auf TO\_DAYS(Datum)
+\end{enumerate} 
 
 \section{Testdurchführung}
 
 \subsection{Annahmen und Vorüberlegungen}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
-Der Warmstart ohne Index(\textbf{K2}) sollte gegenüber einem Kaltstart ohne Index(\textbf{K1}) eine Geschwindigkeitssteigerung bewirken, da die Queries und deren Ergebnismenge durch die vorherige Abfrage in Query-Cache gespeichert sein sollten.
+Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor mit der Indizierung und Partitionierung gemessen wird. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte abhängig von der Kundenanzahl durch das Zwischenspeichern nicht verfälscht werden. 
 \item \textbf{K3 und K4} \\
 Das Hinzufügen von Indizes ist der erste wichtige Schritt bei der Optimierung von SELECT-Anweisungen und sollte bei der richtigen Formulierung der SELECT-Anweisung einen enormen Geschwindigkeitsvorteil gegenüber Abfragen auf Tabellen ohne Indizes bieten. Es ist die Frage zu beantworten, ob es bei den vier Use Cases einen großen Geschwindigkeitsunterschied zwischen der Hash-Indizierung(\textbf{K3}) und der B-Tree-Indizierung(\textbf{K4}) gibt und wodurch sich eventuelle Unterschiede ergeben.  
 \item \textbf{K5} \\ 
@@ -92,7 +93,7 @@ In der darunterliegenden Tabelle werden die Messergebnisse für \textbf{K3} bis \
 \subsection{Testauswertung}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
-Der Kaltstart ohne Index(\textbf{K1}) gegenüber dem Warmstart ohne Index(\textbf{K2}) hat keinen Geschwindigkeitsvorteil gebracht. Die Werte unterscheiden sich nur sehr gering voneinander. Es kann an der geringen Komplexität der Statements und der kleinen Anzahl von Tabellen liegen, da das Parsen dadurch nicht viel zeitaufwändiger ist. Wahrscheinlich liegt aber an den großen Tabellen und an dem kleinen Query-Cache von nur XXXX. 
+Beim Kaltstart ohne Index(\textbf{K1 und K2}) wurden die meisten Testläufe abgebrochen, da es länger als 20 Minuten gedauert hat. 
 \item \textbf{K3 und K4} \\ 
 Die Indizes brachten wie erwartet einen enormen Geschwindigkeisunterschied, bei 100 Tausend Kunden hat die Abfrage für den UseCase1 um den Faktor 29 kürzer gedauert. Im direkten Vergleich zwischen \textbf{K3} und \textbf{K4} gab es so gut wie keine Unterschiede bei allen Use Cases. Auch der Ausführungsplan mit Hilfe der \textbf{EXPLAIN}-Anweisung zeigte keine Unterschiede bei den Zugriffstypen. Bei allen Use Cases wurde auf die selbe Art auf die Tabellen zugegriffen.    
 \item \textbf{K5} \\ 
@@ -100,7 +101,7 @@ Die Vermutung hat sich bestätigt und bei dem UseCase3 gibt es eine deutliche Per
 \item \textbf{K6} \\ 
 Der UseCase3 ist mit \textbf{K6} tatsächlich noch schneller ausgeführt worden, was hauptsächlich an der List-Partitionierung liegt und dadurch nur eine Partition durchsucht wird. Die Zeit für den UseCase2 hat sich jedoch bei \textbf{K6} um 190 sek im Vergleich zur K3 verschlechtet. Das liegt wahrscheinlich daran, dass er wieder mit der großen Tabelle \textbf{Warenkorb\_Has\_Produkt} beginnt und aufgrund der \textbf{BETWEEN}-Anweisung alle Partitionen durchsucht werden.
 \item \textbf{K7} \\  
-Der Wert für UseCase2 ist bei \textbf{K7} doppelt so schlecht wie bei K6, der Grund dafür ist wahrscheinlich das Hash-Partitionierung mit der \textbf{BETWEEN}-Anweisung überhaupt nicht klar kommt und somit alle 12 Partitionen gescannt werden, was uns auch der Ausführungplan beweist. Der UseCase4 schneidet bei \textbf{K7} ebenfalls am schlechtesten ab, worauf man bisher noch keine annehmbare Antwort gefunden hat und was noch zu erforschen wäre. 
+Der Wert für UseCase2 ist bei \textbf{K7} doppelt so schlecht wie bei K6, der Grund dafür ist wahrscheinlich das Hash-Partitionierung mit der \textbf{BETWEEN}-Anweisung überhaupt nicht klar kommt. Mit EXPLAIN-Partitions erhält man laut des MySQL-Referenzhandbuchs mit HASH-Partitionierung kein brauchbares Ergebnis, da der Befehl einfach alle Partitionen auflistet. Der UseCase4 schneidet bei \textbf{K7} ebenfalls am schlechtesten ab, worauf man bisher noch keine annehmbare Antwort gefunden hat und was noch zu erforschen wäre. 
 \item \textbf{K8} \\
 Die Range-Partitionierung geht mit der \textbf{BETWEEN}-Anweisung am besten um und wir erhalten somit für den UseCase2 mit der \textbf{K8} das beste Ergebnis, weleches um den Faktor 2,77 besser ist als mit der Hash-Partitionierung mit K7. Beim UseCase1 muss er sowieso die ganze Tabelle \textbf{Produkt} durchsuchen und nimmt somit keinen Index auf den Schlüssel. Die Frage bleibt jedoch noch zu klären wieso der UseCase1 bei der Hash-Partitionierung mit K7 um 25 sek besser abschneidet als mit \textbf{K8}.
 \item \textbf{K9 und K10} \\ 
