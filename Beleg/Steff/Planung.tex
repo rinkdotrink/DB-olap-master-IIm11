@@ -1,18 +1,33 @@
-\section{Projektplanung}
+\newpage
+\section{Projektplanung} \label{kap2Projektplanung}
 \subsection{Datenbank}
 
-\begin{figure}[h]
-	\centering
-		\includegraphics[width=1.0\textwidth]{Steff/ADBC-ERD.png}
+%\begin{figure}[h]
+%		\includegraphics[width=1.0\textwidth]{Steff/ADBC-ERD.png}
+%	\caption{Orginal-ERD}
+%	\label{fig:orig_ADBC_ERD}
+%\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{Steff/ADBC-ERD.png}
 	\caption{Orginal-ERD}
-	\label{fig:ADBC_ERD}
+	\label{fig:orig_adbc_erd}
+\end{center}
 \end{figure}
 
-Das ERD beschreibt die Architektur unserer Datenbank. Die ursprüngliche Planung sah vor, dass die Datenbank bei ausreichender Zeit noch erweitert werden konnte um mehr Anwendungsfälle simulieren zu können. In diesem Fall wären die Tabellen die grün markiert sind, sowie die angrenzenden Verbindungsverbindungstabellen (rot markiert) zusätzlich erstellt worden.
-Die Tabellen mit der höchsten Priorität waren aber Kunde, Warenkorb und Produkt. Dadurch wurde das Datenmodell, welches letzten Endes erstellt wurde, äußerst kompakt.\\
-Anm.: Grafik wird noch generiert\\
+Das ERD (Abbildung \ref{fig:orig_adbc_erd}) beschreibt die Architektur unserer Datenbank. Die ursprüngliche Planung sah vor, dass die Datenbank bei ausreichender Zeit noch erweitert werden konnte um mehr Anwendungsfälle simulieren zu können. In diesem Fall wären die Tabellen die grün markiert sind, sowie die angrenzenden Verbindungsverbindungstabellen (rot markiert) zusätzlich erstellt worden.
+Die Tabellen mit der höchsten Priorität waren aber Kunde, Warenkorb und Produkt. Dadurch wurde das Datenmodell, welches letzten Endes erstellt wurde, äußerst kompakt (Abbildung \ref{fig:used_adbc_erd}).\\
+\begin{figure}[htb]
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{Steff/used-ADBC-ERD.png}
+	\caption{tatsächlich umgesetztes ERD}
+	\label{fig:used_adbc_erd}
+\end{center}
+\end{figure}
+\newpage
 \subsection{Datenbankabfragen}
-\begin{figure}[h]
+\begin{figure}[htb]
 	\centering
 		\includegraphics[width=1.0\textwidth]{Steff/UC.png}
 	\caption{Datenbankabfragen}
