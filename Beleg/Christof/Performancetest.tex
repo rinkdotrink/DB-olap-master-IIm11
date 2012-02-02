@@ -1,4 +1,4 @@
-\section{Testvorbereitung}
+\section{Testvorbereitung}\label{Testvorbereitung}
 Wir wählen die InnoDB als Speichermaschine aus, da sie die Transaktionssicherheit gewährleistet und sich dadurch für das Betreiben eines Webshops am besten eignet. 
 Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vier Testläufen zu je einem Use Case. Am Anfang  werden Testdaten mit einer  bestimmten Anzahl von Kunden, einer konstanten Anzahl von Produkten (1000), einer konstanten Anzahl von Warenkörben pro Kunde(5) und genauso einer konstanten Anzahl von Produkten pro Warenkorb(5) generiert. Die Anzahl der Kunden erhöht sich mit jedem Testlauf. In jeder Versuchsreihe werden die vier verschiedenen Use Cases betrachtet, die durch eine unterschiedliche SELECT-Anweisung an die MySQL-Datenbank realisiert werden:
 \subsection{SELECT-Anweisungen}
@@ -62,12 +62,12 @@ Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfigurat
 \item \textbf{K10}: Hash-Indizes auf Primary Keys und Foreign Keys / mit Sub-Partitioning (Range-Partitioning quartalsweise auf Datum und für jedes Quartal jeweils vier Hash-Partitions auf TO\_DAYS(Datum)
 \end{enumerate} 
 
-\section{Testdurchführung}
+\section{Testdurchführung}\label{Testdurchfuehrung}
 
 \subsection{Annahmen und Vorüberlegungen}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
-Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor mit der Indizierung und Partitionierung gemessen wird. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte abhängig von der Kundenanzahl durch das Zwischenspeichern nicht verfälscht werden. 
+Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor die Testläufe mit der Indizierung und Partitionierung begonnen werden. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte, die abhängig von der Größe der Kundentabelle sind, durch das Zwischenspeichern nicht verfälscht werden. 
 \item \textbf{K3 und K4} \\
 Das Hinzufügen von Indizes ist der erste wichtige Schritt bei der Optimierung von SELECT-Anweisungen und sollte bei der richtigen Formulierung der SELECT-Anweisung einen enormen Geschwindigkeitsvorteil gegenüber Abfragen auf Tabellen ohne Indizes bieten. Es ist die Frage zu beantworten, ob es bei den vier Use Cases einen großen Geschwindigkeitsunterschied zwischen der Hash-Indizierung(\textbf{K3}) und der B-Tree-Indizierung(\textbf{K4}) gibt und wodurch sich eventuelle Unterschiede ergeben.  
 \item \textbf{K5} \\ 

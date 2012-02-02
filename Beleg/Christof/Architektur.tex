@@ -1,4 +1,4 @@
-\section{Die MySQL-Datenbank}
+\section{Die MySQL-Datenbank}\label{MySQL-Datenbank}
 
 \subsection{MySQL-Architektur}
 Die MySQL-Architektur unterscheidet sich deutlich von den Architekturen anderer Datenbanken. Die wichtigste Eigenschaft der MySQL-Datenbank ist die Speichermaschinen-Architekur (engl.: storage-engine architecture), die den Serverprozess mit dem SQL-Parsing und weiteren Funktionalitäten von der Datenspeicherung und dem Datenabruf entkoppelt. Dabei werden die Tabellen mit den Datensätzen in speziellen Dateien abgelegt, auf die ausschließlich die Speichermaschinen(engl.: storage-engines) Zugriff haben.  Je nach Anforderung und Funktionalität der jeweiligen Speichermaschine wird der Zugriff entsprechend organisiert und optimiert.  Die Speichermaschinen-Architektur ist somit der größte und gleichzeitig wichtigste Unterschied zu vielen anderen kommerziellen Datenbanken wie z.B. Oracle DB oder DB2. 
