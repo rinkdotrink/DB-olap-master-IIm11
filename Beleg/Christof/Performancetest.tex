@@ -1,12 +1,12 @@
 \section{Testvorbereitung}\label{Testvorbereitung}
 Wir wählen die InnoDB als Speichermaschine aus, da sie die Transaktionssicherheit gewährleistet und sich dadurch für das Betreiben eines Webshops am besten eignet. 
 Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vier Testläufen zu je einem Use Case. Am Anfang  werden Testdaten mit einer  bestimmten Anzahl von Kunden, einer konstanten Anzahl von Produkten (1000), einer konstanten Anzahl von Warenkörben pro Kunde(5) und genauso einer konstanten Anzahl von Produkten pro Warenkorb(5) generiert. Die Anzahl der Kunden erhöht sich mit jedem Testlauf. In jeder Versuchsreihe werden die vier verschiedenen Use Cases betrachtet, die durch eine unterschiedliche SELECT-Anweisung an die MySQL-Datenbank realisiert werden:
-\subsection{SELECT-Anweisungen}
+\subsection{SELECT-Anweisungen}\label{Select}
 \begin{enumerate}
 \item \textbf{Use Case 1: Welches Produkt wurde wie oft gekauft?}
 \lstset{language=Java,caption={UseCase1},label=Use Case 1}
 \lstinputlisting[language=Java]{Christof/Listings/UseCase1.java}
-\item \textbf{Wieviel Umsatz wurde von wem in einem bestimmtem Zeitraum generiert?}
+\item \textbf{Wie viel Umsatz wurde von wem in einem bestimmtem Zeitraum generiert?}
 \lstset{language=Java,caption={UseCase2},label=Use Case 2}
 \lstinputlisting[language=Java]{Christof/Listings/UseCase2.java}
 \item \textbf{Wie viele Kunden haben an einem bestimmten Zeitpunkt bestellt?}
@@ -18,7 +18,7 @@ Jede Versuchsreihe entspricht einer bestimmten Konfiguration und besteht aus vie
 \end{enumerate}
 
 
-\subsection{EXPLAIN-Anweisung}
+\subsection{EXPLAIN-Anweisung}\label{ExplainAnweisung}
 Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, um nützliche Informationen zum Ausführungsplan des Optimierers zu erhalten. Die EXPLAIN-Anweisung liefert u.a. Daten darüber, ob die Indizes auch wirklich benutzt wurden, in welcher Reihenfolge die Tabellen verknüpft werden sowie weitere Informationen, die helfen sollen die SELECT-Anweisungen zu beschleunigen.
 \subsubsection{Beispiel 1}
 \begin{figure}[htp]
@@ -44,14 +44,14 @@ In der Spalte \textit{Extra} bedeutet der Kommentar \textbf{Using index}, dass M
 \item \textbf{eq\_ref}: Für jede einzelne Zeile aus der Tabelle1 wird eine Zeile aus der Tabelle2 gelesen. Kann verwendet werden für indizierte Spalten, die mit Hilfe des Operators = verglichen werden.
 \end{itemize} 
   
-\subsection{EXPLAIN PARTITIONS-Anweisung}
+\subsection{EXPLAIN PARTITIONS-Anweisung}\label{ExplainPartitions}
 Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden.
 
-\subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}
+\subsection{Konfigurationen der MySQL-Datenbank und der Tabellen}\label{Konfiguration}
 Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfiguration der MySQL-Datenbank und der Tabellen. Vor jedem Testlauf werden die entsprechenden Konfigurationseintellungen mit SQL-Anweisungen durchgeführt.
 \begin{enumerate}
 \item \textbf{K1} : Kaltstart ohne Index
-\item \textbf{K2} : Warmstart ohne Index
+\item \textbf{K2} : Kaltstart ohne Index
 \item \textbf{K3} : Hash-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
 \item \textbf{K4} : B-Tree-Indizes auf Primary Keys und Foreign Keys / ohne Partitioning
 \item \textbf{K5} : Hash-Indizes auf Primary Keys und Foreign Keys sowie B-Tree-Index auf Datum / ohne Partitioning
@@ -64,7 +64,7 @@ Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfigurat
 
 \section{Testdurchführung}\label{Testdurchfuehrung}
 
-\subsection{Annahmen und Vorüberlegungen}
+\subsection{Annahmen und Vorüberlegungen}\label{Annahme}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
 Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor die Testläufe mit der Indizierung und Partitionierung begonnen werden. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte, die abhängig von der Größe der Kundentabelle sind, durch das Zwischenspeichern nicht verfälscht werden. 
@@ -81,7 +81,7 @@ Die Range-Partitionierung auf die Quartale(\textbf{K8}) sollte eigentlich die Ge
 \item \textbf{K9 und K10} \\
 Die Konfiguration \textbf{9} unterscheidet sich von der Konfiguration \textbf{10} dadurch, dass sie ein B-Tree-Index auf das Datum enthält. Bei beiden Konfigurationen werden insgesamt 16 Teilpartitionen auf das Datum erstellt. Es soll dadurch herausgefunden werden, ob die Teilpartitionierung bei diesen \textbf{SELECT}-Anweisungen die Ausführung beschleunigt. 
 \end{enumerate}
-\subsection{Testergebnisse bei einer Million Kunden}
+\subsection{Testergebnisse bei einer Million Kunden}\label{Testergebnisse}
 In der darunterliegenden Tabelle werden die Messergebnisse für \textbf{K3} bis \textbf{K10}  bei einer Anzahl von einer Million Kunden dargestellt. Diese Messwerte sind am aussagekräftigsten und wurden deshalb für die Analyse von den anderen Messwerten hervorgehoben. Alle anderen Messwerte dienten bei der Analyse dazu, um Vergleichswerte zu haben und um eventuelle Messfehler aufzudecken. Alle Messwerte sind Angaben in Sekunden. 
 \begin{figure}[htp]
 \centering
@@ -90,7 +90,7 @@ In der darunterliegenden Tabelle werden die Messergebnisse für \textbf{K3} bis \
 \label{fig:auswert1}
 \end{figure}
 
-\subsection{Testauswertung}
+\subsection{Testauswertung}\label{Testauswertung}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
 Beim Kaltstart ohne Index(\textbf{K1 und K2}) wurden die meisten Testläufe abgebrochen, da es länger als 20 Minuten gedauert hat. 
@@ -101,14 +101,14 @@ Die Vermutung hat sich bestätigt und bei dem UseCase3 gibt es eine deutliche Per
 \item \textbf{K6} \\ 
 Der UseCase3 ist mit \textbf{K6} tatsächlich noch schneller ausgeführt worden, was hauptsächlich an der List-Partitionierung liegt und dadurch nur eine Partition durchsucht wird. Die Zeit für den UseCase2 hat sich jedoch bei \textbf{K6} um 190 sek im Vergleich zur K3 verschlechtet. Das liegt wahrscheinlich daran, dass er wieder mit der großen Tabelle \textbf{Warenkorb\_Has\_Produkt} beginnt und aufgrund der \textbf{BETWEEN}-Anweisung alle Partitionen durchsucht werden.
 \item \textbf{K7} \\  
-Der Wert für UseCase2 ist bei \textbf{K7} doppelt so schlecht wie bei K6, der Grund dafür ist wahrscheinlich das Hash-Partitionierung mit der \textbf{BETWEEN}-Anweisung überhaupt nicht klar kommt. Mit EXPLAIN-Partitions erhält man laut des MySQL-Referenzhandbuchs mit HASH-Partitionierung kein brauchbares Ergebnis, da der Befehl einfach alle Partitionen auflistet. Der UseCase4 schneidet bei \textbf{K7} ebenfalls am schlechtesten ab, worauf man bisher noch keine annehmbare Antwort gefunden hat und was noch zu erforschen wäre. 
+Der Wert für UseCase2 ist bei \textbf{K7} doppelt so schlecht wie bei K6, der Grund dafür ist wahrscheinlich das Hash-Partitionierung mit der \textbf{BETWEEN}-Anweisung überhaupt nicht klar kommt. Mit EXPLAIN-Partitions zeigt, dass er auf alle 12 Partitionen zugreift anstatt nur auf 3. Der UseCase4 schneidet bei \textbf{K7} ebenfalls am schlechtesten ab, worauf man bisher noch keine annehmbare Antwort gefunden hat und was noch zu erforschen wäre. 
 \item \textbf{K8} \\
 Die Range-Partitionierung geht mit der \textbf{BETWEEN}-Anweisung am besten um und wir erhalten somit für den UseCase2 mit der \textbf{K8} das beste Ergebnis, weleches um den Faktor 2,77 besser ist als mit der Hash-Partitionierung mit K7. Beim UseCase1 muss er sowieso die ganze Tabelle \textbf{Produkt} durchsuchen und nimmt somit keinen Index auf den Schlüssel. Die Frage bleibt jedoch noch zu klären wieso der UseCase1 bei der Hash-Partitionierung mit K7 um 25 sek besser abschneidet als mit \textbf{K8}.
 \item \textbf{K9 und K10} \\ 
 Die Teilpartitionierung mit einem B-Tree-Index auf das Datum liefert bei allen Use Cases ein relativ gutes Ergebnis und erweist sich als die beste Konfiguration bei diesen Anwendungsfällen. Vor allem bei dem UseCase1 und UseCase4 sind die Messwerte mit \textbf{K9} im Vergleich zu anderen Konfigurationen besonders gut.      
 \end{enumerate}
 
-\subsection{Alle Messwerte}
+\subsection{Alle Messwerte}\label{Alle}
 \begin{figure}[htp]
 \centering
 \includegraphics[width=1\textwidth]{Christof/Bilder/TabTeil1.jpg}

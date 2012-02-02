@@ -1,6 +1,6 @@
 \section{Optimierungsmaßnahmen}\label{Optimierungsmassnahmen}
 
-\subsection{Indizes}
+\subsection{Indizes}\label{Indizes}
 Ein Index ist bei der MyISAM eine zusätzliche Datei und bei der InnoDB ein zusätzlicher Dateibereich mit sortierten Querverweisen auf die Datensätze einer Tabelle, was unter Umständen bei Suchvorgängen enorme Geschwindigkeitsvorteile mit sich bringt. Ohne eine Indizierung müsste die Datenbank die Suche bei dem ersten Datensatz beginnen und dann die gesamte Tabelle sequentiell nach passenden Datensätzen durchforsten. Mit einem Index kann die Suche an einer bestimmten Position in der Mitte der Datendatei beginnen, was eine gezielte und schnelle Suche ermöglicht.
 Indizes eignen sich nur für Spalten, nach denen oft gesucht wird oder die man sortieren möchte. Bei Datensätzen, die oft verändert werden, sind Indizes nicht geeignet, da bei jeder Änderung auch der Index verändert werden muss. Bei den InnoDB-Tabellen werden die Indizes auch zum Row-Level-Locking verwendet, um die gesperrten Datensätze intern zu kennzeichnen, was aus Performancegründen im Index erfolgt und nicht in den eigentlichen Tabellen. MySQL unterstützt die B-Tree-Indizierung sowie die Hash-Indizierung. 
 
@@ -22,11 +22,11 @@ Außerdem muss der Index alle AND-Ebenen in der WHERE-Klausel einbeziehen, sonst 
 														vorname = "`Hans"' AND ort"'Halle"'	
 	wird nicht benutzt  -> WHERE vorname ="'Hans"' AND ort ="'Buxtehude"'
 \end{verbatim}
-Wenn eine Abfrage auf einen großen Anteil von Datensätzen zugreifen muss, kann es passieren, dass der Optimierer auf die Verwendung eines Indexes verzichtet und einen Full Table-Scan anordnet, da dadurch sich weniger Suchvorgänge ergeben. Es sei denn, die Abfrage enthält eine LIMIT-Klausel und somit nur ein paar Datensätze abgerufen werden sollen, wird trotzdem ein Index verwendet, da sich diese Datensätze mit dem Index schneller finden lassen.
+Wenn eine Abfrage auf einen großen Anteil von Datensätzen zugreifen muss, kann es passieren, dass der Optimierer auf die Verwendung eines Indexes verzichtet und einen Full Table-Scan anordnet, da dadurch sich weniger Suchvorgänge ergeben. Wenn aber die Abfrage eine LIMIT-Klausel enthält, und somit nur ein paar Datensätze abgerufen werden sollen, wird trotzdem ein Index verwendet, da sich diese Datensätze mit dem Index schneller finden lassen.
 \subsubsection{Hash-Indizierung}
-Ein Hash-Index unterscheidet sich grundsätzlich dadurch, dass er nur vollständige Schlüssel zur Suche nach einem Datensatz verwenden kann. Außerdem kann der Optimierer einen Hash-Index nicht zur Beschleunigung von ORDER-BY-Operationen verwenden und auch für Vergleiche mit  < > ist er nicht geeignet. Der Hash-Index eignet sich aber sehr gut für Vergleiche mit den Operatoren = oder < = >
+Ein Hash-Index unterscheidet sich grundsätzlich dadurch, dass er nur vollständige Schlüssel zur Suche nach einem Datensatz verwenden kann. Außerdem kann der Optimierer einen Hash-Index nicht zur Beschleunigung von ORDER-BY-Operationen verwenden und auch für Vergleiche mit  \textbf{\tt< \tt>} ist er nicht geeignet. Der Hash-Index eignet sich aber sehr gut für Vergleiche mit den Operatoren = oder \textbf{\tt< = \tt>}
 
-\subsection{Partitionierung}
+\subsection{Partitionierung}\label{Partitionierung}
 Bei der Partitionierung werden die Daten der einzelnen Tabellen nach bestimmten Regeln getrennt und auf mehrere physikalische Einheiten verteilt. Die Regel wird von dem Benutzer ausgewählt und als Partitionierungsfunktion bezeichnet. Es kann sich dabei um Modulus, um eine Hash-Funktion oder um einen Vergleich mit einer Menge von Wertebereichen oder Wertelisten handeln.
 MySQL unterstützt nur die horizontale Partitionierung. Dabei werden die Tabellen zeilenweise getrennt. 
 
