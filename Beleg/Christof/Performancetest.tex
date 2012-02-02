@@ -33,7 +33,31 @@ Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfigurat
 \end{enumerate}
 
 \subsection{EXPLAIN-Anweisung}
-Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, um nützliche Informationen zum Ausführungsplan des Optimierers zu erhalten. Die EXPLAIN-Anweisung liefert u.a. Daten darüber, ob die Indizes auch wirklich benutzt wurden, in welcher Reihenfolge die Tabellen verknüpft werden sowie weitere Informationen, die helfen sollen die SELECT-Anweisungen zu beschleunigen.  
+Bei den SQL-Abfragen stellten wir bei jeder SELECT-Anweisung ein EXPLAIN davor, um nützliche Informationen zum Ausführungsplan des Optimierers zu erhalten. Die EXPLAIN-Anweisung liefert u.a. Daten darüber, ob die Indizes auch wirklich benutzt wurden, in welcher Reihenfolge die Tabellen verknüpft werden sowie weitere Informationen, die helfen sollen die SELECT-Anweisungen zu beschleunigen.
+\subsubsection{Beispiel 1}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{Christof/Bilder/ExplainB1.jpg}
+\caption{Explain-Tabelle1}
+\label{fig:explain1}
+\end{figure}
+An diesem Beispiel sieht man das Ergebnis einer EXPLAIN-Anweisung. Das \textit{ALL} bei \textbf{type} besagt, dass zuerst alle Datensätze aus der Produkt-Tabelle gelesen werden. Das \textit{Using temporary} bedeutet, dass sogar eine temporäre Tabelle erzeugt wird, um Zwischenergebnisse zu speichern. In der Spalte \textbf{key} sieht man, dass sich der Optimierer für den Index \textbf{warenkorb\_has\_produkt\_Produkt\_PRODUKT\_ID\_idx} entschieden hat. Mit Zuhilfenahme dieses Indexes wird die Verbindung zu der Tabelle \textbf{warenkorb\_has\_prdukt} geschaffen.
+\subsubsection{Beispiel 2}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{Christof/Bilder/ExplainB2.jpg}
+\caption{Explain-Tabelle2}
+\label{fig:explain2}
+\end{figure}
+In der Spalte \textit{Extra} bedeutet der Kommentar \textbf{Using index}, dass MySQL das Ergebnis der Abfrage komplett aus dem Index erstellen kann und dabei keine Daten aus der Tabelle nimmt. In der Spalte \textit{type} können folgende Werte vorkommen(angefangen mit dem schlechtesten):
+\begin{itemize}
+\item \textbf{all}: Es wird kein Index benutzt weil er nicht besteht oder nicht brauchbar ist.
+\item \textbf{index}: Der gesamte Index wird überprüft.
+\item \textbf{range}: Alle Datensätze in einem bestimmten Bereich werden aus der Tabelle gelesen. Die Datensätze werden anhand eines Indexes ausgewählt.
+\item \textbf{ref}: Alle Datensätze mit passenden Indexwerten werden aus der Tabelle gelesen. Wird verwendet bei nicht eindeutigen Schlüsseln, oder für indizierte Spalten die mit Hilfe der Operatoren = oder \textbf{\tt < = \tt>} verglichen werden.
+\item \textbf{eq\_ref}: Für jede einzelne Zeile aus der Tabelle1 wird eine Zeile aus der Tabelle2 gelesen. Kann verwendet werden für indizierte Spalten, die mit Hilfe des Operators = verglichen werden.
+\end{itemize} 
+  
 \subsection{EXPLAIN PARTITIONS-Anweisung}
 Diese Anweisung liefert zusätzlich Informationen über die verwendeten Partitionen. Man kann sie jedoch nur auf RANGE- oder LIST-partitionierte Tabellen verwenden. Bei KEY- oder HASH-Partitionen ist sie unbrauchbar, da automatisch alle Partitionen ausgegeben werden. 
 
