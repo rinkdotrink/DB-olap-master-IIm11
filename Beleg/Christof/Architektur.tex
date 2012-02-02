@@ -10,6 +10,13 @@ Die MySQL-Architektur unterscheidet sich deutlich von den Architekturen anderer 
  \item Die unterste Schicht enthält die austauschbaren Speichermaschinen, die jeweils einen unterschiedlichen Tabellentyp verwalten. Die Speichermaschinen sind verantwortlich für die Speicherung und den Abruf aller Daten in der MySQL-Datenbank. Jeder Tabellentyp besitzt seine Vor- und Nachteile und ist je nach Anwendungsfall besser oder schlechter geeignet. Der Datenbank-Administrator hat die Möglichkeit den Tabellentyp, in dem die Records gespeichert werden festzulegen und sogar unterschiedliche Tabellentypen in derselben Datenbank zu verwenden.
 \end{enumerate}
 
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.75\textwidth]{Christof/Bilder/Architektur.jpg}
+\caption{MySQL-Architektur}
+\label{fig:QueryEx}
+\end{figure}
+
 Die Kommunikation mit dem Server (zwischen der zweiten und der dritten Schicht) basiert auf der Storage-Engine-API. Diese Schnittstelle verdeckt die Unterschiede zwischen den Speichermaschinen und macht sie transparent auf der Query-Ebene. Jede Speichermaschine ist eine Klasse, dessen Instanz mit dem MySQL-Server über ein spezielles Handler-Interface kommuniziert. Jeder Thread, der mit einer bestimmten Tabelle arbeiten muss, legt einen Handler an. Der MySQL-Server erteilt dem Handler Befehle,  die solche Operationen wie "`eine Transaktion beginnen"' oder "`Zeile mit dem Primärschlüssel einlesen"' ausführen. Die Storage-Engines reagieren auf diese Befehle, die Anfragen aus den höheren Schichten ausführen sollen.
 
 \subsection{Ablauf einer SQL-Abfrage in MySQL}
