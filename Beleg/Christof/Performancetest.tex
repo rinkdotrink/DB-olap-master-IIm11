@@ -67,7 +67,7 @@ Jede Versuchsreihe testet die SELECT-Anweisungen mit einer bestimmten Konfigurat
 \subsection{Annahmen und Vorüberlegungen}
 \begin{enumerate}
 \item \textbf{K1 und K2} \\ 
-Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor mit der Indizierung und Partitionierung gemessen wird. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte abhängig von der Kundenanzahl durch das Zwischenspeichern nicht verfälscht werden. 
+Zuerst wurde zweimal ein Kaltstart ohne Index(\textbf{K2}) durchgeführt, um Referenzwerte zu bekommen, bevor die Testläufe mit der Indizierung und Partitionierung begonnen werden. Alle nachfolgenden Messungen wurden ebenfalls mit einem deaktivierten Query-Cache durchgeführt, damit die Messwerte, die abhängig von der Größe der Kundentabelle sind, durch das Zwischenspeichern nicht verfälscht werden. 
 \item \textbf{K3 und K4} \\
 Das Hinzufügen von Indizes ist der erste wichtige Schritt bei der Optimierung von SELECT-Anweisungen und sollte bei der richtigen Formulierung der SELECT-Anweisung einen enormen Geschwindigkeitsvorteil gegenüber Abfragen auf Tabellen ohne Indizes bieten. Es ist die Frage zu beantworten, ob es bei den vier Use Cases einen großen Geschwindigkeitsunterschied zwischen der Hash-Indizierung(\textbf{K3}) und der B-Tree-Indizierung(\textbf{K4}) gibt und wodurch sich eventuelle Unterschiede ergeben.  
 \item \textbf{K5} \\ 
