@@ -5,8 +5,14 @@ Anfangs war die Idee, eine Erweiterung der bestehenden Datenbank der Wohnheime V
 \section{Planung}
 Es wurde sich für ein eigenständiges Datenbankschema entschieden, da es kritisch werden könnte, wenn man an dem bestehenden Live-System arbeiten würde. Um sicher zu gehen, dass die Daten auch korrekt und zum richtigen Zeitpunkt eingetragen werden, sollte mit Triggern gearbeitet werden, die immer ausgelöst werden sollten, wenn eine IP vergeben wurde. Der genaue Aufbau kann den nachfolgenden Grafiken entnommen werden
 
-Anmerkung des Authors: Grafiken müssen noch generiert werden!!!
 
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=0.85\textwidth]{C:/Users/Stefan/Projekte/ADBC/Beleg/Steff/WohnheimDBExtension.png}
+	\caption{Aufbau der neuen Software}
+	\label{fig:WohnheimDBExtension}
+\end{figure}
+\newpage
 Ein Problem bei der Planung waren die unterschiedlichen Wege, an eine IP zu kommen. Da ein Mieter nicht zwingend einen Administrator aufsuchen muss, um eine vorübergehende IP zu bekommen, wäre die alleinige Nutzung von Triggern nicht ausreichend gewesen.
 
 \section{Eingesetzte Technologien}
