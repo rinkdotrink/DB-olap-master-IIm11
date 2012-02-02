@@ -12,7 +12,7 @@ Die MySQL-Architektur unterscheidet sich deutlich von den Architekturen anderer 
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.75\textwidth]{Christof/Bilder/Architektur.jpg}
+\includegraphics[width=1\textwidth]{Christof/Bilder/Architektur.jpg}
 \caption{MySQL-Architektur}
 \label{fig:QueryEx}
 \end{figure}
@@ -22,14 +22,14 @@ Die Kommunikation mit dem Server (zwischen der zweiten und der dritten Schicht) 
 \subsection{Ablauf einer SQL-Abfrage in MySQL}
 \begin{enumerate}
  \item Der Client sendet eine Anfrage an den MySQL-Server und noch bevor der Query geparst wird, prüft MySQL ob dieser Query nicht schon im Query Cache vorhanden ist.  Falls ein passendes Query gefunden wurde, werden die Zugriffsrechte geprüft und die gespeicherten Ergebnisse der Anfrage an den Client gesendet. Ansonsten durchgeht das SQL-Query einen festen Ablaufplan.
- \item Zuerst wird es geparst um Token und einen Parse-Baum zu erhalten.  Mit einem Preprozessor wird untersucht ob alle Tabellen und Spalten aus der Abfrage existieren, außerdem werden jegliche Namen aufgelöst und Zugriffsrechte geprüft. Anschließend werden mit einer Query Optimierung  unnötige Dateizugriffe minimiert und es wird nach einer möglichst schnellen Anfragebearbeitung gesucht. Der Query-Optimizer erstellt einen sogenannten Ausführungsplan (engl.: execution plan).
+ \item Zuerst wird es geparst um Token und einen Parse-Baum zu erhalten.  Mit einem Preprozessor wird untersucht ob alle Tabellen und Spalten aus der Abfrage existieren, außerdem werden jegliche Namen aufgelöst und Zugriffsrechte geprüft. Anschließend werden mit einer Query-Optimierung  unnötige Dateizugriffe minimiert und es wird nach einer möglichst schnellen Anfragebearbeitung gesucht. Der Query-Optimizer erstellt einen sogenannten Ausführungsplan (engl.: execution plan).
  \item Die Abfrageausführungs-Engine (engl.: query execution engine) führt Schritt für Schritt den Ausführungsplan aus und  ruft dabei die API-Befehle der entsprechenden Engine auf.
- \item Zum Schluss wird das Abfrage-Ergebnis an den Client gesendet. Wenn der Query cacheable ist, wird das Ergebnis der Abfrage im Query Cache gespeichert.
+ \item Zum Schluss wird das Abfrage-Ergebnis an den Client gesendet. Wenn der Query \textit{cacheable} ist, wird das Ergebnis der Abfrage im Query Cache gespeichert(Abbildung \ref{fig:QueryEx}).
 \end{enumerate}
 
 \begin{figure}[htp]
 \centering
-\includegraphics[width=0.75\textwidth]{Christof/Bilder/QueryEx.jpg}
+\includegraphics[width=1\textwidth]{Christof/Bilder/QueryEx.jpg}
 \caption{Query-Ausführungspfad}
 \label{fig:QueryEx}
 \end{figure}
@@ -40,7 +40,7 @@ Grundsätzlich lassen sich die Tabellentypen in transaktionssichere und nicht-tra
 
 Transaktionssichere Tabellen sind ACID-konform und haben den Vorteil, dass man bei einem Systemabsturz oder bei  Hardwareausfällen die Daten auf jeden Fall mit Hilfe der automatischen Wiederherstellung oder der Sicherungskopie und dem Transaktionslog zurückbekommt. Wenn Autocommit deaktiviert wurde, können mehrere Anweisungen zusammengefasst und auch Änderungen mit einem ROLLBACK verworfen werden. Wenn ein Update fehlschlägt, werden alle Änderungen im Gegensatz zu nichttransaktionssicheren Tabellen rückgängig gemacht. 
 
-Der wichtigste Vorteil von nichttransaktionssichere Tabellen ist die Geschwindigkeit un der Speicherverbrauch im RAM und auf der Festplatte.
+Der wichtigste Vorteil von nichttransaktionssichere Tabellen ist die Geschwindigkeit und der geringere Speicherverbrauch im RAM und auf der Festplatte.
 
 
 \subsubsection{MyISAM-Engine}
@@ -49,8 +49,8 @@ Sie verwaltet nichttransaktionssichere Tabellen. Unter anderem bietet sie eine V
 \subsubsection{InnoDB-Engine}
 Sie ist die Standard-Storage-Engine und verwaltet transaktionssichere Tabellen. Es werden die vier Isolationslevel(Read Uncommited, Read Commited, Repeatable Read und Serializalbe)implementiert und mithilfe von Multiversion Concurrency Control wird eine sehr hohe Parallelität erreicht.  Die Daten werden in einer oder mehreren Datendateien abgespeichert, die zusammen als ein Tablespace bezeichnet werden. Der Tablespace wird vollständig von der InnoDB-Engine verwaltet. Es sind somit im Gegensatz zu MyISAM Tabellen beliebiger Größe möglich. Ein weiteres wichtiges Merkmal von der Inno-DB-Engine ist, dass bei einem Datenbank-Lock nur die jeweilige Zeile gesperrt wird und bei SELECT-Anweisungen konsistente Leseoperationen ohne Sperren möglich sind. Außerdem werden sowohl die Indizes als auch die Daten im eigenen Bufferpool zwischengespeichert.
 
-\subsubsection{Memory}
+\subsubsection{Memory-Engine}
 Sie bietet eine nicht-transaktionssichere Verwaltung von Tabellen im Arbeitsspeicher an. Die Daten sind somit nicht permanent gesichert. Diese Daten-Engine unterstützt auch nicht die Option AUTO\_INCREMENT und die Datentypen BLOB oder TEXT. Diese Speicher-Engine eignet sich vor allem für einen sehr schnellen Datenzugriff.
 
-\subsubsection{Archive}
+\subsubsection{Archive-Engine}
 Mit der Speicher-Engine Archive können große Datenmengen ohne Indizes mit einem sehr kleinen Speicherverbrauch verwaltet werden. Die Zeilen werden bei einer INSERT-Anweisung komprimiert und im Kompressionspuffer gespeichert.  Es werden INSERTs und SELECTs unterstützt, nicht jedoch DELETE, REPLACE oder UPDATE. Archive nutzt genauso wie die InnoDB Zeilensperren.
