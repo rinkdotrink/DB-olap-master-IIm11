@@ -1,4 +1,4 @@
-\section{Optimierungsmaßnahmen}
+\section{Optimierungsmaßnahmen}\label{Optimierungsmassnahmen}
 
 \subsection{Indizes}
 Ein Index ist bei der MyISAM eine zusätzliche Datei und bei der InnoDB ein zusätzlicher Dateibereich mit sortierten Querverweisen auf die Datensätze einer Tabelle, was unter Umständen bei Suchvorgängen enorme Geschwindigkeitsvorteile mit sich bringt. Ohne eine Indizierung müsste die Datenbank die Suche bei dem ersten Datensatz beginnen und dann die gesamte Tabelle sequentiell nach passenden Datensätzen durchforsten. Mit einem Index kann die Suche an einer bestimmten Position in der Mitte der Datendatei beginnen, was eine gezielte und schnelle Suche ermöglicht.
